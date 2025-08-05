@@ -68,7 +68,7 @@ const ProjectsSection = () => {
           {categories.map((category) => (
             <Button
               key={category}
-              variant={category === "Todos" ? "electric" : "ghost"}
+              variant={category === "Todos" ? "orange" : "ghost"}
               size="sm"
               className="mb-2"
             >

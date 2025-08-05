@@ -131,7 +131,7 @@ const Footer = () => {
                 placeholder="Seu e-mail"
                 className="flex-1 px-4 py-2 border border-input rounded-md bg-background text-foreground"
               />
-              <Button variant="electric">
+              <Button variant="orange">
                 Inscrever
               </Button>
             </div>

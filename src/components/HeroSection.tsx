@@ -36,7 +36,7 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <Button variant="electric" size="lg" className="group">
+            <Button variant="orange" size="lg" className="group">
               Nossos Projetos
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>

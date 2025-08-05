@@ -8,50 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 0 0% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 0 0% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 220 14.3% 95.9%;
-    --primary-glow: 199 89% 60%;
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 24 100% 60%;
 
-    --secondary: 240 3.7% 15.9%;
+    --secondary: 0 0% 15%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 0 0% 15%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 24 100% 50%;
 
-    /* Custom engineering-themed tokens */
-    --electric-blue: 199 89% 48%;
-    --electric-cyan: 191 85% 56%;
-    --tech-gray: 215 25% 27%;
-    --steel-blue: 210 22% 49%;
-    --circuit-green: 142 76% 36%;
+    /* Custom Eletro May's tokens */
+    --vibrant-orange: 24 100% 50%;
+    --orange-hover: 24 100% 45%;
+    --dark-bg: 0 0% 8%;
+    --card-bg: 0 0% 12%;
+    --text-gray: 0 0% 65%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--electric-blue)), hsl(var(--electric-cyan)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--tech-gray)), hsl(var(--steel-blue)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--tech-gray)) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(var(--vibrant-orange)), hsl(var(--orange-hover)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--dark-bg)), hsl(var(--card-bg)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--dark-bg)) 0%, hsl(var(--card-bg)) 100%);
     
     /* Shadows */
-    --shadow-electric: 0 10px 30px -10px hsl(var(--electric-blue) / 0.3);
-    --shadow-glow: 0 0 40px hsl(var(--electric-blue) / 0.2);
+    --shadow-orange: 0 10px 30px -10px hsl(var(--vibrant-orange) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--vibrant-orange) / 0.2);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -126,5 +126,6 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
   }
 }

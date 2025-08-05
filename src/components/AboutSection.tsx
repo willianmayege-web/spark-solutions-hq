@@ -74,7 +74,7 @@ const AboutSection = () => {
               ))}
             </div>
 
-            <Button variant="electric" size="lg">
+            <Button variant="orange" size="lg">
               Conheça Nossa Equipe
             </Button>
           </div>

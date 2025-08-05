@@ -53,11 +53,11 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				'electric-blue': 'hsl(var(--electric-blue))',
-				'electric-cyan': 'hsl(var(--electric-cyan))',
-				'tech-gray': 'hsl(var(--tech-gray))',
-				'steel-blue': 'hsl(var(--steel-blue))',
-				'circuit-green': 'hsl(var(--circuit-green))',
+				'vibrant-orange': 'hsl(var(--vibrant-orange))',
+				'orange-hover': 'hsl(var(--orange-hover))',
+				'dark-bg': 'hsl(var(--dark-bg))',
+				'card-bg': 'hsl(var(--card-bg))',
+				'text-gray': 'hsl(var(--text-gray))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -80,8 +80,11 @@ export default {
 				'gradient-hero': 'var(--gradient-hero)',
 			},
 			boxShadow: {
-				'electric': 'var(--shadow-electric)',
+				'orange': 'var(--shadow-orange)',
 				'glow': 'var(--shadow-glow)',
+			},
+			fontFamily: {
+				'montserrat': ['Montserrat', 'sans-serif'],
 			},
 			transitionTimingFunction: {
 				'smooth': 'var(--transition-smooth)',

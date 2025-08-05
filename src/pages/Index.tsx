@@ -1,21 +1,23 @@
-import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ServicesSection from "@/components/ServicesSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import HeroEletroMays from "@/components/HeroEletroMays";
+import ServicesGrid from "@/components/ServicesGrid";
+import SolarSimulator from "@/components/SolarSimulator";
+import ClientDashboard from "@/components/ClientDashboard";
+import CooperativeSection from "@/components/CooperativeSection";
+import OnlineStore from "@/components/OnlineStore";
+import FooterEletroMays from "@/components/FooterEletroMays";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <ContactSection />
-      <Footer />
+      <Header />
+      <HeroEletroMays />
+      <ServicesGrid />
+      <SolarSimulator />
+      <ClientDashboard />
+      <CooperativeSection />
+      <OnlineStore />
+      <FooterEletroMays />
     </div>
   );
 };
