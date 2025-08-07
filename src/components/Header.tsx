@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,12 +22,14 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <Zap className="w-6 h-6 text-white" />
-            </div>
+            <img 
+              src="/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png" 
+              alt="Eletro May's Logo" 
+              className="w-10 h-10"
+            />
             <div className="flex flex-col">
               <span className="text-xl font-bold text-foreground font-montserrat">Eletro May's</span>
-              <span className="text-xs text-muted-foreground">Engenharia Elétrica</span>
+              <span className="text-xs text-muted-foreground">Engenharia</span>
             </div>
           </div>
 

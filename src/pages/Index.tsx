@@ -5,6 +5,7 @@ import SolarSimulator from "@/components/SolarSimulator";
 import ClientDashboard from "@/components/ClientDashboard";
 import CooperativeSection from "@/components/CooperativeSection";
 import OnlineStore from "@/components/OnlineStore";
+import QRCodeSection from "@/components/QRCodeSection";
 import FooterEletroMays from "@/components/FooterEletroMays";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <ClientDashboard />
       <CooperativeSection />
       <OnlineStore />
+      <QRCodeSection />
       <FooterEletroMays />
     </div>
   );

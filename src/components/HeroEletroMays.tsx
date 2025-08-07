@@ -14,16 +14,15 @@ const HeroEletroMays = () => {
           {/* Content */}
           <div className="text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground mb-6 font-montserrat leading-tight">
-              Engenharia elétrica{" "}
+              Energia com inteligência,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-primary">
-                moderna, eficiente
-              </span>{" "}
-              e sob medida
+                inovação com segurança
+              </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
               Projetos solares, automação, qualidade de energia e muito mais.
-              Transforme sua energia com soluções sustentáveis e inteligentes.
+              Desde 1988 transformando energia com soluções sustentáveis e inteligentes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">

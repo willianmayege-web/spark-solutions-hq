@@ -8,9 +8,11 @@ const FooterEletroMays = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
+              <img 
+                src="/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png" 
+                alt="Eletro May's Logo" 
+                className="w-10 h-10"
+              />
               <div>
                 <span className="text-xl font-bold text-foreground font-montserrat">Eletro May's</span>
                 <div className="text-sm text-muted-foreground">CNPJ: 44.443.829/0001-34</div>
