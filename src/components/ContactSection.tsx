@@ -17,25 +17,25 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "(11) 9999-8888",
+      content: "(00) 00000-0000",
       description: "Seg-Sex: 8h às 18h"
     },
     {
       icon: Mail,
       title: "E-mail",
-      content: "contato@electrotech.com.br",
+      content: "contato@empresa.com",
       description: "Resposta em até 2h"
     },
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Av. Paulista, 1000",
-      description: "São Paulo - SP"
+      content: "Cidade - Estado",
+      description: "Região de Atuação"
     },
     {
       icon: Clock,
       title: "Emergência 24h",
-      content: "(11) 9999-0000",
+      content: "(00) 00000-0000",
       description: "Atendimento urgente"
     }
   ];
@@ -133,7 +133,7 @@ const ContactSection = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Telefone *
                     </label>
-                    <Input placeholder="(11) 99999-9999" />
+                    <Input placeholder="(00) 00000-0000" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -171,10 +171,10 @@ const ContactSection = () => {
                   </label>
                   <select className="w-full p-3 border border-input rounded-md bg-background text-foreground">
                     <option value="">Selecione uma faixa</option>
-                    <option value="ate-10k">Até R$ 10.000</option>
-                    <option value="10k-50k">R$ 10.000 - R$ 50.000</option>
-                    <option value="50k-100k">R$ 50.000 - R$ 100.000</option>
-                    <option value="acima-100k">Acima de R$ 100.000</option>
+                    <option value="pequeno">Projeto Pequeno</option>
+                    <option value="medio">Projeto Médio</option>
+                    <option value="grande">Projeto Grande</option>
+                    <option value="consulta">Sob consulta</option>
                   </select>
                 </div>
 

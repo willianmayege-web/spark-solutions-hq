@@ -15,7 +15,7 @@ const FooterEletroMays = () => {
               />
               <div>
                 <span className="text-xl font-bold text-foreground font-montserrat">Eletro May's</span>
-                <div className="text-sm text-muted-foreground">CNPJ: 44.443.829/0001-34</div>
+                <div className="text-sm text-muted-foreground">CNPJ: 00.000.000/0001-00</div>
               </div>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
@@ -29,15 +29,15 @@ const FooterEletroMays = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">(11) 9999-8888</span>
+                <span className="text-muted-foreground">(00) 00000-0000</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-muted-foreground">contato@eletromays.com.br</span>
+                <span className="text-muted-foreground">contato@empresa.com</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />
-                <span className="text-muted-foreground">São Paulo - SP</span>
+                <span className="text-muted-foreground">Cidade - Estado</span>
               </div>
             </div>
           </div>

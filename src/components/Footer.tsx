@@ -99,17 +99,17 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground">(11) 9999-8888</span>
+                <span className="text-muted-foreground">(00) 00000-0000</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground">contato@electrotech.com.br</span>
+                <span className="text-muted-foreground">contato@empresa.com</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  Av. Paulista, 1000<br />
-                  São Paulo - SP
+                  Cidade - Estado<br />
+                  Região de Atuação
                 </span>
               </div>
             </div>

@@ -12,7 +12,7 @@ const ProjectsSection = () => {
       image: circuitImage,
       category: "Industrial",
       year: "2024",
-      location: "São Paulo, SP",
+      location: "Cidade - Estado",
       highlights: ["Redução de 40% no tempo de produção", "Sistema de monitoramento 24/7", "Integração com ERP existente"]
     },
     {

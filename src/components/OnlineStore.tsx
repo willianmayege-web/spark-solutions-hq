@@ -4,9 +4,9 @@ import { ShoppingCart, Eye } from "lucide-react";
 
 const OnlineStore = () => {
   const products = [
-    { name: "Painel Solar 550W", price: "R$ 890", image: "/src/assets/circuit-board.jpg" },
-    { name: "Inversor 5kW", price: "R$ 3.200", image: "/src/assets/team-engineering.jpg" },
-    { name: "Carregador Veicular", price: "R$ 2.800", image: "/src/assets/hero-engineering.jpg" }
+    { name: "Painel Solar 550W", price: "Sob consulta", image: "/src/assets/circuit-board.jpg" },
+    { name: "Inversor 5kW", price: "Sob consulta", image: "/src/assets/team-engineering.jpg" },
+    { name: "Carregador Veicular", price: "Sob consulta", image: "/src/assets/hero-engineering.jpg" }
   ];
 
   return (

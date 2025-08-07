@@ -39,7 +39,7 @@ const QRCodeSection = () => {
 
               <div className="space-y-3">
                 <p className="text-sm text-muted-foreground">
-                  CNPJ: 44.443.829/0001-34
+                  CNPJ: 00.000.000/0001-00
                 </p>
                 <div className="flex gap-2">
                   <Button variant="orange" className="flex-1">
