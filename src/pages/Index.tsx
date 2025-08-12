@@ -6,6 +6,11 @@ import ClientDashboard from "@/components/ClientDashboard";
 import CooperativeSection from "@/components/CooperativeSection";
 import OnlineStore from "@/components/OnlineStore";
 import QRCodeSection from "@/components/QRCodeSection";
+import EnergySimulator from "@/components/EnergySimulator";
+import BeforeAfterComparison from "@/components/BeforeAfterComparison";
+import RealCases from "@/components/RealCases";
+import EnergyDiagnosis from "@/components/EnergyDiagnosis";
+import FAQ from "@/components/FAQ";
 import FooterEletroMays from "@/components/FooterEletroMays";
 
 const Index = () => {
@@ -19,6 +24,11 @@ const Index = () => {
       <CooperativeSection />
       <OnlineStore />
       <QRCodeSection />
+      <EnergySimulator />
+      <BeforeAfterComparison />
+      <RealCases />
+      <EnergyDiagnosis />
+      <FAQ />
       <FooterEletroMays />
     </div>
   );
