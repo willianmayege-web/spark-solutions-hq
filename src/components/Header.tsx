@@ -10,11 +10,16 @@ const Header = () => {
   const menuItems = [
     { name: "Início", href: "#home" },
     { name: "Serviços", href: "#services" },
-    { name: "Simulador Solar", href: "#simulator" },
-    { name: "Loja", href: "#store" },
-    { name: "Painel do Cliente", href: "#dashboard" },
-    { name: "Contato", href: "#contact" },
+    { name: "Projetos", href: "#projetos" },
+    { name: "Simulador Solar", href: "#simulador" },
+    { name: "Artigos", href: "#artigos" },
+    { name: "Contato", href: "#orcamento" },
   ];
+
+  const scrollToQuote = () => {
+    document.getElementById('orcamento')?.scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -27,10 +32,10 @@ const Header = () => {
               alt="Eletro May's Logo" 
               className="w-10 h-10"
             />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-foreground font-montserrat">Eletro May's</span>
-              <span className="text-xs text-muted-foreground">Engenharia</span>
-            </div>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold text-foreground font-montserrat">Eletro May's</span>
+            <span className="text-xs text-muted-foreground">Engenharia • CREA-RS 231706</span>
+          </div>
           </div>
 
           {/* Desktop Menu */}
@@ -44,7 +49,7 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="orange" className="ml-4">
+            <Button variant="orange" className="ml-4" onClick={scrollToQuote}>
               Solicitar Orçamento
             </Button>
           </nav>
@@ -76,7 +81,7 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="orange" className="w-full mt-4">
+              <Button variant="orange" className="w-full mt-4" onClick={scrollToQuote}>
                 Solicitar Orçamento
               </Button>
             </div>

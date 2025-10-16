@@ -26,12 +26,22 @@ const HeroEletroMays = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button variant="orange" size="lg" className="group font-semibold">
+              <Button 
+                variant="orange" 
+                size="lg" 
+                className="group font-semibold"
+                onClick={() => document.getElementById('simulador')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 <Calculator className="w-5 h-5 mr-2" />
                 Simular Sistema Solar
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="hero" size="lg" className="font-semibold">
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="font-semibold"
+                onClick={() => window.open('https://wa.me/5555999999999?text=' + encodeURIComponent('Olá! Gostaria de falar com um engenheiro.'), '_blank')}
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Falar com Engenheiro
               </Button>
@@ -48,8 +58,8 @@ const HeroEletroMays = () => {
                 <div className="text-sm text-muted-foreground">Anos de Experiência</div>
               </div>
               <div className="text-center md:block hidden">
-                <div className="text-3xl font-bold text-primary font-montserrat">50MW</div>
-                <div className="text-sm text-muted-foreground">Energia Instalada</div>
+                <div className="text-3xl font-bold text-primary font-montserrat">CREA-RS</div>
+                <div className="text-sm text-muted-foreground">Registro 231706</div>
               </div>
             </div>
           </div>
