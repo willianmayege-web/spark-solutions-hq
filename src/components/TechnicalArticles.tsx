@@ -5,18 +5,18 @@ import ArticleCard from "./ArticleCard";
 
 const TechnicalArticles = () => {
   return (
-    <section id="artigos" className="py-16 px-4 bg-card">
+    <section id="blog" className="py-16 px-4 bg-card">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <BookOpen className="w-10 h-10 text-primary mr-3" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground font-montserrat">
-              Artigos <span className="text-primary">Técnicos</span>
+              Blog <span className="text-primary">Técnico</span>
             </h2>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Conteúdo técnico de qualidade sobre engenharia elétrica, normas, 
-            energia solar e melhores práticas do setor.
+            Artigos especializados sobre eficiência energética, normas de segurança elétrica e melhores práticas 
+            em instalações industriais e residenciais no Rio Grande do Sul.
           </p>
         </div>
 

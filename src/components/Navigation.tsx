@@ -8,10 +8,11 @@ const Navigation = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const menuItems = [
-    { name: "Início", href: "#home" },
-    { name: "Sobre", href: "#about" },
+    { name: "Home", href: "/" },
     { name: "Serviços", href: "#services" },
-    { name: "Projetos", href: "#projects" },
+    { name: "Portfólio", href: "#projects" },
+    { name: "Sobre", href: "/sobre" },
+    { name: "Blog", href: "#blog" },
     { name: "Contato", href: "#contact" },
   ];
 
@@ -20,12 +21,15 @@ const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-md flex items-center justify-center">
-              <Zap className="w-5 h-5 text-white" />
+          <a href="/" className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-primary rounded-md flex items-center justify-center border-2 border-primary">
+              <Zap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-foreground">ElectroTech</span>
-          </div>
+            <div className="flex flex-col">
+              <span className="text-lg font-bold text-foreground leading-tight">Eletro May's</span>
+              <span className="text-xs text-muted-foreground">CREA-RS 231706</span>
+            </div>
+          </a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -39,7 +43,7 @@ const Navigation = () => {
               </a>
             ))}
             <Button variant="orange" className="ml-4">
-              Orçamento
+              Solicite Orçamento Gratuito
             </Button>
           </div>
 
@@ -71,7 +75,7 @@ const Navigation = () => {
                 </a>
               ))}
               <Button variant="orange" className="w-full mt-4">
-                Orçamento
+                Solicite Orçamento Gratuito
               </Button>
             </div>
           </div>

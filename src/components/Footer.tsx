@@ -1,28 +1,28 @@
-import { Zap, Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Zap, Mail, Phone, MapPin, Linkedin, Instagram, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const quickLinks = [
-    { name: "Início", href: "#home" },
-    { name: "Sobre", href: "#about" },
+    { name: "Home", href: "/" },
     { name: "Serviços", href: "#services" },
-    { name: "Projetos", href: "#projects" },
+    { name: "Portfólio", href: "#projects" },
+    { name: "Sobre", href: "/sobre" },
+    { name: "Blog", href: "#blog" },
     { name: "Contato", href: "#contact" }
   ];
 
   const services = [
-    "Automação Industrial",
-    "Projetos Residenciais",
+    "Instalações Industriais",
+    "Instalações Residenciais",
+    "Manutenção Predial",
     "Eficiência Energética",
     "Energia Solar",
-    "Manutenção Elétrica",
-    "Laudos Técnicos"
+    "Laudos Técnicos CREA-RS"
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Facebook, href: "#", label: "Facebook" }
+    { icon: Linkedin, href: "https://linkedin.com/company/eletromays", label: "LinkedIn" },
+    { icon: Instagram, href: "https://instagram.com/eletromays", label: "Instagram" }
   ];
 
   return (
@@ -32,16 +32,23 @@ const Footer = () => {
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-md flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-primary rounded-md flex items-center justify-center border-2 border-primary">
+                <Zap className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-foreground">ElectroTech</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-foreground leading-tight">Eletro May's</span>
+                <span className="text-xs text-muted-foreground">Engenharia Elétrica</span>
+              </div>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Especialistas em soluções completas de engenharia elétrica, 
-              oferecendo inovação, qualidade e eficiência em cada projeto.
+              Especialistas em instalações elétricas industriais, residenciais e manutenção predial em Santa Rosa, RS. 
+              Certificação CREA-RS 231706.
             </p>
+            <div className="flex items-center space-x-2 text-sm">
+              <Shield className="w-4 h-4 text-primary" />
+              <span className="text-foreground font-semibold">CREA-RS 231706</span>
+            </div>
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
                 <Button
@@ -51,7 +58,7 @@ const Footer = () => {
                   className="w-10 h-10 p-0 hover:bg-primary/10 hover:text-primary"
                   asChild
                 >
-                  <a href={social.href} aria-label={social.label}>
+                  <a href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
                     <social.icon className="w-5 h-5" />
                   </a>
                 </Button>
@@ -99,17 +106,17 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground">(00) 00000-0000</span>
+                <span className="text-muted-foreground">(55) 9999-9999</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-muted-foreground">contato@empresa.com</span>
+                <span className="text-muted-foreground">contato@eletromays.com.br</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
                 <span className="text-muted-foreground">
-                  Cidade - Estado<br />
-                  Região de Atuação
+                  Santa Rosa, RS<br />
+                  Região Noroeste do Rio Grande do Sul
                 </span>
               </div>
             </div>
@@ -142,7 +149,7 @@ const Footer = () => {
         <div className="py-6 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-muted-foreground text-sm">
-              © 2024 ElectroTech. Todos os direitos reservados.
+              © 2025 Eletro May's Engenharia Elétrica. Todos os direitos reservados.
             </p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -150,9 +157,6 @@ const Footer = () => {
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                 Termos de Uso
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                Cookies
               </a>
             </div>
           </div>
