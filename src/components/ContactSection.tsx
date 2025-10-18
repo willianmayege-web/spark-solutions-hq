@@ -6,10 +6,9 @@ import {
   Phone, 
   Mail, 
   MapPin, 
-  Clock,
+  Shield,
   Send,
-  MessageSquare,
-  Smartphone
+  MessageSquare
 } from "lucide-react";
 
 const ContactSection = () => {
@@ -17,26 +16,26 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "(00) 00000-0000",
+      content: "(55) 9999-9999",
       description: "Seg-Sex: 8h às 18h"
     },
     {
       icon: Mail,
       title: "E-mail",
-      content: "contato@empresa.com",
-      description: "Resposta em até 2h"
+      content: "contato@eletromays.com.br",
+      description: "Resposta em até 24h"
     },
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Cidade - Estado",
-      description: "Região de Atuação"
+      content: "Santa Rosa, RS",
+      description: "Região Noroeste do RS"
     },
     {
-      icon: Clock,
-      title: "Emergência 24h",
-      content: "(00) 00000-0000",
-      description: "Atendimento urgente"
+      icon: Shield,
+      title: "CREA-RS",
+      content: "231706",
+      description: "Certificação Profissional"
     }
   ];
 
