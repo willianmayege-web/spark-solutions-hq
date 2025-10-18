@@ -4,7 +4,6 @@ import ServicesGrid from "@/components/ServicesGrid";
 import CTASection from "@/components/CTASection";
 import SolarSimulator from "@/components/SolarSimulator";
 import SolarSimulatorSection from "@/components/SolarSimulatorSection";
-import EnergySimulator from "@/components/EnergySimulator";
 import ClientDashboard from "@/components/ClientDashboard";
 import ProjectsPortfolio from "@/components/ProjectsPortfolio";
 import CooperativeSection from "@/components/CooperativeSection";
@@ -32,13 +31,6 @@ const Index = () => {
         description="Nossa equipe técnica está pronta para apresentar a melhor solução para seu projeto de engenharia elétrica."
         primaryButtonText="Solicitar Orçamento"
         secondaryButtonText="Falar no WhatsApp"
-      />
-      <EnergySimulator />
-      <CTASection 
-        title="Receba uma Proposta Personalizada"
-        description="Com base na simulação, podemos elaborar um projeto completo e detalhado para seu sistema solar."
-        primaryButtonText="Solicitar Proposta"
-        variant="gradient"
       />
       <ProjectsPortfolio />
       <SolarSimulator />
