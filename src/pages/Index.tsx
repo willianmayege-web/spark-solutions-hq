@@ -3,6 +3,7 @@ import HeroEletroMays from "@/components/HeroEletroMays";
 import ServicesGrid from "@/components/ServicesGrid";
 import CTASection from "@/components/CTASection";
 import SolarSimulator from "@/components/SolarSimulator";
+import SolarSimulatorSection from "@/components/SolarSimulatorSection";
 import EnergySimulator from "@/components/EnergySimulator";
 import ClientDashboard from "@/components/ClientDashboard";
 import ProjectsPortfolio from "@/components/ProjectsPortfolio";
@@ -25,6 +26,7 @@ const Index = () => {
       <Header />
       <HeroEletroMays />
       <ServicesGrid />
+      <SolarSimulatorSection />
       <CTASection 
         title="Solicite um Orçamento Gratuito"
         description="Nossa equipe técnica está pronta para apresentar a melhor solução para seu projeto de engenharia elétrica."
