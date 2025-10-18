@@ -17,6 +17,7 @@ import QuoteRequestForm from "@/components/QuoteRequestForm";
 import FAQ from "@/components/FAQ";
 import FooterEletroMays from "@/components/FooterEletroMays";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import EbookPopup from "@/components/EbookPopup";
 
 const Index = () => {
   return (
@@ -57,6 +58,7 @@ const Index = () => {
       />
       <FooterEletroMays />
       <WhatsAppFloat />
+      <EbookPopup />
     </div>
   );
 };

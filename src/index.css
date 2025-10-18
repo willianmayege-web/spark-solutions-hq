@@ -8,44 +8,46 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Eletro May's Dark Theme */
-    --background: 0 0% 5%;
+    /* Eletro May's Professional Theme - Blue & Orange */
+    --background: 207 100% 10%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 8%;
+    --card: 207 100% 12%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 8%;
+    --popover: 207 100% 12%;
     --popover-foreground: 0 0% 98%;
-    --primary: 25 100% 50%;
+    --primary: 26 88% 62%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 12%;
+    --secondary: 207 50% 15%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 12%;
+    --muted: 207 30% 20%;
     --muted-foreground: 0 0% 70%;
-    --accent: 0 0% 12%;
+    --accent: 207 50% 15%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 12%;
-    --ring: 25 100% 50%;
+    --border: 207 30% 20%;
+    --input: 207 50% 15%;
+    --ring: 26 88% 62%;
     --radius: 0.5rem;
 
-    /* Eletro May's Custom Colors */
-    --primary-orange: 25 100% 50%;
-    --primary-orange-hover: 20 100% 45%;
-    --background-dark: 0 0% 5%;
-    --surface-dark: 0 0% 8%;
+    /* Eletro May's Custom Colors - Blue #003366 & Orange #F4A261 */
+    --primary-blue: 207 100% 20%;
+    --primary-blue-dark: 207 100% 10%;
+    --primary-orange: 26 88% 62%;
+    --primary-orange-hover: 26 88% 55%;
+    --background-dark: 207 100% 10%;
+    --surface-dark: 207 100% 12%;
     --text-white: 0 0% 98%;
     --text-muted: 0 0% 70%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-orange)), hsl(20 100% 55%));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background-dark)), hsl(0 0% 8%));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-orange)), hsl(26 88% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background-dark)), hsl(207 100% 15%));
     
     /* Shadows */
     --shadow-orange: 0 10px 30px -10px hsl(var(--primary-orange) / 0.3);
     --shadow-glow: 0 0 40px hsl(var(--primary-orange) / 0.2);
-    --shadow-elegant: 0 10px 50px -15px hsl(0 0% 0% / 0.8);
+    --shadow-elegant: 0 10px 50px -15px hsl(207 100% 5% / 0.8);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
