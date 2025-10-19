@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
-import HeroEletroMays from "@/components/HeroEletroMays";
+import HeroSlider from "@/components/HeroSlider";
+import WhyChooseSection from "@/components/WhyChooseSection";
 import ServicesGrid from "@/components/ServicesGrid";
 import CTASection from "@/components/CTASection";
 import SolarSimulator from "@/components/SolarSimulator";
@@ -23,7 +24,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <HeroEletroMays />
+      <HeroSlider />
+      <WhyChooseSection />
       <ServicesGrid />
       <SolarSimulatorSection />
       <CTASection 
