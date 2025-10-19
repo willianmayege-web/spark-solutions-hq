@@ -6,6 +6,19 @@ import FooterEletroMays from "@/components/FooterEletroMays";
 import { servicesDetail } from "@/data/services-detail";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import energiaSolarImg from "@/assets/energia-solar.jpg";
+import spdaImg from "@/assets/spda-aterramento.jpg";
+import laudosImg from "@/assets/laudos-pericias.jpg";
+import automacaoImg from "@/assets/automacao-controle.jpg";
+import eficienciaImg from "@/assets/eficiencia-energetica.jpg";
+
+const serviceImages: Record<string, string> = {
+  "energia-solar": energiaSolarImg,
+  "spda": spdaImg,
+  "laudos": laudosImg,
+  "automacao": automacaoImg,
+  "eficiencia": eficienciaImg,
+};
 
 const ServicesDetailPage = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
@@ -56,11 +69,30 @@ const ServicesDetailPage = () => {
               Voltar
             </Button>
 
-            {/* Service Header */}
+            {/* Service Header with Image */}
+            {serviceImages[service.id] && (
+              <div className="relative h-96 mb-12 rounded-xl overflow-hidden">
+                <img 
+                  src={serviceImages[service.id]} 
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8">
+                  <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-montserrat drop-shadow-lg">
+                    {service.title}
+                  </h1>
+                </div>
+              </div>
+            )}
+
+            {/* Description */}
             <div className="mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-montserrat">
-                {service.title}
-              </h1>
+              {!serviceImages[service.id] && (
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-montserrat">
+                  {service.title}
+                </h1>
+              )}
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {service.description}
               </p>
@@ -119,7 +151,7 @@ const ServicesDetailPage = () => {
                     size="lg"
                     onClick={() => {
                       const message = encodeURIComponent(`Olá! Gostaria de mais informações sobre ${service.title}`);
-                      window.open(`https://wa.me/5555999999999?text=${message}`, '_blank');
+                      window.open(`https://wa.me/555535205555?text=${message}`, '_blank');
                     }}
                   >
                     Falar no WhatsApp

@@ -9,11 +9,11 @@ const Navigation = () => {
 
   const menuItems = [
     { name: "Home", href: "/" },
-    { name: "Serviços", href: "#services" },
-    { name: "Portfólio", href: "#projects" },
+    { name: "Serviços", href: "/#services" },
+    { name: "Portfólio", href: "/#projetos" },
     { name: "Sobre", href: "/sobre" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contato", href: "#contact" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contato", href: "/#orcamento" },
   ];
 
   return (
@@ -42,7 +42,17 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="orange" className="ml-4">
+            <Button 
+              variant="orange" 
+              className="ml-4"
+              onClick={() => {
+                if (window.location.pathname !== '/') {
+                  window.location.href = '/#orcamento';
+                } else {
+                  document.getElementById('orcamento')?.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
               Solicite Orçamento Gratuito
             </Button>
           </div>
@@ -74,7 +84,18 @@ const Navigation = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="orange" className="w-full mt-4">
+              <Button 
+                variant="orange" 
+                className="w-full mt-4"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  if (window.location.pathname !== '/') {
+                    window.location.href = '/#orcamento';
+                  } else {
+                    document.getElementById('orcamento')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 Solicite Orçamento Gratuito
               </Button>
             </div>

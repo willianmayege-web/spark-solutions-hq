@@ -75,14 +75,76 @@ const AboutPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-montserrat">
                 Sobre a Eletro May's Engenharia Elétrica
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Com mais de 5 anos de experiência em Santa Rosa, RS, a Eletro May's Engenharia Elétrica 
-                é referência em instalações elétricas industriais, residenciais e manutenção predial. 
-                Nossa equipe altamente qualificada, certificada pelo CREA-RS 231706, está comprometida 
-                com a inovação, segurança e sustentabilidade em todos os projetos que desenvolvemos. 
-                Trabalhamos com as mais modernas tecnologias e normas técnicas, garantindo eficiência 
-                energética e total conformidade com as regulamentações do setor elétrico.
+              <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+                <strong className="text-foreground">Fundada em 1988</strong>, a Eletro May's Engenharia Elétrica 
+                acumula mais de três décadas de experiência em Santa Rosa e região noroeste do Rio Grande do Sul. 
+                Somos especialistas em projetos elétricos industriais, residenciais, energia solar, SPDA, 
+                automação e eficiência energética.
               </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Nossa equipe altamente qualificada, certificada pelo <strong className="text-foreground">CREA-RS 231706</strong>, 
+                está comprometida com a inovação, segurança e sustentabilidade em todos os projetos que desenvolvemos. 
+                Trabalhamos com as mais modernas tecnologias e normas técnicas (NBR 5410, NBR 5419, NR-10), 
+                garantindo eficiência energética e total conformidade com as regulamentações do setor elétrico.
+              </p>
+            </div>
+
+            {/* Engenheiro Responsável */}
+            <Card className="mb-16 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="w-32 h-32 bg-gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-16 h-16 text-white" />
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h3 className="text-2xl font-bold text-foreground mb-2 font-montserrat">
+                      Eng. Willian Paulo May
+                    </h3>
+                    <p className="text-primary font-semibold mb-3">
+                      Engenheiro Eletricista Responsável | CREA-RS 231706
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Engenheiro eletricista com vasta experiência em projetos industriais, 
+                      energia solar e automação. Responsável técnico por mais de 500 projetos 
+                      entregues em Santa Rosa e região, sempre priorizando segurança, 
+                      eficiência e inovação tecnológica.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Missão e Visão */}
+            <div className="mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="bg-card border-border">
+                  <CardContent className="p-8">
+                    <div className="flex items-center mb-4">
+                      <Target className="w-8 h-8 text-primary mr-3" />
+                      <h3 className="text-2xl font-bold text-foreground font-montserrat">Missão</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Oferecer soluções elétricas seguras, sustentáveis e inteligentes, 
+                      garantindo eficiência energética, conformidade técnica e excelência 
+                      no atendimento aos nossos clientes em Santa Rosa e região.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-card border-border">
+                  <CardContent className="p-8">
+                    <div className="flex items-center mb-4">
+                      <Eye className="w-8 h-8 text-primary mr-3" />
+                      <h3 className="text-2xl font-bold text-foreground font-montserrat">Visão</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Ser reconhecida como a empresa de engenharia elétrica mais confiável 
+                      do noroeste do RS, referência em inovação, sustentabilidade e 
+                      comprometimento com a transição energética.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Mission, Vision, Values */}
@@ -90,8 +152,29 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold text-foreground mb-8 text-center font-montserrat">
                 Nossos Valores
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {values.map((value, index) => {
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    icon: Shield,
+                    title: "Segurança",
+                    description: "Compromisso total com normas técnicas e segurança operacional"
+                  },
+                  {
+                    icon: Heart,
+                    title: "Ética",
+                    description: "Transparência, honestidade e responsabilidade em todas as relações"
+                  },
+                  {
+                    icon: Lightbulb,
+                    title: "Sustentabilidade",
+                    description: "Soluções que respeitam o meio ambiente e promovem eficiência"
+                  },
+                  {
+                    icon: Award,
+                    title: "Inovação",
+                    description: "Uso de tecnologias modernas e práticas de engenharia avançadas"
+                  }
+                ].map((value, index) => {
                   const IconComponent = value.icon;
                   return (
                     <Card key={index} className="bg-card border-border text-center hover:shadow-glow transition-all">
@@ -155,10 +238,18 @@ const AboutPage = () => {
                     soluções elétricas seguras e eficientes para sua empresa ou residência.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="orange" size="lg">
+                    <Button 
+                      variant="orange" 
+                      size="lg"
+                      onClick={() => window.location.href = '/#orcamento'}
+                    >
                       Solicitar Orçamento Gratuito
                     </Button>
-                    <Button variant="hero" size="lg">
+                    <Button 
+                      variant="hero" 
+                      size="lg"
+                      onClick={() => window.location.href = '/#projetos'}
+                    >
                       Ver Projetos Realizados
                     </Button>
                   </div>
