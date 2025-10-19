@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ interface ArticleCardProps {
 }
 
 const ArticleCard = ({ article }: ArticleCardProps) => {
+  const navigate = useNavigate();
+  
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
@@ -48,6 +51,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
         <Button 
           variant="outline" 
           className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+          onClick={() => navigate(`/blog/${article.slug}`)}
         >
           Leia mais
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

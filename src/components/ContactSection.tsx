@@ -16,20 +16,20 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Telefone",
-      content: "(55) 9999-9999",
+      content: "(55) 3520-5555",
       description: "Seg-Sex: 8h às 18h"
     },
     {
       icon: Mail,
       title: "E-mail",
-      content: "contato@eletromays.com.br",
+      content: "atendimento@eletromays.com.br",
       description: "Resposta em até 24h"
     },
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Santa Rosa, RS",
-      description: "Região Noroeste do RS"
+      content: "Rua Vinte de Setembro, 751",
+      description: "Santa Rosa, RS"
     },
     {
       icon: Shield,
@@ -89,11 +89,21 @@ const ContactSection = () => {
 
             {/* Quick Actions */}
             <div className="mt-8 space-y-4">
-              <Button variant="orange" className="w-full" size="lg">
+              <Button 
+                variant="orange" 
+                className="w-full" 
+                size="lg"
+                onClick={() => window.location.href = 'tel:+555535205555'}
+              >
                 <Phone className="w-5 h-5 mr-2" />
                 Ligar Agora
               </Button>
-              <Button variant="outline" className="w-full" size="lg">
+              <Button 
+                variant="outline" 
+                className="w-full" 
+                size="lg"
+                onClick={() => window.open('https://wa.me/555535205555?text=Olá,+quero+um+orçamento+de+projeto+elétrico.', '_blank')}
+              >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 WhatsApp
               </Button>

@@ -10,7 +10,7 @@ import {
 const WhatsAppFloat = () => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento.");
-    const whatsappUrl = `https://wa.me/5555999999999?text=${message}`;
+    const whatsappUrl = `https://wa.me/555535205555?text=${message}`;
     
     // Track evento no GA4
     if (window.gtag) {

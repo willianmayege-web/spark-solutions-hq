@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, ArrowRight } from "lucide-react";
 import { articles } from "@/data/articles";
 import ArticleCard from "./ArticleCard";
 
 const TechnicalArticles = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="blog" className="py-16 px-4 bg-card">
       <div className="container mx-auto">
@@ -27,7 +30,11 @@ const TechnicalArticles = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="orange" size="lg">
+          <Button 
+            variant="orange" 
+            size="lg"
+            onClick={() => navigate("/blog")}
+          >
             Ver Todos os Artigos
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>

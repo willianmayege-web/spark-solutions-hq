@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const FooterEletroMays = () => {
   const openGoogleMaps = () => {
-    window.open('https://maps.google.com/?q=Santa+Rosa+RS', '_blank');
+    window.open('https://maps.google.com/?q=Rua+Vinte+de+Setembro,+751,+Santa+Rosa,+RS', '_blank');
   };
 
   return (
@@ -44,19 +44,19 @@ const FooterEletroMays = () => {
                 <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                 <div>
                   <div className="text-muted-foreground text-sm">(55) 3520-5555</div>
-                  <div className="text-xs text-muted-foreground">WhatsApp: (55) 99999-9999</div>
+                  <div className="text-xs text-muted-foreground">WhatsApp disponível</div>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:contato@eletromays.com.br" className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                  contato@eletromays.com.br
+                <a href="mailto:atendimento@eletromays.com.br" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  atendimento@eletromays.com.br
                 </a>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                 <div>
-                  <div className="text-muted-foreground text-sm">Rua Exemplo, 123 - Centro</div>
+                  <div className="text-muted-foreground text-sm">Rua Vinte de Setembro, 751</div>
                   <div className="text-muted-foreground text-sm">Santa Rosa - RS</div>
                   <div className="text-muted-foreground text-sm mb-2">CEP: 98900-000</div>
                   <Button 
@@ -103,15 +103,6 @@ const FooterEletroMays = () => {
             <h3 className="font-semibold text-foreground mb-4 font-montserrat">Redes Sociais</h3>
             <div className="flex space-x-3 mb-6">
               <a 
-                href="https://facebook.com/eletromays" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-muted hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a 
                 href="https://instagram.com/eletromays" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -150,12 +141,16 @@ const FooterEletroMays = () => {
               © 2025 Eletro May's Engenharia - CREA-RS 231706. Todos os direitos reservados.
             </p>
             <div className="flex gap-4 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors">
                 Política de Privacidade
               </a>
               <span className="text-muted-foreground">|</span>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="/termos-uso" className="text-muted-foreground hover:text-primary transition-colors">
                 Termos de Uso
+              </a>
+              <span className="text-muted-foreground">|</span>
+              <a href="/politica-cookies" className="text-muted-foreground hover:text-primary transition-colors">
+                Política de Cookies
               </a>
             </div>
           </div>
