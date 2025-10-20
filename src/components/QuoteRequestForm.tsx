@@ -45,15 +45,13 @@ const QuoteRequestForm = () => {
   ];
 
   const services = [
-    "Energia Solar Residencial",
-    "Energia Solar Comercial/Industrial",
-    "SPDA (Para-raios) - NBR 5419",
-    "Projeto Elétrico - NBR 5410",
-    "Perícia Técnica Elétrica",
-    "Laudo Técnico",
+    "Energia Solar",
+    "SPDA/Laudos",
+    "Projetos Elétricos",
+    "Manutenção Industrial",
     "Termografia",
     "Qualidade de Energia",
-    "Automação Industrial",
+    "Automação",
     "Outro"
   ];
 
@@ -83,7 +81,7 @@ const QuoteRequestForm = () => {
       );
 
       // Abrir WhatsApp
-      const whatsappUrl = `https://wa.me/5555999999999?text=${whatsappMessage}`;
+      const whatsappUrl = `https://wa.me/5555991389623?text=${whatsappMessage}`;
       window.open(whatsappUrl, '_blank');
 
       // Track evento no GA4 (se configurado)

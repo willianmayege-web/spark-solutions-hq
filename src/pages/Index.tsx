@@ -15,6 +15,7 @@ import RealCases from "@/components/RealCases";
 import TechnicalArticles from "@/components/TechnicalArticles";
 import EnergyDiagnosis from "@/components/EnergyDiagnosis";
 import QuoteRequestForm from "@/components/QuoteRequestForm";
+import CalendlySection from "@/components/CalendlySection";
 import FAQ from "@/components/FAQ";
 import FooterEletroMays from "@/components/FooterEletroMays";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -45,6 +46,7 @@ const Index = () => {
       <TechnicalArticles />
       <EnergyDiagnosis />
       <QuoteRequestForm />
+      <CalendlySection />
       <FAQ />
       <CTASection 
         title="Pronto para Economizar com Inteligência?"

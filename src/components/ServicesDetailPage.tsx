@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import FooterEletroMays from "@/components/FooterEletroMays";
 import { servicesDetail } from "@/data/services-detail";
+import { serviceFAQs } from "@/data/service-faqs";
+import ServiceFAQ from "@/components/ServiceFAQ";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SEOHead, { serviceJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/SEOHead";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import energiaSolarImg from "@/assets/energia-solar.jpg";
@@ -25,6 +29,7 @@ const ServicesDetailPage = () => {
   const navigate = useNavigate();
   
   const service = servicesDetail.find(s => s.id === serviceId);
+  const faqs = serviceFAQs[serviceId as keyof typeof serviceFAQs] || [];
 
   useEffect(() => {
     if (service) {
@@ -33,6 +38,7 @@ const ServicesDetailPage = () => {
       if (metaDescription) {
         metaDescription.setAttribute('content', service.metaDescription);
       }
+      window.scrollTo(0, 0);
     }
   }, [service]);
 
@@ -55,19 +61,29 @@ const ServicesDetailPage = () => {
 
   return (
     <>
+      <SEOHead
+        title={service.metaTitle}
+        description={service.metaDescription}
+        keywords={`${service.title}, santa rosa rs, engenharia elétrica, crea rs`}
+        jsonLd={{
+          ...serviceJsonLd(service.title, service.description),
+          ...breadcrumbJsonLd([
+            { name: "Início", url: "https://eletromays.com.br/" },
+            { name: "Serviços", url: "https://eletromays.com.br/#services" },
+            { name: service.title, url: `https://eletromays.com.br/servicos/${service.id}` }
+          ]),
+          ...(faqs.length > 0 ? faqJsonLd(faqs) : {})
+        }}
+      />
       <Header />
       <main className="min-h-screen bg-background">
         <section className="py-16 px-4">
           <div className="container mx-auto max-w-5xl">
-            {/* Back Button */}
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate('/')} 
-              className="mb-8"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar
-            </Button>
+            {/* Breadcrumbs */}
+            <Breadcrumbs items={[
+              { name: "Serviços", href: "/#services" },
+              { name: service.title, href: `/servicos/${service.id}` }
+            ]} />
 
             {/* Service Header with Image */}
             {serviceImages[service.id] && (
@@ -151,7 +167,7 @@ const ServicesDetailPage = () => {
                     size="lg"
                     onClick={() => {
                       const message = encodeURIComponent(`Olá! Gostaria de mais informações sobre ${service.title}`);
-                      window.open(`https://wa.me/555535205555?text=${message}`, '_blank');
+                      window.open(`https://wa.me/5555991389623?text=${message}`, '_blank');
                     }}
                   >
                     Falar no WhatsApp
@@ -159,6 +175,45 @@ const ServicesDetailPage = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* FAQs */}
+        {faqs.length > 0 && <ServiceFAQ faqs={faqs} />}
+
+        {/* Final CTA */}
+        <section className="py-16 px-4 bg-primary/5">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat">
+              Pronto para iniciar seu projeto?
+            </h2>
+            <p className="text-muted-foreground text-lg mb-8">
+              Fale com nossa equipe técnica certificada CREA-RS 231706
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                variant="orange" 
+                size="lg"
+                onClick={() => {
+                  navigate('/#orcamento');
+                  setTimeout(() => {
+                    document.getElementById('orcamento')?.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+              >
+                Solicitar Orçamento Gratuito
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => {
+                  const message = encodeURIComponent(`Olá! Tenho interesse em ${service.title}`);
+                  window.open(`https://wa.me/5555991389623?text=${message}`, '_blank');
+                }}
+              >
+                Falar no WhatsApp
+              </Button>
+            </div>
           </div>
         </section>
       </main>

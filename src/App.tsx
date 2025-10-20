@@ -12,12 +12,15 @@ import ArticlePage from "./pages/ArticlePage";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import PoliticaCookies from "./pages/PoliticaCookies";
+import CookieConsent from "./components/CookieConsent";
+import SEOHead, { organizationJsonLd } from "./components/SEOHead";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <SEOHead jsonLd={organizationJsonLd} />
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -33,6 +36,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <CookieConsent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

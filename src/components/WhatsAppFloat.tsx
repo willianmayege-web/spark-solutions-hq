@@ -10,7 +10,7 @@ import {
 const WhatsAppFloat = () => {
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento.");
-    const whatsappUrl = `https://wa.me/555535205555?text=${message}`;
+    const whatsappUrl = `https://wa.me/5555991389623?text=${message}`;
     
     // Track evento no GA4
     if (window.gtag) {
@@ -40,8 +40,8 @@ const WhatsAppFloat = () => {
           </Button>
         </TooltipTrigger>
         <TooltipContent side="left" className="bg-[#25D366] text-white border-none">
-          <p className="font-semibold">Fale conosco no WhatsApp</p>
-          <p className="text-xs">Resposta rápida garantida</p>
+          <p className="font-semibold">Atendimento imediato</p>
+          <p className="text-xs">Clique para falar agora</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
