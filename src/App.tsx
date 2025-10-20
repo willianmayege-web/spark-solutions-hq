@@ -20,10 +20,10 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SEOHead jsonLd={organizationJsonLd} />
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <SEOHead jsonLd={organizationJsonLd} />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/sobre" element={<AboutPage />} />
