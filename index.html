@@ -185,6 +185,14 @@
       }
     }
     </script>
+    <script type="module">
+      import {onLCP, onCLS, onINP, onTTFB} from 'https://unpkg.com/web-vitals@4/dist/web-vitals.attribution.mjs';
+      window.__EM_VITALS__ = {LCP:null,CLS:null,INP:null,TTFB:null};
+      onLCP(v=>window.__EM_VITALS__.LCP=v.value);
+      onCLS(v=>window.__EM_VITALS__.CLS=v.value);
+      onINP(v=>window.__EM_VITALS__.INP=v.value);
+      onTTFB(v=>window.__EM_VITALS__.TTFB=v.value);
+    </script>
   </head>
 
   <body>

@@ -12,6 +12,7 @@ import ArticlePage from "./pages/ArticlePage";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import PoliticaCookies from "./pages/PoliticaCookies";
+import DiagnosticsPage from "./pages/DiagnosticsPage";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { organizationJsonLd } from "./components/SEOHead";
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
           <Route path="/termos-uso" element={<TermosUso />} />
           <Route path="/politica-cookies" element={<PoliticaCookies />} />
+          <Route path="/diagnostics" element={<DiagnosticsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
