@@ -22,7 +22,8 @@ const ProjectsPortfolio = () => {
           {projects.map((project) => (
             <Card 
               key={project.id} 
-              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow overflow-hidden group"
+              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow overflow-hidden group animate-fade-in"
+              style={{ animationDelay: `${projects.indexOf(project) * 100}ms` }}
             >
               <div className="relative h-48 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                 <div className="text-6xl opacity-20 group-hover:opacity-30 transition-opacity">
