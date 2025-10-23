@@ -41,7 +41,8 @@ const WhyChooseSection = () => {
           {reasons.map((reason, index) => (
             <Card 
               key={index}
-              className="p-6 bg-card hover:bg-accent/50 transition-all duration-300 hover:scale-105 hover:shadow-orange border-border"
+              className="p-6 bg-card hover:bg-accent/50 transition-all duration-300 hover:scale-105 hover:shadow-orange border-border animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center mb-4 shadow-glow">
                 <reason.icon className="w-8 h-8 text-white" />

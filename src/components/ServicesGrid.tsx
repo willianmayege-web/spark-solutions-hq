@@ -85,7 +85,8 @@ const ServicesGrid = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="group hover:shadow-glow transition-all duration-300 bg-card border-border hover:border-primary/50 overflow-hidden cursor-pointer"
+              className="group hover:shadow-glow transition-all duration-300 bg-card border-border hover:border-primary/50 overflow-hidden cursor-pointer animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => navigate(`/servicos/${service.id}`)}
             >
               {/* Image Header */}
