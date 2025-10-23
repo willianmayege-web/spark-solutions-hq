@@ -1,3 +1,4 @@
+import TopBanner from "@/components/TopBanner";
 import Header from "@/components/Header";
 import HeroSlider from "@/components/HeroSlider";
 import WhyChooseSection from "@/components/WhyChooseSection";
@@ -9,6 +10,7 @@ import ClientDashboard from "@/components/ClientDashboard";
 import ProjectsPortfolio from "@/components/ProjectsPortfolio";
 import CooperativeSection from "@/components/CooperativeSection";
 import OnlineStore from "@/components/OnlineStore";
+import TechnicalStore from "@/components/TechnicalStore";
 import QRCodeSection from "@/components/QRCodeSection";
 import BeforeAfterComparison from "@/components/BeforeAfterComparison";
 import RealCases from "@/components/RealCases";
@@ -24,6 +26,7 @@ import EbookPopup from "@/components/EbookPopup";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <TopBanner />
       <Header />
       <HeroSlider />
       <WhyChooseSection />
@@ -39,6 +42,7 @@ const Index = () => {
       <SolarSimulator />
       <ClientDashboard />
       <CooperativeSection />
+      <TechnicalStore />
       <OnlineStore />
       <QRCodeSection />
       <BeforeAfterComparison />
