@@ -55,49 +55,78 @@ const QuoteRequestForm = () => {
     "Outro"
   ];
 
+  // Formspree endpoint - SUBSTITUIR pelo ID real do form
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xanyrokq";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
       const validated = quoteSchema.parse(formData);
-      
-      // Salvar no localStorage como backup
-      localStorage.setItem('lastQuoteRequest', JSON.stringify({
+
+      // Backup local
+      localStorage.setItem("lastQuoteRequest", JSON.stringify({
         ...validated,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       }));
 
-      // Formatar mensagem para WhatsApp
-      const whatsappMessage = encodeURIComponent(
-        `*Solicitação de Orçamento*\n\n` +
-        `*Nome:* ${validated.name}\n` +
-        `*E-mail:* ${validated.email}\n` +
-        `*Telefone:* ${validated.phone}\n` +
-        `*Cidade:* ${validated.city}\n` +
-        `*Serviço:* ${validated.service}\n` +
-        `${validated.message ? `*Mensagem:* ${validated.message}\n` : ''}` +
-        `\nEnviado via site Eletro May's`
-      );
-
-      // Abrir WhatsApp
-      const whatsappUrl = `https://wa.me/5555991389623?text=${whatsappMessage}`;
-      window.open(whatsappUrl, '_blank');
-
-      // Track evento no GA4 (se configurado)
-      if (window.gtag) {
-        window.gtag('event', 'quote_request_submit', {
+      // Envio para Formspree
+      const resp = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name: validated.name,
+          email: validated.email,
+          phone: validated.phone,
+          city: validated.city,
           service: validated.service,
-          city: validated.city
+          message: validated.message,
+          source: "website-eletromays",
+        }),
+      });
+
+      if (!resp.ok) throw new Error("Falha no envio");
+
+      // Evento GA4
+      if (window.gtag) {
+        window.gtag("event", "lead_submit", {
+          event_category: "Lead",
+          event_label: "QuoteRequestForm",
+          value: 1,
         });
       }
 
       toast({
         title: "Solicitação enviada!",
-        description: "Você será redirecionado para o WhatsApp. Nossa equipe responderá em breve.",
+        description: "Recebemos seus dados e entraremos em contato por e-mail/WhatsApp em breve.",
       });
 
-      // Resetar formulário
+      // (Opcional) Redirecionar para WhatsApp após envio
+      if (formData.whatsappConsent) {
+        const whatsappMessage = encodeURIComponent(
+          `*Solicitação de Orçamento*\n\n` +
+          `Nome: ${validated.name}\n` +
+          `E-mail: ${validated.email}\n` +
+          `Telefone: ${validated.phone}\n` +
+          `Cidade: ${validated.city}\n` +
+          `Serviço: ${validated.service}\n\n` +
+          `Mensagem:\n${validated.message}`
+        );
+        const whatsappUrl = `https://wa.me/5555991389623?text=${whatsappMessage}`;
+        window.open(whatsappUrl, "_blank");
+
+        // Evento GA4
+        if (window.gtag) {
+          window.gtag("event", "whatsapp_redirect_after_submit", {
+            event_category: "Lead",
+            event_label: "QuoteRequestForm",
+            value: 1,
+          });
+        }
+      }
+
+      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -105,21 +134,21 @@ const QuoteRequestForm = () => {
         city: "",
         service: "",
         message: "",
-        whatsappConsent: false
+        whatsappConsent: false,
       });
 
-    } catch (error) {
-      if (error instanceof z.ZodError) {
+    } catch (error: any) {
+      if (error?.errors) {
         toast({
-          title: "Erro na validação",
-          description: error.errors[0].message,
-          variant: "destructive"
+          title: "Erro de validação",
+          description: error.errors[0]?.message ?? "Revise os campos e tente novamente.",
+          variant: "destructive",
         });
       } else {
         toast({
           title: "Erro ao enviar",
-          description: "Tente novamente ou entre em contato por telefone.",
-          variant: "destructive"
+          description: "Tente novamente ou use o WhatsApp/telefone.",
+          variant: "destructive",
         });
       }
     } finally {

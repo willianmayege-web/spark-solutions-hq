@@ -15,7 +15,7 @@ const FooterEletroMays = () => {
             <div className="flex items-center space-x-3 mb-6">
               <img 
                 src="/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png" 
-                alt="Eletro May's Logo" 
+                alt="Eletro May's Engenharia Elétrica - Logotipo oficial CREA-RS 231706" 
                 className="w-12 h-12"
               />
               <div>
@@ -32,7 +32,7 @@ const FooterEletroMays = () => {
               <span className="text-foreground font-semibold text-sm">CREA-RS: 231706</span>
             </div>
             <div className="text-xs text-muted-foreground">
-              CNPJ: 00.000.000/0001-00
+              CNPJ: 44.443.829/0001-34
             </div>
           </div>
 
