@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import FooterEletroMays from "@/components/FooterEletroMays";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { articles } from "@/data/articles";
@@ -25,6 +26,11 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Blog Técnico | Artigos sobre Engenharia Elétrica e Energia Solar"
+        description="Artigos técnicos sobre eficiência energética, normas NBR 5410 e 5419, energia solar fotovoltaica e instalações elétricas industriais. Conteúdo por engenheiro CREA-RS."
+        keywords="blog engenharia elétrica, artigos energia solar, normas técnicas elétricas, eficiência energética, SPDA"
+      />
       <Header />
       
       {/* Hero Section */}

@@ -1,7 +1,7 @@
 const RealCases = () => {
   return (
     <section id="casos-reais" className="bg-background-dark text-text-white py-16 px-8">
-      <h2 className="text-center text-primary-orange text-3xl font-bold mb-4">
+      <h2 className="text-center text-primary-orange text-2xl font-bold mb-4">
         Casos Reais e Resultados
       </h2>
       <p className="text-center max-w-2xl mx-auto mb-8 text-text-muted">
@@ -10,7 +10,7 @@ const RealCases = () => {
       
       <div className="flex flex-wrap justify-center gap-8">
         <div className="bg-surface-dark border border-border rounded-md p-6 w-full max-w-sm">
-          <h3 className="text-green-400 text-xl font-semibold mb-4">
+          <h3 className="text-green-400 text-lg font-semibold mb-4">
             🏠 Residência – Santa Rosa/RS
           </h3>
           <ul className="text-sm text-text-muted space-y-2">
@@ -20,7 +20,7 @@ const RealCases = () => {
           </ul>
         </div>
         <div className="bg-surface-dark border border-border rounded-md p-6 w-full max-w-sm">
-          <h3 className="text-green-400 text-xl font-semibold mb-4">
+          <h3 className="text-green-400 text-lg font-semibold mb-4">
             🏢 Indústria – Três de Maio/RS
           </h3>
           <ul className="text-sm text-text-muted space-y-2">

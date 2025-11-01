@@ -47,7 +47,7 @@ const WhyChooseSection = () => {
               <div className="w-16 h-16 rounded-lg bg-gradient-primary flex items-center justify-center mb-4 shadow-glow">
                 <reason.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-foreground mb-3 font-montserrat">
+              <h3 className="text-lg font-bold text-foreground mb-3 font-montserrat">
                 {reason.title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">

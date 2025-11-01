@@ -40,7 +40,7 @@ const ProjectsPortfolio = () => {
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-2 font-montserrat group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-bold text-foreground mb-2 font-montserrat group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
 

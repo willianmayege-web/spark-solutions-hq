@@ -278,7 +278,7 @@ const SolarSimulatorSection = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <Sun className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-bold text-foreground mb-2">Energia Limpa</h3>
+            <h3 className="font-bold text-foreground mb-2 text-base">Energia Limpa</h3>
             <p className="text-sm text-muted-foreground">
               Reduza sua pegada de carbono e contribua para um futuro sustentável
             </p>
@@ -288,7 +288,7 @@ const SolarSimulatorSection = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <DollarSign className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-bold text-foreground mb-2">Economia Garantida</h3>
+            <h3 className="font-bold text-foreground mb-2 text-base">Economia Garantida</h3>
             <p className="text-sm text-muted-foreground">
               Economize até 95% na conta de energia com energia solar
             </p>
@@ -298,7 +298,7 @@ const SolarSimulatorSection = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <TrendingUp className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-bold text-foreground mb-2">Valorização do Imóvel</h3>
+            <h3 className="font-bold text-foreground mb-2 text-base">Valorização do Imóvel</h3>
             <p className="text-sm text-muted-foreground">
               Imóveis com energia solar têm valorização média de 10% a 15%
             </p>

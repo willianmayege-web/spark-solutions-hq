@@ -21,7 +21,7 @@ const OnlineStore = () => {
           {products.map((product, index) => (
             <Card key={index} className="group hover:shadow-glow transition-all">
               <div className="aspect-square overflow-hidden rounded-t-lg">
-                <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                <img src={product.image} alt={`${product.name} - Equipamento de energia solar disponível na loja Eletro May's`} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
               </div>
               <CardHeader>
                 <CardTitle className="font-montserrat">{product.name}</CardTitle>

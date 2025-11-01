@@ -90,7 +90,7 @@ const ServicesDetailPage = () => {
               <div className="relative h-96 mb-12 rounded-xl overflow-hidden">
                 <img 
                   src={serviceImages[service.id]} 
-                  alt={service.title}
+                  alt={`${service.title} - Eletro May's oferece ${service.description.substring(0, 80)}`}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
@@ -117,9 +117,9 @@ const ServicesDetailPage = () => {
             {/* Benefits Section */}
             <Card className="mb-10 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-6 font-montserrat">
+                <h3 className="text-2xl font-bold text-foreground mb-6 font-montserrat">
                   Benefícios e Vantagens
-                </h2>
+                </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {service.benefits.map((benefit, index) => (
                     <div key={index} className="flex items-start gap-3">
@@ -134,9 +134,9 @@ const ServicesDetailPage = () => {
             {/* Services List */}
             <Card className="mb-10 bg-card border-border">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-6 font-montserrat">
+                <h3 className="text-2xl font-bold text-foreground mb-6 font-montserrat">
                   Serviços Inclusos
-                </h2>
+                </h3>
                 <ul className="space-y-3">
                   {service.services.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
@@ -151,7 +151,7 @@ const ServicesDetailPage = () => {
             {/* CTA Section */}
             <Card className="bg-gradient-to-br from-card to-card/50 border-primary/20">
               <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-montserrat">
+                <h3 className="text-xl font-bold text-foreground mb-4 font-montserrat">
                   Solicite um Orçamento Personalizado
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
@@ -184,7 +184,7 @@ const ServicesDetailPage = () => {
         {/* Final CTA */}
         <section className="py-16 px-4 bg-primary/5">
           <div className="container mx-auto max-w-4xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 font-montserrat">
               Pronto para iniciar seu projeto?
             </h2>
             <p className="text-muted-foreground text-lg mb-8">

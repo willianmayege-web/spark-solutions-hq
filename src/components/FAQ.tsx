@@ -1,7 +1,7 @@
 const FAQ = () => {
   return (
     <section id="faq" className="bg-background-dark text-text-white py-16 px-8">
-      <h2 className="text-center text-primary-orange text-3xl font-bold mb-8">
+      <h2 className="text-center text-primary-orange text-2xl font-bold mb-8">
         Perguntas Frequentes
       </h2>
       <div className="max-w-4xl mx-auto space-y-4">

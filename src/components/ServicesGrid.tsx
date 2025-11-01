@@ -93,7 +93,7 @@ const ServicesGrid = () => {
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={service.image} 
-                  alt={service.title}
+                  alt={`${service.title} - Eletro May's oferece ${service.description.toLowerCase()}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
@@ -106,7 +106,7 @@ const ServicesGrid = () => {
               </div>
 
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-foreground font-montserrat mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-bold text-foreground font-montserrat mb-3 group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
                 

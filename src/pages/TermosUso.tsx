@@ -4,12 +4,17 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 
 const TermosUso = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Termos de Uso | Eletro May's Engenharia"
+        description="Termos e condições de uso do site da Eletro May's Engenharia Elétrica. Direitos, deveres e responsabilidades."
+      />
       <Header />
       
       <div className="container mx-auto px-4 py-16 max-w-4xl">

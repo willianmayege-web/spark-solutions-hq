@@ -81,7 +81,7 @@ const TechnicalStore = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
                     <Icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground">
+                  <h3 className="text-base font-bold text-foreground">
                     {product.name}
                   </h3>
                   <p className="text-sm text-muted-foreground">

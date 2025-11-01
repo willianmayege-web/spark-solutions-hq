@@ -8,7 +8,7 @@ const EnergyDiagnosis = () => {
 
   return (
     <section id="diagnostico" className="bg-surface-dark text-text-white py-16 px-8 text-center">
-      <h2 className="text-primary-orange text-3xl font-bold mb-4">
+      <h2 className="text-primary-orange text-2xl font-bold mb-4">
         Receba um Diagnóstico Energético Gratuito
       </h2>
       <p className="max-w-2xl mx-auto mb-8 text-text-muted">

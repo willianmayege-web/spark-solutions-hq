@@ -4,12 +4,17 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
 
 const PoliticaPrivacidade = () => {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Política de Privacidade | Eletro May's Engenharia"
+        description="Política de privacidade e proteção de dados da Eletro May's Engenharia Elétrica. LGPD e tratamento de informações."
+      />
       <Header />
       
       <div className="container mx-auto px-4 py-16 max-w-4xl">

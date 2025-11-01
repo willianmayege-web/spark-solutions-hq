@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "@/components/Header";
+import SEOHead from "@/components/SEOHead";
 import FooterEletroMays from "@/components/FooterEletroMays";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { articles } from "@/data/articles";
@@ -54,8 +55,41 @@ const ArticlePage = () => {
     }
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "author": {
+      "@type": "Person",
+      "name": "Eng. Willian Paulo May",
+      "jobTitle": "Engenheiro Eletricista",
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Eletro May's Engenharia Elétrica"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Eletro May's Engenharia Elétrica",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png"
+      }
+    },
+    "datePublished": article.date,
+    "image": article.image
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title={`${article.title} | Blog Eletro May's`}
+        description={article.excerpt}
+        keywords={`${article.category.toLowerCase()}, engenharia elétrica, ${article.title.toLowerCase()}`}
+        ogImage={article.image}
+        jsonLd={articleJsonLd}
+      />
       <Header />
       
       {/* Article Header */}
@@ -107,7 +141,7 @@ const ArticlePage = () => {
             <div className="mb-8 rounded-lg overflow-hidden">
               <img 
                 src={article.image} 
-                alt={article.title}
+                alt={`${article.title} - Artigo técnico sobre engenharia elétrica por Eletro May's`}
                 className="w-full h-auto"
               />
             </div>

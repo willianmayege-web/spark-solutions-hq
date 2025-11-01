@@ -78,7 +78,7 @@ const HeroSlider = () => {
           <div className="absolute inset-0">
             <img
               src={slide.image}
-              alt={slide.title}
+              alt={`${slide.title} - Eletro May's Engenharia Elétrica em Santa Rosa-RS`}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/40"></div>
@@ -99,9 +99,9 @@ const HeroSlider = () => {
                 </span>
               </h1>
 
-              <h2 className="text-xl md:text-2xl text-primary mb-4 font-semibold">
+              <p className="text-xl md:text-2xl text-primary mb-4 font-semibold">
                 {slide.subtitle}
-              </h2>
+              </p>
 
               <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
                 {slide.description}

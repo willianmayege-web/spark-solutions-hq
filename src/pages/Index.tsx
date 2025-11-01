@@ -1,6 +1,7 @@
 import TopBanner from "@/components/TopBanner";
 import Header from "@/components/Header";
 import HeroSlider from "@/components/HeroSlider";
+import SEOHead, { organizationJsonLd } from "@/components/SEOHead";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import ServicesGrid from "@/components/ServicesGrid";
 import CTASection from "@/components/CTASection";
@@ -26,6 +27,12 @@ import EbookPopup from "@/components/EbookPopup";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Eletro May's | Energia Solar, SPDA e Projetos Elétricos em Santa Rosa-RS"
+        description="Engenharia elétrica com CREA-RS 231706. Energia solar fotovoltaica, SPDA NBR 5419, projetos elétricos NBR 5410, laudos técnicos e termografia em Santa Rosa-RS e região."
+        keywords="energia solar santa rosa, spda santa rosa, engenharia elétrica santa rosa, projetos elétricos RS, termografia elétrica, qualidade de energia, CREA-RS 231706"
+        jsonLd={organizationJsonLd}
+      />
       <TopBanner />
       <Header />
       <HeroSlider />

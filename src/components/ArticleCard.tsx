@@ -29,7 +29,7 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
       </div>
 
       <div className="p-6">
-        <h3 className="text-xl font-bold text-foreground mb-3 font-montserrat group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="text-lg font-bold text-foreground mb-3 font-montserrat group-hover:text-primary transition-colors line-clamp-2">
           {article.title}
         </h3>
 

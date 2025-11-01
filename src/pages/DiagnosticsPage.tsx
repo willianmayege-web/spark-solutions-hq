@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import SEOHead from "@/components/SEOHead";
 import { CheckCircle, XCircle, AlertCircle, RefreshCw } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -210,6 +211,10 @@ const DiagnosticsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Diagnóstico Técnico do Site | Eletro May's"
+        description="Auditoria completa de performance, SEO e acessibilidade do site Eletro May's Engenharia Elétrica."
+      />
       <Navigation />
       
       <div className="pt-32 pb-16 px-4">
@@ -241,9 +246,9 @@ const DiagnosticsPage = () => {
             <div className="space-y-8">
               {results.map((result, index) => (
                 <Card key={index} className="p-6">
-                  <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                  <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                     {result.category}
-                  </h2>
+                  </h3>
                   
                   <div className="space-y-4">
                     {result.checks.map((check, checkIndex) => (
@@ -256,7 +261,7 @@ const DiagnosticsPage = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-semibold text-foreground">{check.name}</h3>
+                            <h4 className="font-semibold text-foreground">{check.name}</h4>
                             <span className="text-sm text-muted-foreground">{check.message}</span>
                           </div>
                           {check.recommendation && (
@@ -274,7 +279,7 @@ const DiagnosticsPage = () => {
           )}
 
           <div className="mt-12 p-6 bg-muted rounded-lg">
-            <h3 className="text-lg font-bold text-foreground mb-4">Critérios de Aprovação</h3>
+            <h2 className="text-lg font-bold text-foreground mb-4">Critérios de Aprovação</h2>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>✓ LCP {'<'} 1.5s | CLS {'<'} 0.05 | INP {'<'} 200ms | TTFB {'<'} 0.8s</li>
               <li>✓ Title, meta description, canonical e robots válidos</li>
