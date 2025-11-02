@@ -17,15 +17,17 @@ const PoliticaPrivacidade = () => {
       />
       <Header />
       
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate("/")}
-          className="mb-6"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar
-        </Button>
+      <main id="main-content">
+        <div className="container mx-auto px-4 py-16 max-w-4xl">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate("/")}
+            className="mb-6"
+            aria-label="Voltar para página inicial"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
+            Voltar
+          </Button>
 
         <h1 className="text-4xl font-bold text-foreground mb-8 font-montserrat">
           Política de Privacidade
@@ -112,6 +114,7 @@ const PoliticaPrivacidade = () => {
           </section>
         </div>
       </div>
+      </main>
 
       <FooterEletroMays />
       <WhatsAppFloat />

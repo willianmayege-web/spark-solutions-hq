@@ -35,36 +35,38 @@ const Index = () => {
       />
       <TopBanner />
       <Header />
-      <HeroSlider />
-      <WhyChooseSection />
-      <ServicesGrid />
-      <SolarSimulatorSection />
-      <CTASection 
-        title="Solicite um Orçamento Gratuito"
-        description="Nossa equipe técnica está pronta para apresentar a melhor solução para seu projeto de engenharia elétrica."
-        primaryButtonText="Solicitar Orçamento"
-        secondaryButtonText="Falar no WhatsApp"
-      />
-      <ProjectsPortfolio />
-      <SolarSimulator />
-      <ClientDashboard />
-      <CooperativeSection />
-      <TechnicalStore />
-      <OnlineStore />
-      <QRCodeSection />
-      <BeforeAfterComparison />
-      <RealCases />
-      <TechnicalArticles />
-      <EnergyDiagnosis />
-      <QuoteRequestForm />
-      <CalendlySection />
-      <FAQ />
-      <CTASection 
-        title="Pronto para Economizar com Inteligência?"
-        description="Mais de 500 projetos entregues em Santa Rosa RS e região. CREA-RS 231706. Fale conosco e transforme seu projeto em realidade."
-        primaryButtonText="Falar com Especialista"
-        secondaryButtonText="Ver Projetos"
-      />
+      <main id="main-content">
+        <HeroSlider />
+        <WhyChooseSection />
+        <ServicesGrid />
+        <SolarSimulatorSection />
+        <CTASection 
+          title="Solicite um Orçamento Gratuito"
+          description="Nossa equipe técnica está pronta para apresentar a melhor solução para seu projeto de engenharia elétrica."
+          primaryButtonText="Solicitar Orçamento"
+          secondaryButtonText="Falar no WhatsApp"
+        />
+        <ProjectsPortfolio />
+        <SolarSimulator />
+        <ClientDashboard />
+        <CooperativeSection />
+        <TechnicalStore />
+        <OnlineStore />
+        <QRCodeSection />
+        <BeforeAfterComparison />
+        <RealCases />
+        <TechnicalArticles />
+        <EnergyDiagnosis />
+        <QuoteRequestForm />
+        <CalendlySection />
+        <FAQ />
+        <CTASection 
+          title="Pronto para Economizar com Inteligência?"
+          description="Mais de 500 projetos entregues em Santa Rosa RS e região. CREA-RS 231706. Fale conosco e transforme seu projeto em realidade."
+          primaryButtonText="Falar com Especialista"
+          secondaryButtonText="Ver Projetos"
+        />
+      </main>
       <FooterEletroMays />
       <WhatsAppFloat />
       <EbookPopup />

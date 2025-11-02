@@ -157,10 +157,17 @@ const QuoteRequestForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-16 px-4 bg-card">
+    <section 
+      id="orcamento" 
+      className="py-16 px-4 bg-card"
+      aria-labelledby="quote-form-heading"
+    >
       <div className="container mx-auto max-w-3xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat">
+          <h2 
+            id="quote-form-heading"
+            className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat"
+          >
             Solicite seu <span className="text-primary">Orçamento Gratuito</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -168,17 +175,25 @@ const QuoteRequestForm = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-background border border-border rounded-xl p-8 shadow-elegant">
+        <form 
+          onSubmit={handleSubmit} 
+          className="bg-background border border-border rounded-xl p-8 shadow-elegant"
+          aria-label="Formulário de solicitação de orçamento"
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <Label htmlFor="name">Nome Completo *</Label>
               <Input
                 id="name"
+                name="name"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
                 placeholder="Seu nome"
                 required
                 className="mt-2"
+                aria-required="true"
+                aria-describedby="name-hint"
+                autoComplete="name"
               />
             </div>
 
@@ -186,12 +201,16 @@ const QuoteRequestForm = () => {
               <Label htmlFor="email">E-mail *</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
                 placeholder="seu@email.com"
                 required
                 className="mt-2"
+                aria-required="true"
+                aria-describedby="email-hint"
+                autoComplete="email"
               />
             </div>
 
@@ -199,18 +218,27 @@ const QuoteRequestForm = () => {
               <Label htmlFor="phone">Telefone/WhatsApp *</Label>
               <Input
                 id="phone"
+                name="phone"
+                type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
                 placeholder="(55) 99999-9999"
                 required
                 className="mt-2"
+                aria-required="true"
+                aria-describedby="phone-hint"
+                autoComplete="tel"
               />
             </div>
 
             <div>
               <Label htmlFor="city">Cidade *</Label>
-              <Select value={formData.city} onValueChange={(value) => setFormData({...formData, city: value})}>
-                <SelectTrigger className="mt-2">
+              <Select 
+                value={formData.city} 
+                onValueChange={(value) => setFormData({...formData, city: value})}
+                required
+              >
+                <SelectTrigger className="mt-2" aria-label="Selecione sua cidade" aria-required="true">
                   <SelectValue placeholder="Selecione sua cidade" />
                 </SelectTrigger>
                 <SelectContent>
@@ -224,8 +252,12 @@ const QuoteRequestForm = () => {
 
           <div className="mb-6">
             <Label htmlFor="service">Tipo de Serviço *</Label>
-            <Select value={formData.service} onValueChange={(value) => setFormData({...formData, service: value})}>
-              <SelectTrigger className="mt-2">
+            <Select 
+              value={formData.service} 
+              onValueChange={(value) => setFormData({...formData, service: value})}
+              required
+            >
+              <SelectTrigger className="mt-2" aria-label="Selecione o serviço desejado" aria-required="true">
                 <SelectValue placeholder="Selecione o serviço desejado" />
               </SelectTrigger>
               <SelectContent>
@@ -240,14 +272,16 @@ const QuoteRequestForm = () => {
             <Label htmlFor="message">Mensagem (Opcional)</Label>
             <Textarea
               id="message"
+              name="message"
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
               placeholder="Descreva seu projeto ou necessidade..."
               rows={4}
               className="mt-2"
               maxLength={1000}
+              aria-describedby="message-counter"
             />
-            <p className="text-xs text-muted-foreground mt-1">
+            <p id="message-counter" className="text-xs text-muted-foreground mt-1" aria-live="polite">
               {formData.message.length}/1000 caracteres
             </p>
           </div>
@@ -257,8 +291,13 @@ const QuoteRequestForm = () => {
               id="whatsapp"
               checked={formData.whatsappConsent}
               onCheckedChange={(checked) => setFormData({...formData, whatsappConsent: checked as boolean})}
+              aria-describedby="whatsapp-consent-label"
             />
-            <label htmlFor="whatsapp" className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            <label 
+              id="whatsapp-consent-label"
+              htmlFor="whatsapp" 
+              className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+            >
               Aceito receber contato por WhatsApp para agilizar o atendimento
             </label>
           </div>
@@ -269,15 +308,16 @@ const QuoteRequestForm = () => {
             size="lg"
             className="w-full font-semibold"
             disabled={isLoading}
+            aria-label={isLoading ? "Enviando solicitação de orçamento" : "Enviar solicitação de orçamento"}
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" aria-hidden="true" />
                 Enviando...
               </>
             ) : (
               <>
-                <Send className="w-5 h-5 mr-2" />
+                <Send className="w-5 h-5 mr-2" aria-hidden="true" />
                 Enviar Solicitação
               </>
             )}

@@ -120,6 +120,43 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Custom Keyboard Focus Styles for Accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid hsl(var(--primary-orange));
+    outline-offset: 3px;
+    border-radius: 4px;
+    transition: outline 0.2s ease-in-out;
+  }
+
+  /* Enhanced focus for interactive elements */
+  a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  /* Skip to main content link for keyboard users */
+  .skip-to-main {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1rem 1.5rem;
+    background-color: hsl(var(--primary-orange));
+    color: white;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+  }
+
+  .skip-to-main:focus {
+    left: 0;
+    top: 0;
+  }
 }
 
 /* Import Montserrat font */

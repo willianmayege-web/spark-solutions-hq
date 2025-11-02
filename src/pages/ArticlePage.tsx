@@ -92,15 +92,17 @@ const ArticlePage = () => {
       />
       <Header />
       
-      {/* Article Header */}
-      <article className="py-8 px-4">
+      <main id="main-content">
+        {/* Article Header */}
+        <article className="py-8 px-4">
         <div className="container mx-auto max-w-4xl">
           <Button 
             variant="ghost" 
             onClick={() => navigate("/blog")}
             className="mb-6"
+            aria-label="Voltar para a página do blog"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-4 h-4 mr-2" aria-hidden="true" />
             Voltar ao Blog
           </Button>
 
@@ -129,8 +131,9 @@ const ArticlePage = () => {
                 size="sm"
                 onClick={handleShare}
                 className="ml-auto"
+                aria-label="Compartilhar este artigo"
               >
-                <Share2 className="w-4 h-4 mr-2" />
+                <Share2 className="w-4 h-4 mr-2" aria-hidden="true" />
                 Compartilhar
               </Button>
             </div>
@@ -154,16 +157,17 @@ const ArticlePage = () => {
               dangerouslySetInnerHTML={{ __html: content.content.replace(/\n/g, '<br />') }}
             />
           </div>
-        </div>
-      </article>
+          </div>
+        </article>
 
-      {/* CTA Section */}
-      <CTASection
-        title="Precisa de Ajuda com Seu Projeto?"
-        description="Nossa equipe de especialistas está pronta para transformar seu projeto em realidade. Entre em contato e solicite um orçamento personalizado."
-        primaryButtonText="Solicitar Análise do Projeto"
-        secondaryButtonText="Falar no WhatsApp"
-      />
+        {/* CTA Section */}
+        <CTASection
+          title="Precisa de Ajuda com Seu Projeto?"
+          description="Nossa equipe de especialistas está pronta para transformar seu projeto em realidade. Entre em contato e solicite um orçamento personalizado."
+          primaryButtonText="Solicitar Análise do Projeto"
+          secondaryButtonText="Falar no WhatsApp"
+        />
+      </main>
 
       <FooterEletroMays />
       <WhatsAppFloat />
