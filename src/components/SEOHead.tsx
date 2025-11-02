@@ -18,7 +18,7 @@ const SEOHead = ({
   keywords = "energia solar santa rosa, spda santa rosa, engenharia elétrica santa rosa, projetos elétricos RS, termografia elétrica, qualidade de energia, laudos técnicos, automação industrial",
   ogTitle,
   ogDescription,
-  ogImage = "/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
+  ogImage = "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
   canonical,
   jsonLd
 }: SEOHeadProps) => {
@@ -89,13 +89,19 @@ export default SEOHead;
 // JSON-LD Templates para uso nas páginas
 export const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": ["LocalBusiness", "ProfessionalService", "ElectricalContractor"],
   "name": "Eletro May's Engenharia Elétrica",
+  "alternateName": "Eletro Mays",
+  "description": "Empresa especializada em engenharia elétrica com registro CREA-RS 231706. Atua em projetos de energia solar fotovoltaica, SPDA, instalações elétricas NBR 5410, termografia, qualidade de energia e automação industrial em Santa Rosa-RS e região.",
   "image": "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
+  "logo": "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
   "@id": "https://eletromays.com.br",
   "url": "https://eletromays.com.br",
   "telephone": "+555535205555",
+  "email": "atendimento@eletromays.com.br",
   "priceRange": "$$",
+  "currenciesAccepted": "BRL",
+  "paymentAccepted": "Dinheiro, Cartão de Crédito, Cartão de Débito, PIX, Transferência Bancária",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rua Vinte de Setembro, 751",
@@ -121,11 +127,104 @@ export const organizationJsonLd = {
     "https://www.instagram.com/eletromays",
     "https://www.linkedin.com/company/eletromays"
   ],
+  "founder": {
+    "@type": "Person",
+    "name": "Eng. Willian Paulo May",
+    "jobTitle": "Engenheiro Eletricista",
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Registro Profissional",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "CREA-RS - Conselho Regional de Engenharia e Agronomia do Rio Grande do Sul"
+      },
+      "identifier": "CREA-RS 231706"
+    }
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Santa Rosa",
+      "containedIn": {
+        "@type": "State",
+        "name": "Rio Grande do Sul",
+        "containedIn": {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      }
+    },
+    {
+      "@type": "State",
+      "name": "Rio Grande do Sul"
+    }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Energia Solar Fotovoltaica",
+        "description": "Projeto, instalação e homologação de sistemas de energia solar fotovoltaica"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "SPDA - Sistema de Proteção contra Descargas Atmosféricas",
+        "description": "Projeto e instalação conforme NBR 5419"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Projetos Elétricos",
+        "description": "Projetos elétricos residenciais, comerciais e industriais conforme NBR 5410"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Laudos Técnicos e Perícias",
+        "description": "Laudos técnicos, perícias e inspeções elétricas"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Termografia Elétrica",
+        "description": "Inspeção termográfica preventiva em instalações elétricas"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Qualidade de Energia",
+        "description": "Análise e solução de problemas de qualidade de energia elétrica"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Automação e Controle",
+        "description": "Projetos de automação industrial e residencial"
+      }
+    }
+  ],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
     "reviewCount": "127"
-  }
+  },
+  "slogan": "Energia Solar, SPDA e Projetos Elétricos com Excelência Técnica"
 };
 
 export const serviceJsonLd = (serviceName: string, serviceDescription: string) => ({

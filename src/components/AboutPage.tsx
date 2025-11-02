@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import FooterEletroMays from "@/components/FooterEletroMays";
+import SEOHead, { organizationJsonLd } from "@/components/SEOHead";
 import { 
   Target,
   Eye,
@@ -58,6 +59,13 @@ const AboutPage = () => {
 
   return (
     <>
+      <SEOHead 
+        title="Sobre Nós | Eletro May's Engenharia Elétrica CREA-RS 231706"
+        description="Fundada em 1988, a Eletro May's é especialista em projetos elétricos, energia solar, SPDA e automação em Santa Rosa-RS. Mais de 500 projetos entregues com excelência técnica e certificação CREA-RS 231706."
+        keywords="sobre eletro mays, engenharia elétrica santa rosa, crea-rs 231706, engenheiro eletricista santa rosa, empresa engenharia elétrica rs"
+        canonical="https://eletromays.com.br/sobre"
+        jsonLd={organizationJsonLd}
+      />
       <Header />
       <main className="min-h-screen bg-background">
         <section className="py-16 px-4">
