@@ -26,7 +26,7 @@ const CalendlySection = () => {
           <a
             href="https://calendly.com/eletromays/consultoria"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-sm text-muted-foreground underline hover:text-primary transition-colors"
             onClick={() => {
               if (window.gtag) {

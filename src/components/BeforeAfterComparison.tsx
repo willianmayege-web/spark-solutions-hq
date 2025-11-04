@@ -15,6 +15,10 @@ const BeforeAfterComparison = () => {
             src="https://via.placeholder.com/300x200/aa0000/ffffff?text=Termografia+Antes" 
             alt="Quadro elétrico antes da consultoria da Eletro May's mostrando aquecimento excessivo detectado por termografia" 
             className="w-full rounded-md mb-4"
+            loading="lazy"
+            decoding="async"
+            width="300"
+            height="200"
           />
           <p className="text-text-muted text-sm">
             Quadro com sobrecarga e aquecimento excessivo
@@ -26,6 +30,10 @@ const BeforeAfterComparison = () => {
             src="https://via.placeholder.com/300x200/00aa00/ffffff?text=Termografia+Depois" 
             alt="Quadro elétrico depois da consultoria da Eletro May's com temperatura controlada e eficiência otimizada" 
             className="w-full rounded-md mb-4"
+            loading="lazy"
+            decoding="async"
+            width="300"
+            height="200"
           />
           <p className="text-text-muted text-sm">
             Quadro otimizado com temperatura controlada e eficiência melhorada

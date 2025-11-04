@@ -95,6 +95,10 @@ const ServicesGrid = () => {
                   src={service.image} 
                   alt={`${service.title} - Eletro May's oferece ${service.description.toLowerCase()}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="400"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
                 <Badge className="absolute top-4 right-4 bg-primary text-primary-foreground border-0">

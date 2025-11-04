@@ -146,6 +146,10 @@ const ArticlePage = () => {
                 src={article.image} 
                 alt={`${article.title} - Artigo técnico sobre engenharia elétrica por Eletro May's`}
                 className="w-full h-auto"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="630"
               />
             </div>
           )}

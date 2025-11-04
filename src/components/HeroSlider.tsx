@@ -80,6 +80,10 @@ const HeroSlider = () => {
               src={slide.image}
               alt={`${slide.title} - Eletro May's Engenharia Elétrica em Santa Rosa-RS`}
               className="w-full h-full object-cover"
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              width="1920"
+              height="1080"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/40"></div>
           </div>
@@ -92,12 +96,12 @@ const HeroSlider = () => {
                 <span className="text-primary font-semibold">CREA-RS 231706</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground mb-4 font-montserrat leading-tight">
+              <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground mb-4 font-montserrat leading-tight">
                 {slide.title.split(' ').slice(0, -2).join(' ')}{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-primary">
                   {slide.title.split(' ').slice(-2).join(' ')}
                 </span>
-              </h1>
+              </h2>
 
               <p className="text-xl md:text-2xl text-primary mb-4 font-semibold">
                 {slide.subtitle}

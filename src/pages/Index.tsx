@@ -36,6 +36,8 @@ const Index = () => {
       <TopBanner />
       <Header />
       <main id="main-content">
+        {/* H1 único para SEO */}
+        <h1 className="sr-only">Eletro May's Engenharia Elétrica — Projetos, Laudos e Energia Solar</h1>
         <HeroSlider />
         <WhyChooseSection />
         <ServicesGrid />

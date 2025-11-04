@@ -92,6 +92,10 @@ const ServicesDetailPage = () => {
                   src={serviceImages[service.id]} 
                   alt={`${service.title} - Eletro May's oferece ${service.description.substring(0, 80)}`}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="800"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8">

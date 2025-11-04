@@ -19,7 +19,8 @@ const WhatsAppFloat = () => {
       });
     }
     
-    window.open(whatsappUrl, '_blank');
+    const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
   };
 
   return (
