@@ -1,10 +1,11 @@
 import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { whatsappLink, CONTACT } from "@/config/contact";
 
 const TopBanner = () => {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento técnico.");
-    window.open(`https://wa.me/5555991389623?text=${message}`, '_blank');
+    const url = whatsappLink("Olá! Gostaria de solicitar um orçamento técnico.");
+    window.open(url, '_blank');
     
     if (window.gtag) {
       window.gtag('event', 'whatsapp_click', {
@@ -26,7 +27,7 @@ const TopBanner = () => {
           className="gap-2 animate-pulse"
         >
           <Phone className="w-4 h-4" />
-          <span>WhatsApp +55 (55) 99138-9623</span>
+          <span>WhatsApp {CONTACT.whatsapp.display}</span>
         </Button>
       </div>
     </div>

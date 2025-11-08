@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone } from "lucide-react";
+import { whatsappLink } from "@/config/contact";
 
 interface CTASectionProps {
   title: string;
@@ -32,8 +33,7 @@ const CTASection = ({
     if (onSecondaryClick) {
       onSecondaryClick();
     } else {
-      const whatsappUrl = `https://wa.me/5555991389623?text=${encodeURIComponent("Olá! Gostaria de mais informações.")}`;
-      window.open(whatsappUrl, '_blank');
+      window.open(whatsappLink("Olá! Gostaria de mais informações."), '_blank');
     }
   };
 

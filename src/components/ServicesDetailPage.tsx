@@ -10,6 +10,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOHead, { serviceJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/SEOHead";
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import { whatsappLink } from "@/config/contact";
 import energiaSolarImg from "@/assets/energia-solar.jpg";
 import spdaImg from "@/assets/spda-aterramento.jpg";
 import laudosImg from "@/assets/laudos-pericias.jpg";
@@ -170,8 +171,7 @@ const ServicesDetailPage = () => {
                     variant="hero" 
                     size="lg"
                     onClick={() => {
-                      const message = encodeURIComponent(`Olá! Gostaria de mais informações sobre ${service.title}`);
-                      window.open(`https://wa.me/5555991389623?text=${message}`, '_blank');
+                      window.open(whatsappLink(`Olá! Gostaria de mais informações sobre ${service.title}`), '_blank');
                     }}
                   >
                     Falar no WhatsApp
@@ -211,8 +211,7 @@ const ServicesDetailPage = () => {
                 variant="outline" 
                 size="lg"
                 onClick={() => {
-                  const message = encodeURIComponent(`Olá! Tenho interesse em ${service.title}`);
-                  window.open(`https://wa.me/5555991389623?text=${message}`, '_blank');
+                  window.open(whatsappLink(`Olá! Tenho interesse em ${service.title}`), '_blank');
                 }}
               >
                 Falar no WhatsApp

@@ -6,11 +6,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { whatsappLink } from "@/config/contact";
 
 const WhatsAppFloat = () => {
   const handleWhatsAppClick = () => {
-    const message = encodeURIComponent("Olá! Gostaria de solicitar um orçamento.");
-    const whatsappUrl = `https://wa.me/5555991389623?text=${message}`;
+    const whatsappUrl = whatsappLink("Olá! Gostaria de solicitar um orçamento.");
     
     // Track evento no GA4
     if (window.gtag) {

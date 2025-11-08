@@ -10,31 +10,32 @@ import {
   Send,
   MessageSquare
 } from "lucide-react";
+import { CONTACT, whatsappLink } from "@/config/contact";
 
 const ContactSection = () => {
   const contactInfo = [
     {
       icon: Phone,
       title: "Telefone",
-      content: "(55) 3520-5555",
+      content: CONTACT.phone.display,
       description: "Seg-Sex: 8h às 18h"
     },
     {
       icon: Mail,
       title: "E-mail",
-      content: "atendimento@eletromays.com.br",
+      content: CONTACT.email,
       description: "Resposta em até 24h"
     },
     {
       icon: MapPin,
       title: "Endereço",
-      content: "Rua Vinte de Setembro, 751",
+      content: CONTACT.address.split(", ").slice(0, 2).join(", "),
       description: "Santa Rosa, RS"
     },
     {
       icon: Shield,
       title: "CREA-RS",
-      content: "231706",
+      content: CONTACT.crea,
       description: "Certificação Profissional"
     }
   ];
@@ -93,7 +94,7 @@ const ContactSection = () => {
                 variant="orange" 
                 className="w-full" 
                 size="lg"
-                onClick={() => window.location.href = 'tel:+555535205555'}
+                onClick={() => window.location.href = `tel:+${CONTACT.phone.number}`}
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Ligar Agora
@@ -102,7 +103,7 @@ const ContactSection = () => {
                 variant="outline" 
                 className="w-full" 
                 size="lg"
-                onClick={() => window.open('https://wa.me/555535205555?text=Olá,+quero+um+orçamento+de+projeto+elétrico.', '_blank')}
+                onClick={() => window.open(whatsappLink('Olá, quero um orçamento de projeto elétrico.'), '_blank')}
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 WhatsApp

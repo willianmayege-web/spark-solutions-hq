@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Send } from "lucide-react";
 import { z } from "zod";
+import { whatsappLink } from "@/config/contact";
 
 const quoteSchema = z.object({
   name: z.string().min(3, "Nome deve ter no mínimo 3 caracteres").max(100),
@@ -104,17 +105,15 @@ const QuoteRequestForm = () => {
 
       // (Opcional) Redirecionar para WhatsApp após envio
       if (formData.whatsappConsent) {
-        const whatsappMessage = encodeURIComponent(
+        const whatsappMessage = 
           `*Solicitação de Orçamento*\n\n` +
           `Nome: ${validated.name}\n` +
           `E-mail: ${validated.email}\n` +
           `Telefone: ${validated.phone}\n` +
           `Cidade: ${validated.city}\n` +
           `Serviço: ${validated.service}\n\n` +
-          `Mensagem:\n${validated.message}`
-        );
-        const whatsappUrl = `https://wa.me/5555991389623?text=${whatsappMessage}`;
-        window.open(whatsappUrl, "_blank");
+          `Mensagem:\n${validated.message}`;
+        window.open(whatsappLink(whatsappMessage), "_blank");
 
         // Evento GA4
         if (window.gtag) {

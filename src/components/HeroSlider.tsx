@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calculator, Phone, Zap, Shield, FileCheck } from "lucide-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { whatsappLink } from "@/config/contact";
 
 const slides = [
   {
@@ -55,7 +56,7 @@ const HeroSlider = () => {
         document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
         break;
       case "whatsapp":
-        window.open('https://wa.me/555535205555?text=' + encodeURIComponent('Olá! Gostaria de falar com um engenheiro.'), '_blank');
+        window.open(whatsappLink('Olá! Gostaria de falar com um engenheiro.'), '_blank');
         break;
     }
   };
