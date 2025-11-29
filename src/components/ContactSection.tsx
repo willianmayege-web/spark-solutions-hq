@@ -61,8 +61,8 @@ const ContactSection = () => {
     // Simula envio do formulário
     setTimeout(() => {
       setIsSubmitting(false);
-      toast.success("Solicitação enviada com sucesso!", {
-        description: "Nossa equipe técnica entrará em contato em até 24 horas úteis.",
+      toast.success("Recebemos seus dados!", {
+        description: "O Eng. Willian May (CREA-RS 231706) retornará com um parecer inicial em até 1 dia útil.",
         icon: <CheckCircle className="w-5 h-5 text-green-500" />,
       });
       
@@ -77,14 +77,14 @@ const ContactSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-primary font-semibold text-sm uppercase tracking-wide">
-            Entre em Contato
+            Fale com o Engenheiro
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-            Vamos Conversar Sobre Seu Projeto
+            Atendimento Direto com Engenheiro Eletricista
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Nossa equipe está pronta para atender você. Entre em contato e 
-            receba uma proposta personalizada para suas necessidades.
+            Descreva seu projeto, problema ou necessidade de laudo. 
+            Eng. Willian May (CREA-RS 231706) responde pessoalmente em até 1 dia útil.
           </p>
         </div>
 
@@ -138,10 +138,10 @@ const ContactSection = () => {
             <Card className="border-border/50">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-foreground">
-                  Solicite um Orçamento Técnico
+                  Descreva Seu Projeto ou Problema Elétrico
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Preencha o formulário e nossa equipe técnica responderá em até 24 horas úteis.
+                  Formulário atendido diretamente pelo engenheiro responsável. Resposta com parecer inicial em até 1 dia útil.
                 </p>
               </CardHeader>
               <CardContent>
@@ -170,9 +170,9 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
-                        Empresa (opcional)
+                        Empresa / Condomínio (opcional)
                       </label>
-                      <Input placeholder="Nome da empresa ou condomínio" />
+                      <Input placeholder="Razão social ou nome do condomínio" />
                     </div>
                   </div>
 
@@ -190,10 +190,10 @@ const ContactSection = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Descrição do Projeto ou Necessidade *
+                      Descreva o Problema ou Projeto *
                     </label>
                     <Textarea
-                      placeholder="Descreva seu projeto elétrico, problema a ser resolvido ou necessidade de laudo técnico. Informe localização, tipo de instalação (residencial/comercial/industrial) e prazo desejado..."
+                      placeholder="Ex: Preciso de laudo SPDA para prédio comercial de 4 andares para renovação do AVCB. Ou: Instalação apresenta quedas frequentes e precisamos de diagnóstico técnico. Informe prazo desejado se houver."
                       rows={5}
                       required
                     />
@@ -201,9 +201,9 @@ const ContactSection = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Cidade / Localização
+                      Cidade / Localização da Instalação
                     </label>
-                    <Input placeholder="Ex: Santa Rosa - RS" />
+                    <Input placeholder="Ex: Santa Rosa - RS, zona industrial" />
                   </div>
 
                   <Button 
@@ -218,7 +218,7 @@ const ContactSection = () => {
                     ) : (
                       <>
                         <Send className="w-5 h-5 mr-2" />
-                        Enviar Solicitação de Orçamento
+                        Enviar para Análise do Engenheiro
                       </>
                     )}
                   </Button>

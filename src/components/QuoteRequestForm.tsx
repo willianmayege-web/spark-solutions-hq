@@ -46,13 +46,13 @@ const QuoteRequestForm = () => {
   ];
 
   const services = [
-    "Energia Solar",
-    "SPDA/Laudos",
-    "Projetos Elétricos",
-    "Manutenção Industrial",
-    "Termografia",
-    "Qualidade de Energia",
-    "Automação",
+    "Energia Solar Fotovoltaica",
+    "SPDA / Laudo NBR 5419",
+    "Projeto Elétrico NBR 5410",
+    "Laudo Técnico / Perícia",
+    "Termografia Elétrica",
+    "Qualidade de Energia / Fator de Potência",
+    "Automação Industrial",
     "Outro"
   ];
 
@@ -99,8 +99,8 @@ const QuoteRequestForm = () => {
       }
 
       toast({
-        title: "Solicitação enviada!",
-        description: "Recebemos seus dados e entraremos em contato por e-mail/WhatsApp em breve.",
+        title: "Recebemos sua solicitação!",
+        description: "O Eng. Willian May da Eletro May's retornará com um parecer inicial em até 1 dia útil.",
       });
 
       // (Opcional) Redirecionar para WhatsApp após envio
@@ -167,10 +167,11 @@ const QuoteRequestForm = () => {
             id="quote-form-heading"
             className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat"
           >
-            Solicite seu <span className="text-primary">Orçamento Gratuito</span>
+            Solicite <span className="text-primary">Estudo Técnico Gratuito</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Preencha o formulário e nossa equipe técnica entrará em contato para apresentar a melhor solução para seu projeto.
+            Descreva sua instalação ou problema elétrico. O engenheiro responsável (CREA-RS 231706) 
+            analisará e retornará com um parecer inicial em até 1 dia útil.
           </p>
         </div>
 
@@ -268,13 +269,13 @@ const QuoteRequestForm = () => {
           </div>
 
           <div className="mb-6">
-            <Label htmlFor="message">Mensagem (Opcional)</Label>
+            <Label htmlFor="message">Descreva o Problema ou Projeto</Label>
             <Textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={(e) => setFormData({...formData, message: e.target.value})}
-              placeholder="Descreva seu projeto ou necessidade..."
+              placeholder="Ex: Instalação com quedas frequentes, necessidade de laudo para seguradora, projeto de ampliação, adequação à NR-10, prazo desejado..."
               rows={4}
               className="mt-2"
               maxLength={1000}
