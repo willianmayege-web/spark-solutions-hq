@@ -35,7 +35,7 @@ const SolarSimulatorSection = () => {
   };
 
   return (
-    <section id="simulador-solar" className="py-20 bg-background">
+    <section id="simulador" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">

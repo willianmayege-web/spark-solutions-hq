@@ -25,45 +25,45 @@ const ServicesGrid = () => {
       id: "energia-solar",
       icon: Sun,
       title: "Energia Solar Fotovoltaica",
-      description: "Projetos completos conforme NBR 16690 e Resolução ANEEL 482. Dimensionamento, instalação, homologação e monitoramento remoto.",
+      description: "Projeto completo conforme NBR 16690 e Resolução ANEEL 482/687. Dimensionamento técnico, homologação junto à concessionária e monitoramento de geração em tempo real.",
       image: energiaSolarImg,
-      features: ["Projeto com ART CREA-RS", "Homologação junto à concessionária", "Monitoramento 24/7"],
+      features: ["Homologação ágil com concessionária", "Payback médio de 4 anos", "Monitoramento remoto 24/7"],
       highlight: "Até 95% de economia"
     },
     {
       id: "spda",
       icon: Zap,
       title: "SPDA e Aterramento",
-      description: "Sistema de proteção contra descargas atmosféricas conforme NBR 5419:2015. Laudos técnicos para AVCB e habite-se.",
+      description: "Projeto e laudo de para-raios conforme NBR 5419:2015. Medições com terrômetro calibrado RBC. Documentação aceita para AVCB e habite-se.",
       image: spdaImg,
-      features: ["Laudo NBR 5419 completo", "Medição de aterramento", "Aceito pelo Corpo de Bombeiros"],
+      features: ["Laudo aceito pelo Corpo de Bombeiros", "Medição de aterramento < 10Ω", "Entrega em até 15 dias"],
       highlight: "NBR 5419:2015"
     },
     {
       id: "laudos",
       icon: FileText,
       title: "Laudos e Perícias Técnicas",
-      description: "Laudos técnicos, perícias judiciais e extrajudiciais com equipamentos calibrados. Aceito por seguradoras e tribunais.",
+      description: "Laudos de conformidade NBR 5410, perícias judiciais e extrajudiciais. Investigação de causa de sinistros elétricos com relatório aceito por seguradoras e tribunais.",
       image: laudosImg,
-      features: ["ART CREA-RS 231706", "Aceito por seguradoras", "Relatório com fotos e medições"],
+      features: ["Aceito em processos judiciais", "Relatório fotográfico detalhado", "Equipamentos calibrados RBC"],
       highlight: "Perícia certificada"
     },
     {
       id: "automacao",
       icon: Settings,
       title: "Automação e Controle",
-      description: "Sistemas de automação industrial e predial com CLP, supervisório SCADA e IoT para monitoramento remoto de processos.",
+      description: "Automação de processos industriais com CLP, supervisório SCADA e integração IoT. Redução de perdas operacionais e monitoramento remoto de equipamentos críticos.",
       image: automacaoImg,
-      features: ["CLP e supervisório", "Integração IoT", "Redução de custos operacionais"],
+      features: ["Redução de paradas não programadas", "Monitoramento remoto de processos", "Integração com sistemas existentes"],
       highlight: "Indústria 4.0"
     },
     {
       id: "eficiencia",
       icon: TrendingDown,
       title: "Eficiência Energética",
-      description: "Diagnóstico energético, correção de fator de potência e análise de qualidade de energia conforme PRODIST/ANEEL.",
+      description: "Diagnóstico de consumo, correção de fator de potência e análise de qualidade conforme PRODIST Módulo 8. Eliminação de multas por excedente de reativos.",
       image: eficienciaImg,
-      features: ["Análise de faturas", "Correção fator potência", "Relatório técnico detalhado"],
+      features: ["Eliminação de multas de energia reativa", "Redução de demanda contratada", "Relatório com plano de ação"],
       highlight: "Até 30% de redução"
     }
   ];

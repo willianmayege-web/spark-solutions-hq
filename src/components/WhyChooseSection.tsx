@@ -1,26 +1,26 @@
-import { Shield, FileCheck, MapPin, Thermometer } from "lucide-react";
+import { Shield, FileCheck, Scale, Thermometer } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const reasons = [
   {
     icon: Shield,
-    title: "ART em Todos os Projetos",
-    description: "Eng. Willian Paulo May - CREA-RS 231706. Responsabilidade técnica garantida com Anotação de Responsabilidade Técnica.",
-  },
-  {
-    icon: FileCheck,
-    title: "Conformidade NBR 5410/5419",
-    description: "Projetos, laudos e perícias conforme normas técnicas brasileiras. Aceito por seguradoras, Corpo de Bombeiros e AVCB.",
+    title: "ART Emitida em Todos os Projetos",
+    description: "Eng. Willian Paulo May – CREA-RS 231706. Responsabilidade técnica registrada no CREA em cada projeto, laudo ou parecer.",
   },
   {
     icon: Thermometer,
-    title: "Equipamentos Calibrados",
-    description: "Medições com equipamentos certificados: termografia, analisador de energia, megôhmetro e terrômetro digital.",
+    title: "Instrumentos Calibrados com Certificado RBC",
+    description: "Termografia, analisador de energia, megôhmetro, terrômetro digital – todos com certificado de calibração válido.",
   },
   {
-    icon: MapPin,
-    title: "Santa Rosa e Região Noroeste",
-    description: "Atendimento presencial em Santa Rosa, Três de Maio, Horizontina, Porto Lucena e toda região noroeste do RS.",
+    icon: Scale,
+    title: "Atuação em Perícias Judiciais e Extrajudiciais",
+    description: "Laudos técnicos aceitos em processos judiciais, arbitragens e sinistros. Experiência em investigação de causas de incêndios elétricos.",
+  },
+  {
+    icon: FileCheck,
+    title: "Experiência em Indústrias e Grandes Consumidores",
+    description: "Projetos executados em indústrias, redes comerciais, produtores rurais e grandes consumidores de energia da região.",
   },
 ];
 

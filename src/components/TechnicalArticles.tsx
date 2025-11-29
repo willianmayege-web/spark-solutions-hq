@@ -8,7 +8,7 @@ const TechnicalArticles = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="blog" className="py-16 px-4 bg-card">
+    <section id="artigos" className="py-16 px-4 bg-card">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
