@@ -24,8 +24,8 @@ const FooterEletroMays = () => {
               </div>
             </div>
             <p className="text-muted-foreground mb-4 text-sm">
-              Especialistas em soluções completas de engenharia elétrica moderna, 
-              oferecendo inovação, qualidade e eficiência desde 1988.
+              Engenharia elétrica com excelência técnica desde 1988. Projetos, laudos, 
+              energia solar e SPDA em Santa Rosa e região noroeste do RS.
             </p>
             <div className="flex items-center space-x-2 mb-2">
               <Award className="w-5 h-5 text-primary" />
@@ -138,7 +138,7 @@ const FooterEletroMays = () => {
         <div className="border-t border-border pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © 2025 Eletro May's Engenharia - CREA-RS 231706. Todos os direitos reservados.
+              © 2025 Eletro May's Engenharia Elétrica - CREA-RS 231706. Todos os direitos reservados.
             </p>
             <div className="flex gap-4 text-sm">
               <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors">

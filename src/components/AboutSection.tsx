@@ -1,32 +1,33 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Users, Target, Lightbulb } from "lucide-react";
+import { CheckCircle, Users, Target, Shield } from "lucide-react";
 import teamImage from "@/assets/team-engineering.jpg";
+import { CONTACT } from "@/config/contact";
 
 const AboutSection = () => {
   const values = [
     {
       icon: Target,
-      title: "Precisão",
-      description: "Cada projeto é executado com máxima precisão técnica e atenção aos detalhes."
+      title: "Precisão Técnica",
+      description: "Projetos executados conforme NBR 5410, NBR 5419 e demais normas técnicas vigentes."
     },
     {
-      icon: Lightbulb,
-      title: "Inovação",
-      description: "Utilizamos as mais modernas tecnologias e soluções sustentáveis."
+      icon: Shield,
+      title: "Segurança",
+      description: "Todos os projetos com ART CREA-RS e responsabilidade técnica registrada."
     },
     {
       icon: Users,
-      title: "Confiança",
-      description: "Construímos relacionamentos duradouros baseados na transparência."
+      title: "Experiência",
+      description: "Mais de 35 anos de atuação em Santa Rosa e região noroeste do RS."
     }
   ];
 
   const achievements = [
-    "Certificações ISO 9001 e ISO 14001",
-    "Parceiros oficiais de marcas líderes",
-    "Equipe com mais de 50 especialistas",
-    "Atendimento 24/7 para emergências"
+    "Registro CREA-RS 231706 ativo",
+    "Mais de 500 projetos entregues",
+    "Equipamentos de medição calibrados",
+    "Atendimento técnico emergencial"
   ];
 
   return (
@@ -37,15 +38,15 @@ const AboutSection = () => {
           <div>
             <div className="mb-6">
               <span className="text-primary font-semibold text-sm uppercase tracking-wide">
-                Sobre a ElectroTech
+                Sobre a Eletro May's
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-                Excelência em Engenharia Elétrica há mais de 15 anos
+                Engenharia Elétrica com Excelência desde 1988
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Somos uma empresa especializada em soluções completas de engenharia elétrica, 
-                oferecendo desde projetos residenciais até complexos sistemas industriais. 
-                Nossa missão é entregar inovação, qualidade e eficiência em cada projeto.
+                A Eletro May's Engenharia Elétrica atua há mais de 35 anos em Santa Rosa e região, 
+                oferecendo projetos elétricos, energia solar fotovoltaica, SPDA, laudos técnicos e 
+                perícias com registro CREA-RS {CONTACT.crea}. Qualidade técnica e conformidade normativa.
               </p>
             </div>
 
@@ -84,7 +85,7 @@ const AboutSection = () => {
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src={teamImage}
-                alt="Equipe ElectroTech"
+                alt="Equipe Eletro May's Engenharia Elétrica - Santa Rosa RS"
                 className="w-full h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />

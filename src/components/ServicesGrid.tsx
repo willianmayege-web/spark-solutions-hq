@@ -25,46 +25,46 @@ const ServicesGrid = () => {
       id: "energia-solar",
       icon: Sun,
       title: "Energia Solar Fotovoltaica",
-      description: "Sistemas completos on-grid, off-grid e híbridos com economia real de até 95% na conta de energia.",
+      description: "Projetos completos conforme NBR 16690 e Resolução ANEEL 482. Dimensionamento, instalação, homologação e monitoramento remoto.",
       image: energiaSolarImg,
-      features: ["Payback 4-6 anos", "Homologação ANEEL", "Monitoramento remoto"],
+      features: ["Projeto com ART CREA-RS", "Homologação junto à concessionária", "Monitoramento 24/7"],
       highlight: "Até 95% de economia"
     },
     {
       id: "spda",
       icon: Zap,
       title: "SPDA e Aterramento",
-      description: "Proteção contra descargas atmosféricas conforme NBR 5419:2015 com laudos técnicos CREA-RS.",
+      description: "Sistema de proteção contra descargas atmosféricas conforme NBR 5419:2015. Laudos técnicos para AVCB e habite-se.",
       image: spdaImg,
-      features: ["Conformidade NBR 5419", "Medições certificadas", "AVCB e habite-se"],
-      highlight: "Proteção total"
+      features: ["Laudo NBR 5419 completo", "Medição de aterramento", "Aceito pelo Corpo de Bombeiros"],
+      highlight: "NBR 5419:2015"
     },
     {
       id: "laudos",
       icon: FileText,
       title: "Laudos e Perícias Técnicas",
-      description: "Laudos técnicos, perícias elétricas e inspeções com equipamentos calibrados e ART CREA-RS.",
+      description: "Laudos técnicos, perícias judiciais e extrajudiciais com equipamentos calibrados. Aceito por seguradoras e tribunais.",
       image: laudosImg,
-      features: ["Ensaios técnicos", "Reconhecimento judicial", "Atendimento 24h"],
-      highlight: "ART CREA-RS 231706"
+      features: ["ART CREA-RS 231706", "Aceito por seguradoras", "Relatório com fotos e medições"],
+      highlight: "Perícia certificada"
     },
     {
       id: "automacao",
       icon: Settings,
       title: "Automação e Controle",
-      description: "Sistemas inteligentes com Arduino, ESP32 e IoT para monitoramento remoto e eficiência operacional.",
+      description: "Sistemas de automação industrial e predial com CLP, supervisório SCADA e IoT para monitoramento remoto de processos.",
       image: automacaoImg,
-      features: ["Arduino/ESP32", "Integração IoT", "Controle remoto"],
-      highlight: "40% menos custos"
+      features: ["CLP e supervisório", "Integração IoT", "Redução de custos operacionais"],
+      highlight: "Indústria 4.0"
     },
     {
       id: "eficiencia",
       icon: TrendingDown,
       title: "Eficiência Energética",
-      description: "Diagnósticos e consultoria para redução de até 30% nos custos com energia elétrica.",
+      description: "Diagnóstico energético, correção de fator de potência e análise de qualidade de energia conforme PRODIST/ANEEL.",
       image: eficienciaImg,
-      features: ["Diagnóstico completo", "Correção fator potência", "Payback 12-24 meses"],
-      highlight: "30% de redução"
+      features: ["Análise de faturas", "Correção fator potência", "Relatório técnico detalhado"],
+      highlight: "Até 30% de redução"
     }
   ];
 
@@ -76,8 +76,8 @@ const ServicesGrid = () => {
             Nossos <span className="text-primary">Serviços</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Soluções completas em engenharia elétrica com certificação CREA-RS 231706, 
-            desde projetos até implementação e manutenção.
+            Engenharia elétrica com responsabilidade técnica CREA-RS 231706. 
+            Projetos, laudos e instalações conforme normas NBR 5410, NBR 5419 e NR-10.
           </p>
         </div>
 

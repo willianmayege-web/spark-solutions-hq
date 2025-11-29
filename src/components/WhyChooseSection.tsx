@@ -1,26 +1,26 @@
-import { Shield, FileCheck, MapPin, FileSpreadsheet } from "lucide-react";
+import { Shield, FileCheck, MapPin, Thermometer } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const reasons = [
   {
     icon: Shield,
-    title: "Engenharia registrada CREA",
-    description: "Eng. Willian Paulo May - CREA-RS 231706. Responsabilidade técnica em todos os projetos com emissão de ART.",
+    title: "ART em Todos os Projetos",
+    description: "Eng. Willian Paulo May - CREA-RS 231706. Responsabilidade técnica garantida com Anotação de Responsabilidade Técnica.",
   },
   {
     icon: FileCheck,
-    title: "Conformidade com NBR 5410/5419",
-    description: "Projetos e laudos desenvolvidos rigorosamente conforme normas técnicas brasileiras vigentes.",
+    title: "Conformidade NBR 5410/5419",
+    description: "Projetos, laudos e perícias conforme normas técnicas brasileiras. Aceito por seguradoras, Corpo de Bombeiros e AVCB.",
+  },
+  {
+    icon: Thermometer,
+    title: "Equipamentos Calibrados",
+    description: "Medições com equipamentos certificados: termografia, analisador de energia, megôhmetro e terrômetro digital.",
   },
   {
     icon: MapPin,
-    title: "Atendimento em todo o RS",
-    description: "Atuação em Santa Rosa e região. Disponibilidade para projetos em todo o estado do Rio Grande do Sul.",
-  },
-  {
-    icon: FileSpreadsheet,
-    title: "Relatórios e laudos digitais",
-    description: "Documentação técnica completa e digital, incluindo medições, ensaios e memorial descritivo detalhado.",
+    title: "Santa Rosa e Região Noroeste",
+    description: "Atendimento presencial em Santa Rosa, Três de Maio, Horizontina, Porto Lucena e toda região noroeste do RS.",
   },
 ];
 
