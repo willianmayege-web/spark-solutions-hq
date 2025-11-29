@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,11 +9,14 @@ import {
   MapPin, 
   Shield,
   Send,
-  MessageSquare
+  MessageSquare,
+  CheckCircle
 } from "lucide-react";
 import { CONTACT, whatsappLink } from "@/config/contact";
+import { toast } from "sonner";
 
 const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const contactInfo = [
     {
       icon: Phone,
@@ -41,13 +45,31 @@ const ContactSection = () => {
   ];
 
   const services = [
-    "Projetos Elétricos",
-    "Automação Industrial",
-    "Energia Solar",
-    "Manutenção Elétrica",
-    "Eficiência Energética",
-    "Outros"
+    "Projeto Elétrico (NBR 5410/14039)",
+    "Energia Solar Fotovoltaica",
+    "SPDA / Aterramento (NBR 5419)",
+    "Laudo Técnico / Perícia",
+    "Termografia / Qualidade de Energia",
+    "Automação e Eficiência Energética",
+    "Outro"
   ];
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simula envio do formulário
+    setTimeout(() => {
+      setIsSubmitting(false);
+      toast.success("Solicitação enviada com sucesso!", {
+        description: "Nossa equipe técnica entrará em contato em até 24 horas úteis.",
+        icon: <CheckCircle className="w-5 h-5 text-green-500" />,
+      });
+      
+      // Reset form
+      (e.target as HTMLFormElement).reset();
+    }, 1500);
+  };
 
   return (
     <section id="contact" className="py-20">
@@ -103,7 +125,7 @@ const ContactSection = () => {
                 variant="outline" 
                 className="w-full" 
                 size="lg"
-                onClick={() => window.open(whatsappLink('Olá, quero um orçamento de projeto elétrico.'), '_blank')}
+                onClick={() => window.open(whatsappLink('Olá, gostaria de solicitar um orçamento de engenharia elétrica / laudo técnico.'), '_blank')}
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
                 WhatsApp
@@ -116,82 +138,91 @@ const ContactSection = () => {
             <Card className="border-border/50">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-foreground">
-                  Solicite um Orçamento
+                  Solicite um Orçamento Técnico
                 </CardTitle>
                 <p className="text-muted-foreground">
-                  Preencha o formulário abaixo e nossa equipe entrará em contato em até 24h.
+                  Preencha o formulário e nossa equipe técnica responderá em até 24 horas úteis.
                 </p>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Nome Completo *
+                      </label>
+                      <Input placeholder="Seu nome" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        E-mail *
+                      </label>
+                      <Input type="email" placeholder="seu@email.com" required />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Telefone / WhatsApp *
+                      </label>
+                      <Input placeholder="(55) 99999-9999" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Empresa (opcional)
+                      </label>
+                      <Input placeholder="Nome da empresa ou condomínio" />
+                    </div>
+                  </div>
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Nome Completo *
+                      Tipo de Serviço *
                     </label>
-                    <Input placeholder="Seu nome completo" />
+                    <select className="w-full p-3 border border-input rounded-md bg-background text-foreground" required>
+                      <option value="">Selecione o serviço desejado</option>
+                      {services.map((service) => (
+                        <option key={service} value={service}>{service}</option>
+                      ))}
+                    </select>
                   </div>
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      E-mail *
+                      Descrição do Projeto ou Necessidade *
                     </label>
-                    <Input type="email" placeholder="seu@email.com" />
+                    <Textarea
+                      placeholder="Descreva seu projeto elétrico, problema a ser resolvido ou necessidade de laudo técnico. Informe localização, tipo de instalação (residencial/comercial/industrial) e prazo desejado..."
+                      rows={5}
+                      required
+                    />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
-                      Telefone *
+                      Cidade / Localização
                     </label>
-                    <Input placeholder="(00) 00000-0000" />
+                    <Input placeholder="Ex: Santa Rosa - RS" />
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
-                      Empresa
-                    </label>
-                    <Input placeholder="Nome da empresa" />
-                  </div>
-                </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Tipo de Serviço *
-                  </label>
-                  <select className="w-full p-3 border border-input rounded-md bg-background text-foreground">
-                    <option value="">Selecione um serviço</option>
-                    {services.map((service) => (
-                      <option key={service} value={service}>{service}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Descrição do Projeto *
-                  </label>
-                  <Textarea
-                    placeholder="Descreva detalhadamente seu projeto, localização, prazo e outras informações relevantes..."
-                    rows={5}
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">
-                    Orçamento Estimado
-                  </label>
-                  <select className="w-full p-3 border border-input rounded-md bg-background text-foreground">
-                    <option value="">Selecione uma faixa</option>
-                    <option value="pequeno">Projeto Pequeno</option>
-                    <option value="medio">Projeto Médio</option>
-                    <option value="grande">Projeto Grande</option>
-                    <option value="consulta">Sob consulta</option>
-                  </select>
-                </div>
-
-                <Button variant="orange" size="lg" className="w-full">
-                  <Send className="w-5 h-5 mr-2" />
-                  Enviar Solicitação
-                </Button>
+                  <Button 
+                    type="submit" 
+                    variant="orange" 
+                    size="lg" 
+                    className="w-full"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>Enviando...</>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Enviar Solicitação de Orçamento
+                      </>
+                    )}
+                  </Button>
+                </form>
 
                 <p className="text-sm text-muted-foreground text-center">
                   Ao enviar este formulário, você concorda com nossa política de privacidade. 

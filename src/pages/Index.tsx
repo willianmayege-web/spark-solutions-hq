@@ -28,9 +28,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Eletro May's | Energia Solar, SPDA e Projetos Elétricos em Santa Rosa-RS"
-        description="Engenharia elétrica com CREA-RS 231706. Energia solar fotovoltaica, SPDA NBR 5419, projetos elétricos NBR 5410, laudos técnicos e termografia em Santa Rosa-RS e região."
-        keywords="energia solar santa rosa, spda santa rosa, engenharia elétrica santa rosa, projetos elétricos RS, termografia elétrica, qualidade de energia, CREA-RS 231706"
+        title="Eletro May's Engenharia Elétrica | Energia Solar, SPDA e Laudos em Santa Rosa-RS"
+        description="Engenharia elétrica CREA-RS 231706 em Santa Rosa-RS. Energia solar fotovoltaica, SPDA NBR 5419, projetos elétricos NBR 5410, laudos técnicos, perícias e termografia. Desde 1988."
+        keywords="engenharia elétrica santa rosa, energia solar santa rosa rs, spda nbr 5419, laudos técnicos elétricos, perícia elétrica rs, projetos elétricos nbr 5410, crea-rs 231706, eletro mays"
         jsonLd={organizationJsonLd}
       />
       <TopBanner />
@@ -43,8 +43,8 @@ const Index = () => {
         <ServicesGrid />
         <SolarSimulatorSection />
         <CTASection 
-          title="Solicite um Orçamento Gratuito"
-          description="Nossa equipe técnica está pronta para apresentar a melhor solução para seu projeto de engenharia elétrica."
+          title="Solicite um Orçamento Técnico Gratuito"
+          description="Engenheiro eletricista CREA-RS 231706 à disposição para avaliar seu projeto. Atendimento em Santa Rosa e região noroeste do RS."
           primaryButtonText="Solicitar Orçamento"
           secondaryButtonText="Falar no WhatsApp"
         />
@@ -63,10 +63,10 @@ const Index = () => {
         <CalendlySection />
         <FAQ />
         <CTASection 
-          title="Pronto para Economizar com Inteligência?"
-          description="Mais de 500 projetos entregues em Santa Rosa RS e região. CREA-RS 231706. Fale conosco e transforme seu projeto em realidade."
-          primaryButtonText="Falar com Especialista"
-          secondaryButtonText="Ver Projetos"
+          title="Transforme Seu Projeto em Realidade"
+          description="Mais de 500 projetos entregues desde 1988. Engenharia elétrica com ART CREA-RS 231706 em Santa Rosa e região noroeste do RS."
+          primaryButtonText="Solicitar Orçamento"
+          secondaryButtonText="Falar no WhatsApp"
         />
       </main>
       <FooterEletroMays />
