@@ -24,8 +24,9 @@ const FooterEletroMays = () => {
               </div>
             </div>
             <p className="text-muted-foreground mb-4 text-sm">
-              Engenharia elétrica com excelência técnica. Projetos, laudos, 
-              energia solar e SPDA em Santa Rosa e região noroeste do RS.
+              <strong className="text-foreground">ELETRO MAY'S ENGENHARIA LTDA</strong> — Empresa de engenharia elétrica 
+              especializada em projetos, laudos, energia solar e SPDA em Santa Rosa e região noroeste do RS. 
+              Fundada em dezembro de 2021.
             </p>
             <div className="flex items-center space-x-2 mb-2">
               <Award className="w-5 h-5 text-primary" />
@@ -138,7 +139,7 @@ const FooterEletroMays = () => {
         <div className="border-t border-border pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © 2025 Eletro May's Engenharia Elétrica - CREA-RS 231706. Todos os direitos reservados.
+              © 2021–{new Date().getFullYear()} Eletro May's Engenharia Ltda - CNPJ 44.443.829/0001-34 - CREA-RS 231706. Todos os direitos reservados.
             </p>
             <div className="flex gap-4 text-sm">
               <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors">

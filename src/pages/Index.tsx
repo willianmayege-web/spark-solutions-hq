@@ -1,23 +1,15 @@
 import TopBanner from "@/components/TopBanner";
 import Header from "@/components/Header";
-import HeroSlider from "@/components/hero/HeroSlider";
+import HeroHome from "@/components/HeroHome";
 import SEOHead, { organizationJsonLd } from "@/components/SEOHead";
+import ServicesHome from "@/components/ServicesHome";
 import WhyChooseSection from "@/components/WhyChooseSection";
-import ServicesGrid from "@/components/ServicesGrid";
-import CTASection from "@/components/CTASection";
-import SolarSimulator from "@/components/SolarSimulator";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import SEOContentSection from "@/components/SEOContentSection";
+import QuickContactSection from "@/components/QuickContactSection";
 import SolarSimulatorSection from "@/components/SolarSimulatorSection";
-import ClientDashboard from "@/components/ClientDashboard";
 import ProjectsPortfolio from "@/components/ProjectsPortfolio";
-import CooperativeSection from "@/components/CooperativeSection";
-import OnlineStore from "@/components/OnlineStore";
-import TechnicalStore from "@/components/TechnicalStore";
-import QRCodeSection from "@/components/QRCodeSection";
-import BeforeAfterComparison from "@/components/BeforeAfterComparison";
-import RealCases from "@/components/RealCases";
 import TechnicalArticles from "@/components/TechnicalArticles";
-import EnergyDiagnosis from "@/components/EnergyDiagnosis";
-import QuoteRequestForm from "@/components/QuoteRequestForm";
 import CalendlySection from "@/components/CalendlySection";
 import FAQ from "@/components/FAQ";
 import FooterEletroMays from "@/components/FooterEletroMays";
@@ -28,46 +20,29 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Eletro May's Engenharia Elétrica | Projetos, SPDA, Laudos e Energia Solar em Santa Rosa-RS"
-        description="Engenharia elétrica especializada em projetos NBR 5410, SPDA NBR 5419, laudos técnicos, perícias e energia solar fotovoltaica. CREA-RS 231706. Atendimento em Santa Rosa e região noroeste do RS."
-        keywords="engenharia elétrica santa rosa rs, projetos elétricos nbr 5410, spda nbr 5419, laudos técnicos crea, perícia elétrica judicial, energia solar fotovoltaica rs, crea-rs 231706, eletro mays engenharia"
+        title="Eletro May's Engenharia Elétrica | Projetos, Laudos, SPDA e Energia Solar em Santa Rosa-RS"
+        description="Engenharia elétrica completa em Santa Rosa-RS: projetos NBR 5410/14039, energia solar fotovoltaica, laudos SPDA NBR 5419, manutenção industrial e perícias técnicas. CREA-RS 231706 | CNPJ 44.443.829/0001-34."
+        keywords="engenharia elétrica santa rosa rs, energia solar santa rosa, projetos elétricos nbr 5410, spda nbr 5419, laudos técnicos crea rs, manutenção elétrica industrial santa rosa, perícia elétrica judicial rs, crea-rs 231706"
         jsonLd={organizationJsonLd}
       />
       <TopBanner />
       <Header />
       <main id="main-content">
         {/* H1 único para SEO */}
-        <h1 className="sr-only">Eletro May's Engenharia Elétrica – Projetos, SPDA, Laudos Técnicos e Energia Solar em Santa Rosa-RS</h1>
-        <HeroSlider />
+        <h1 className="sr-only">
+          Engenharia Elétrica e Energia Solar em Santa Rosa-RS | Projetos, Laudos SPDA e Manutenção Industrial | Eletro May's CREA-RS 231706
+        </h1>
+        <HeroHome />
+        <ServicesHome />
         <WhyChooseSection />
-        <ServicesGrid />
+        <TestimonialsSection />
+        <SEOContentSection />
         <SolarSimulatorSection />
-        <CTASection 
-          title="Precisa de Projeto, Laudo ou Adequação Elétrica?"
-          description="Engenheiro eletricista CREA-RS 231706 avalia sua instalação e apresenta solução técnica com ART. Atendimento presencial em Santa Rosa e região noroeste do RS."
-          primaryButtonText="Solicitar Estudo Técnico"
-          secondaryButtonText="Falar com Engenheiro"
-        />
         <ProjectsPortfolio />
-        <SolarSimulator />
-        <ClientDashboard />
-        <CooperativeSection />
-        <TechnicalStore />
-        <OnlineStore />
-        <QRCodeSection />
-        <BeforeAfterComparison />
-        <RealCases />
         <TechnicalArticles />
-        <EnergyDiagnosis />
-        <QuoteRequestForm />
+        <QuickContactSection />
         <CalendlySection />
         <FAQ />
-        <CTASection 
-          title="Reduza Riscos e Custos com Engenharia de Qualidade"
-          description="Mais de 500 projetos entregues com ART e registro CREA-RS. Projetos elétricos, laudos, SPDA e solar com conformidade NBR e atendimento direto do engenheiro responsável."
-          primaryButtonText="Enviar Dados da Instalação"
-          secondaryButtonText="Conversar com Engenheiro"
-        />
       </main>
       <FooterEletroMays />
       <WhatsAppFloat />
