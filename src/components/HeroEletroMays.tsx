@@ -22,7 +22,7 @@ const HeroEletroMays = () => {
 
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
               Projetos solares, automação, qualidade de energia e muito mais.
-              Desde 1988 transformando energia com soluções sustentáveis e inteligentes.
+              Transformando energia com soluções sustentáveis e inteligentes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -54,8 +54,8 @@ const HeroEletroMays = () => {
                 <div className="text-sm text-muted-foreground">Projetos Entregues</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-primary font-montserrat">15+</div>
-                <div className="text-sm text-muted-foreground">Anos de Experiência</div>
+                <div className="text-3xl font-bold text-primary font-montserrat">4+</div>
+                <div className="text-sm text-muted-foreground">Anos de Atuação</div>
               </div>
               <div className="text-center md:block hidden">
                 <div className="text-3xl font-bold text-primary font-montserrat">CREA-RS</div>
