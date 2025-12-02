@@ -29,7 +29,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Eletro May's Engenharia Elétrica | Projetos, SPDA, Laudos e Energia Solar em Santa Rosa-RS"
-        description="Engenharia elétrica especializada em projetos NBR 5410, SPDA NBR 5419, laudos técnicos, perícias e energia solar fotovoltaica. CREA-RS 231706. Atendimento em Santa Rosa e região noroeste do RS desde 1988."
+        description="Engenharia elétrica especializada em projetos NBR 5410, SPDA NBR 5419, laudos técnicos, perícias e energia solar fotovoltaica. CREA-RS 231706. Atendimento em Santa Rosa e região noroeste do RS."
         keywords="engenharia elétrica santa rosa rs, projetos elétricos nbr 5410, spda nbr 5419, laudos técnicos crea, perícia elétrica judicial, energia solar fotovoltaica rs, crea-rs 231706, eletro mays engenharia"
         jsonLd={organizationJsonLd}
       />
@@ -64,7 +64,7 @@ const Index = () => {
         <FAQ />
         <CTASection 
           title="Reduza Riscos e Custos com Engenharia de Qualidade"
-          description="Mais de 500 projetos entregues com ART desde 1988. Projetos elétricos, laudos, SPDA e solar com conformidade NBR e atendimento direto do engenheiro responsável."
+          description="Mais de 500 projetos entregues com ART e registro CREA-RS. Projetos elétricos, laudos, SPDA e solar com conformidade NBR e atendimento direto do engenheiro responsável."
           primaryButtonText="Enviar Dados da Instalação"
           secondaryButtonText="Conversar com Engenheiro"
         />

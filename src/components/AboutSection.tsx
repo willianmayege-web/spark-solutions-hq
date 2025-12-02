@@ -19,7 +19,7 @@ const AboutSection = () => {
     {
       icon: Users,
       title: "Experiência",
-      description: "Mais de 35 anos de atuação em Santa Rosa e região noroeste do RS."
+      description: "Expertise técnica comprovada em Santa Rosa e região noroeste do RS."
     }
   ];
 
@@ -41,10 +41,10 @@ const AboutSection = () => {
                 Sobre a Eletro May's
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-                Engenharia Elétrica com Excelência desde 1988
+                Engenharia Elétrica com Excelência Técnica
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                A Eletro May's Engenharia Elétrica atua há mais de 35 anos em Santa Rosa e região, 
+                A Eletro May's Engenharia Elétrica atua em Santa Rosa e região, 
                 oferecendo projetos elétricos, energia solar fotovoltaica, SPDA, laudos técnicos e 
                 perícias com registro CREA-RS {CONTACT.crea}. Qualidade técnica e conformidade normativa.
               </p>

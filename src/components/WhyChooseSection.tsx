@@ -33,7 +33,7 @@ const WhyChooseSection = () => {
             Por que escolher a <span className="text-transparent bg-clip-text bg-gradient-primary">Eletro May's</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Excelência técnica, compromisso com normas e atendimento personalizado desde 1988
+            Excelência técnica, compromisso com normas e atendimento personalizado
           </p>
         </div>
 

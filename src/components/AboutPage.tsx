@@ -61,7 +61,7 @@ const AboutPage = () => {
     <>
       <SEOHead 
         title="Sobre Nós | Eletro May's Engenharia Elétrica CREA-RS 231706"
-        description="Fundada em 1988, a Eletro May's é especialista em projetos elétricos, energia solar, SPDA e automação em Santa Rosa-RS. Mais de 500 projetos entregues com excelência técnica e certificação CREA-RS 231706."
+        description="Fundada em 2021, a Eletro May's é especialista em projetos elétricos, energia solar, SPDA e automação em Santa Rosa-RS. Mais de 500 projetos entregues com excelência técnica e certificação CREA-RS 231706."
         keywords="sobre eletro mays, engenharia elétrica santa rosa, crea-rs 231706, engenheiro eletricista santa rosa, empresa engenharia elétrica rs"
         canonical="https://eletromays.com.br/sobre"
         jsonLd={organizationJsonLd}
@@ -84,8 +84,8 @@ const AboutPage = () => {
                 Sobre a Eletro May's Engenharia Elétrica
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                <strong className="text-foreground">Fundada em 1988</strong>, a Eletro May's Engenharia Elétrica 
-                acumula mais de três décadas de experiência em Santa Rosa e região noroeste do Rio Grande do Sul. 
+                <strong className="text-foreground">Fundada em 2021</strong>, a Eletro May's Engenharia Elétrica 
+                oferece soluções de engenharia elétrica em Santa Rosa e região noroeste do Rio Grande do Sul. 
                 Somos especialistas em projetos elétricos industriais, residenciais, energia solar, SPDA, 
                 automação e eficiência energética.
               </p>

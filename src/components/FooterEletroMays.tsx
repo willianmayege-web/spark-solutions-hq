@@ -24,7 +24,7 @@ const FooterEletroMays = () => {
               </div>
             </div>
             <p className="text-muted-foreground mb-4 text-sm">
-              Engenharia elétrica com excelência técnica desde 1988. Projetos, laudos, 
+              Engenharia elétrica com excelência técnica. Projetos, laudos, 
               energia solar e SPDA em Santa Rosa e região noroeste do RS.
             </p>
             <div className="flex items-center space-x-2 mb-2">

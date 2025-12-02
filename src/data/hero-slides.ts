@@ -15,7 +15,7 @@ export const heroSlides: HeroSlideData[] = [
     id: 1,
     title: "Energia Solar Fotovoltaica",
     subtitle: "Conta de luz alta? Reduza até 95% com geração própria",
-    description: "Projetos completos com homologação junto à concessionária, monitoramento remoto e payback médio de 4 anos. Mais de 35 anos de experiência em Santa Rosa e região.",
+    description: "Projetos completos com homologação junto à concessionária, monitoramento remoto e payback médio de 4 anos. Engenharia de qualidade em Santa Rosa e região.",
     ctaPrimary: { text: "Simular Economia", action: "simulator", icon: Calculator },
     ctaSecondary: { text: "Conversar com Engenheiro", action: "whatsapp", icon: Phone },
     image: "/src/assets/energia-solar.jpg",
@@ -42,6 +42,6 @@ export const heroSlides: HeroSlideData[] = [
 
 export const heroStats = [
   { value: "500+", label: "Projetos Entregues" },
-  { value: "36+", label: "Anos de Experiência" },
+  { value: "4+", label: "Anos de Atuação" },
   { value: "CREA-RS", label: "Registro 231706" },
 ];
