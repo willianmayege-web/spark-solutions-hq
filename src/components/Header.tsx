@@ -8,12 +8,13 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const menuItems = [
-    { name: "Início", href: "#home" },
-    { name: "Serviços", href: "#services" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Simulador Solar", href: "#simulador" },
-    { name: "Artigos", href: "#artigos" },
-    { name: "Contato", href: "#orcamento" },
+    { name: "Início", href: "/" },
+    { name: "Serviços", href: "/#services" },
+    { name: "Projetos", href: "/#projetos" },
+    { name: "Simulador Solar", href: "/#simulador" },
+    { name: "Artigos", href: "/#artigos" },
+    { name: "Área do Cliente", href: "/area-do-cliente" },
+    { name: "Contato", href: "/#orcamento" },
   ];
 
   const scrollToQuote = () => {

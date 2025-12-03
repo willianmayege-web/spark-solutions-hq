@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ClientAreaPage from "./pages/ClientAreaPage";
 import AboutPage from "./components/AboutPage";
 import ServicesDetailPage from "./components/ServicesDetailPage";
 import BlogPage from "./pages/BlogPage";
@@ -35,6 +36,7 @@ const App = () => (
           <Route path="/termos-uso" element={<TermosUso />} />
           <Route path="/politica-cookies" element={<PoliticaCookies />} />
           <Route path="/diagnostics" element={<DiagnosticsPage />} />
+          <Route path="/area-do-cliente" element={<ClientAreaPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

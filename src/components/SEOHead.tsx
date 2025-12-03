@@ -10,6 +10,7 @@ interface SEOHeadProps {
   ogImage?: string;
   canonical?: string;
   jsonLd?: object;
+  noIndex?: boolean;
 }
 
 const SEOHead = ({
@@ -20,7 +21,8 @@ const SEOHead = ({
   ogDescription,
   ogImage = "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
   canonical,
-  jsonLd
+  jsonLd,
+  noIndex = false
 }: SEOHeadProps) => {
   const location = useLocation();
 
@@ -45,6 +47,13 @@ const SEOHead = ({
     // Standard meta tags
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
+    
+    // Robots meta tag for noIndex
+    if (noIndex) {
+      updateMetaTag('robots', 'noindex, nofollow');
+    } else {
+      updateMetaTag('robots', 'index, follow');
+    }
 
     // Open Graph tags
     updateMetaTag('og:title', ogTitle || title, true);
@@ -79,7 +88,7 @@ const SEOHead = ({
       }
       script.textContent = JSON.stringify(jsonLd);
     }
-  }, [title, description, keywords, ogTitle, ogDescription, ogImage, canonical, jsonLd, location]);
+  }, [title, description, keywords, ogTitle, ogDescription, ogImage, canonical, jsonLd, noIndex, location]);
 
   return null;
 };
