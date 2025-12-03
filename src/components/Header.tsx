@@ -12,6 +12,7 @@ const Header = () => {
     { name: "Serviços", href: "/#services" },
     { name: "Projetos", href: "/#projetos" },
     { name: "Simulador Solar", href: "/#simulador" },
+    { name: "Seguro Solar", href: "/seguro-energia-solar" },
     { name: "Artigos", href: "/#artigos" },
     { name: "Área do Cliente", href: "/area-do-cliente" },
     { name: "Contato", href: "/#orcamento" },

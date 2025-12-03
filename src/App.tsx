@@ -14,6 +14,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import PoliticaCookies from "./pages/PoliticaCookies";
 import DiagnosticsPage from "./pages/DiagnosticsPage";
+import SeguroEnergiaSolarPage from "./pages/SeguroEnergiaSolarPage";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { organizationJsonLd } from "./components/SEOHead";
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/politica-cookies" element={<PoliticaCookies />} />
           <Route path="/diagnostics" element={<DiagnosticsPage />} />
           <Route path="/area-do-cliente" element={<ClientAreaPage />} />
+          <Route path="/seguro-energia-solar" element={<SeguroEnergiaSolarPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
