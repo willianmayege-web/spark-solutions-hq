@@ -3,34 +3,59 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Sun, Calculator, TrendingUp, Zap } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Sun, Calculator, TrendingUp, Zap, Info } from "lucide-react";
+
+// Sistema de referência
+const REFERENCE_SYSTEM = {
+  inverterKw: 7.5,
+  moduleCount: 12,
+  moduleWp: 600,
+  totalKwp: 7.2,
+  baseCost: 15000,
+};
+
+const COST_PER_KWP = REFERENCE_SYSTEM.baseCost / REFERENCE_SYSTEM.totalKwp; // ~2083.33
+const GENERATION_FACTOR = 108; // kWh/mês por kWp (RS)
+
+// Opções de potência do módulo (550-700 Wp em passos de 25W)
+const MODULE_OPTIONS = [550, 575, 600, 625, 650, 675, 700];
 
 const SolarSimulator = () => {
-  const [cep, setCep] = useState("");
   const [consumption, setConsumption] = useState("");
+  const [modulePower, setModulePower] = useState("600");
   const [results, setResults] = useState<{
-    monthlyEconomy: number;
-    yearlyEconomy: number;
-    paybackTime: number;
-    systemPower: number;
+    systemKwp: number;
+    moduleCount: number;
+    modulePowerWp: number;
+    estimatedCost: number;
   } | null>(null);
 
   const calculateSolar = () => {
-    if (!cep || !consumption) return;
+    if (!consumption) return;
     
-    const monthlyConsumption = parseInt(consumption);
-    const averageTariff = 0.85; // R$ por kWh
-    const monthlyEconomy = monthlyConsumption * averageTariff * 0.95; // 95% economia
-    const yearlyEconomy = monthlyEconomy * 12;
-    const systemPower = monthlyConsumption / 150; // Aproximação kWp
-    const paybackTime = (systemPower * 4000) / yearlyEconomy; // Anos
+    const monthlyConsumption = parseFloat(consumption);
+    const modulePowerWp = parseInt(modulePower);
+    const modulePowerKwp = modulePowerWp / 1000;
+    
+    // Cálculo do sistema
+    const systemKwp = monthlyConsumption / GENERATION_FACTOR;
+    const moduleCount = Math.ceil(systemKwp / modulePowerKwp);
+    
+    // Cálculo do custo (mínimo R$ 15.000)
+    const rawCost = systemKwp * COST_PER_KWP;
+    const estimatedCost = Math.max(REFERENCE_SYSTEM.baseCost, rawCost);
     
     setResults({
-      monthlyEconomy,
-      yearlyEconomy,
-      paybackTime,
-      systemPower
+      systemKwp,
+      moduleCount,
+      modulePowerWp,
+      estimatedCost: Math.round(estimatedCost),
     });
+  };
+
+  const formatCurrency = (value: number) => {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0, maximumFractionDigits: 0 });
   };
 
   return (
@@ -52,68 +77,87 @@ const SolarSimulator = () => {
               <CardHeader>
                 <CardTitle className="flex items-center text-foreground font-montserrat">
                   <Calculator className="w-6 h-6 mr-3 text-primary" />
-                  Simule Sua Economia
+                  Simule Seu Sistema
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div>
-                  <Label htmlFor="cep" className="text-foreground font-medium">
-                    CEP da Instalação
-                  </Label>
-                  <Input
-                    id="cep"
-                    placeholder="Digite seu CEP"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                    className="mt-2"
-                  />
+                {/* Sistema de referência */}
+                <div className="p-3 bg-primary/10 rounded-lg border border-primary/20">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">Sistema de referência:</strong> Inversor 7,5 kW + 12 módulos de 600 W (7,2 kWp) por R$ 15.000,00.
+                    </p>
+                  </div>
                 </div>
-                
+
                 <div>
                   <Label htmlFor="consumption" className="text-foreground font-medium">
-                    Consumo Mensal (kWh)
+                    Consumo Médio Mensal (kWh)
                   </Label>
                   <Input
                     id="consumption"
                     type="number"
-                    placeholder="Ex: 300"
+                    placeholder="Ex: 500"
                     value={consumption}
                     onChange={(e) => setConsumption(e.target.value)}
                     className="mt-2"
+                    min="0"
                   />
+                </div>
+
+                <div>
+                  <Label htmlFor="modulePower" className="text-foreground font-medium">
+                    Potência do Módulo (Wp)
+                  </Label>
+                  <Select value={modulePower} onValueChange={setModulePower}>
+                    <SelectTrigger className="mt-2">
+                      <SelectValue placeholder="Selecione a potência" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {MODULE_OPTIONS.map((power) => (
+                        <SelectItem key={power} value={power.toString()}>
+                          {power} Wp
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
                 
                 <Button 
                   variant="orange" 
                   className="w-full"
                   onClick={calculateSolar}
-                  disabled={!cep || !consumption}
+                  disabled={!consumption}
                 >
                   <Sun className="w-5 h-5 mr-2" />
-                  Calcular Economia
+                  Calcular Sistema
                 </Button>
 
                 {results && (
-                  <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                    <h4 className="font-semibold text-foreground mb-3">Resultados da Simulação:</h4>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
-                      <div>
-                        <div className="text-muted-foreground">Economia Mensal</div>
-                        <div className="font-bold text-primary">R$ {results.monthlyEconomy.toFixed(2)}</div>
+                  <div className="mt-6 p-5 bg-primary/10 rounded-lg border border-primary/20">
+                    <h4 className="font-semibold text-lg text-foreground mb-4">Resultado da Simulação</h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center py-2 border-b border-border/50">
+                        <span className="text-muted-foreground">Potência estimada do sistema</span>
+                        <span className="font-bold text-primary">{results.systemKwp.toFixed(2)} kWp</span>
                       </div>
-                      <div>
-                        <div className="text-muted-foreground">Economia Anual</div>
-                        <div className="font-bold text-primary">R$ {results.yearlyEconomy.toFixed(2)}</div>
+                      <div className="flex justify-between items-center py-2 border-b border-border/50">
+                        <span className="text-muted-foreground">Quantidade de módulos</span>
+                        <span className="font-bold text-primary">{results.moduleCount} módulos</span>
                       </div>
-                      <div>
-                        <div className="text-muted-foreground">Potência Sistema</div>
-                        <div className="font-bold text-primary">{results.systemPower.toFixed(1)} kWp</div>
+                      <div className="flex justify-between items-center py-2 border-b border-border/50">
+                        <span className="text-muted-foreground">Potência por módulo</span>
+                        <span className="font-bold text-primary">{results.modulePowerWp} Wp</span>
                       </div>
-                      <div>
-                        <div className="text-muted-foreground">Payback</div>
-                        <div className="font-bold text-primary">{results.paybackTime.toFixed(1)} anos</div>
+                      <div className="flex justify-between items-center py-2 border-b border-border/50">
+                        <span className="text-muted-foreground">Custo estimado do projeto</span>
+                        <span className="font-bold text-xl text-primary">{formatCurrency(results.estimatedCost)}</span>
                       </div>
                     </div>
+                    <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
+                      Valores estimados com base em um sistema padrão de 7,2 kWp (12 × 600 Wp + inversor 7,5 kW) por R$ 15.000,00. O preço final pode variar conforme estrutura, cabos, mão de obra e logística.
+                    </p>
                   </div>
                 )}
                 
