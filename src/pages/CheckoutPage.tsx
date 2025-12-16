@@ -9,14 +9,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/contexts/CartContext";
 import { addOrder, generateOrderId, generateOrderNumber } from "@/data/store-orders";
 import { CustomerData, Order, PaymentMethod } from "@/types/store";
 import { toast } from "sonner";
-import { CreditCard, QrCode, ArrowLeft, ShieldCheck, Lock } from "lucide-react";
+import { CreditCard, QrCode, ArrowLeft, ShieldCheck, Lock, Send } from "lucide-react";
+import { STORE_MODE } from "@/config/store";
+import { whatsappLink } from "@/config/contact";
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const CheckoutPage = () => {
     { name: "Home", href: "/" },
     { name: "Loja", href: "/loja" },
     { name: "Carrinho", href: "/loja/carrinho" },
-    { name: "Checkout", href: "/loja/checkout" },
+    { name: STORE_MODE.ecommerceEnabled ? "Checkout" : "Solicitar Orçamento", href: "/loja/checkout" },
   ];
 
   const formatPrice = (price: number) => {
@@ -99,43 +100,94 @@ const CheckoutPage = () => {
     return true;
   };
 
+  const buildWhatsAppMessage = () => {
+    let message = "🔧 *SOLICITAÇÃO DE ORÇAMENTO*\n\n";
+    
+    message += "📋 *DADOS DO CLIENTE:*\n";
+    message += `Nome: ${customerData.nome}\n`;
+    message += `E-mail: ${customerData.email}\n`;
+    message += `Telefone: ${customerData.telefone}\n`;
+    message += `CPF/CNPJ: ${customerData.cpfCnpj}\n`;
+    
+    if (customerData.endereco?.logradouro) {
+      message += `\n📍 *ENDEREÇO:*\n`;
+      message += `${customerData.endereco.logradouro}, ${customerData.endereco.numero}`;
+      if (customerData.endereco.complemento) {
+        message += ` - ${customerData.endereco.complemento}`;
+      }
+      message += `\n${customerData.endereco.bairro}, ${customerData.endereco.cidade}/${customerData.endereco.uf}`;
+      if (customerData.endereco.cep) {
+        message += ` - CEP: ${customerData.endereco.cep}`;
+      }
+    }
+    
+    message += "\n\n📦 *SERVIÇOS SOLICITADOS:*\n";
+    items.forEach((item) => {
+      message += `• ${item.quantity}x ${item.product.nome}\n`;
+      message += `  Valor unitário: ${formatPrice(item.product.preco)}\n`;
+      message += `  Subtotal: ${formatPrice(item.product.preco * item.quantity)}\n\n`;
+    });
+    
+    message += `💰 *RESUMO:*\n`;
+    message += `Subtotal: ${formatPrice(getSubtotal())}\n`;
+    if (getTaxas() > 0) {
+      message += `Taxas: ${formatPrice(getTaxas())}\n`;
+    }
+    message += `*Total estimado: ${formatPrice(getTotal())}*\n`;
+    
+    message += `\n💳 *Preferência de pagamento:* ${paymentMethod}\n`;
+    message += "\n_Aguardo retorno com o orçamento final e condições._";
+    
+    return message;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) return;
     if (items.length === 0) {
-      toast.error("Seu carrinho está vazio");
+      toast.error("Sua lista de serviços está vazia");
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      // Simular processamento
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!STORE_MODE.ecommerceEnabled) {
+        // Modo vitrine: abrir WhatsApp com os dados
+        const message = buildWhatsAppMessage();
+        window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+        
+        clearCart();
+        toast.success("Solicitação enviada! Redirecionando para a loja...");
+        navigate("/loja");
+      } else {
+        // Modo e-commerce: criar pedido real
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const order: Order = {
-        id: generateOrderId(),
-        numero: generateOrderNumber(),
-        clienteId: `cli-${Date.now()}`,
-        cliente: customerData,
-        itens: items,
-        subtotal: getSubtotal(),
-        taxas: getTaxas(),
-        total: getTotal(),
-        metodoPagamento: paymentMethod,
-        status: "Aguardando pagamento",
-        dataCriacao: new Date().toISOString(),
-        dataAtualizacao: new Date().toISOString(),
-      };
+        const order: Order = {
+          id: generateOrderId(),
+          numero: generateOrderNumber(),
+          clienteId: `cli-${Date.now()}`,
+          cliente: customerData,
+          itens: items,
+          subtotal: getSubtotal(),
+          taxas: getTaxas(),
+          total: getTotal(),
+          metodoPagamento: paymentMethod,
+          status: "Aguardando pagamento",
+          dataCriacao: new Date().toISOString(),
+          dataAtualizacao: new Date().toISOString(),
+        };
 
-      addOrder(order);
-      clearCart();
-      
-      toast.success("Pedido criado com sucesso!");
-      navigate(`/loja/pedido/${order.id}`);
+        addOrder(order);
+        clearCart();
+        
+        toast.success("Pedido criado com sucesso!");
+        navigate(`/loja/pedido/${order.id}`);
+      }
     } catch (error) {
-      toast.error("Erro ao processar pedido. Tente novamente.");
+      toast.error("Erro ao processar solicitação. Tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
@@ -144,12 +196,12 @@ const CheckoutPage = () => {
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background">
-        <SEOHead title="Checkout | Loja Eletro May's" noIndex={true} />
+        <SEOHead title={STORE_MODE.ecommerceEnabled ? "Checkout | Loja Eletro May's" : "Solicitar Orçamento | Loja Eletro May's"} noIndex={true} />
         <Header />
         <main className="pt-24 pb-16">
           <div className="container mx-auto px-4 text-center py-16">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Carrinho vazio</h1>
-            <p className="text-muted-foreground mb-6">Adicione serviços ao carrinho para continuar.</p>
+            <h1 className="text-2xl font-bold text-foreground mb-4">Lista vazia</h1>
+            <p className="text-muted-foreground mb-6">Adicione serviços à lista para continuar.</p>
             <Link to="/loja">
               <Button variant="orange">Ir para a Loja</Button>
             </Link>
@@ -163,8 +215,8 @@ const CheckoutPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Checkout | Loja Eletro May's"
-        description="Finalize sua compra de serviços de engenharia elétrica."
+        title={STORE_MODE.ecommerceEnabled ? "Checkout | Loja Eletro May's" : "Solicitar Orçamento | Loja Eletro May's"}
+        description={STORE_MODE.ecommerceEnabled ? "Finalize sua compra de serviços de engenharia elétrica." : "Solicite um orçamento de serviços de engenharia elétrica."}
         noIndex={true}
       />
       <Header />
@@ -177,14 +229,20 @@ const CheckoutPage = () => {
             <Link to="/loja/carrinho">
               <Button variant="ghost" size="sm">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Voltar ao carrinho
+                Voltar à lista
               </Button>
             </Link>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-montserrat">
-            Finalizar Pedido
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat">
+            {STORE_MODE.ecommerceEnabled ? "Finalizar Pedido" : "Solicitar Orçamento"}
           </h1>
+
+          {!STORE_MODE.ecommerceEnabled && (
+            <p className="text-muted-foreground mb-8 bg-muted/50 p-4 rounded-lg">
+              📋 Modo vitrine ativo: preencha seus dados e enviaremos a solicitação via WhatsApp. Preços e disponibilidade sujeitos a confirmação.
+            </p>
+          )}
 
           <form onSubmit={handleSubmit}>
             <div className="grid lg:grid-cols-3 gap-8">
@@ -245,7 +303,7 @@ const CheckoutPage = () => {
                 {/* Endereço */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Endereço (para emissão de NF)</CardTitle>
+                    <CardTitle>Endereço {STORE_MODE.ecommerceEnabled ? "(para emissão de NF)" : "(opcional)"}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid sm:grid-cols-3 gap-4">
@@ -320,7 +378,7 @@ const CheckoutPage = () => {
                 {/* Forma de pagamento */}
                 <Card>
                   <CardHeader>
-                    <CardTitle>Forma de Pagamento</CardTitle>
+                    <CardTitle>{STORE_MODE.ecommerceEnabled ? "Forma de Pagamento" : "Preferência de Pagamento"}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <RadioGroup
@@ -334,7 +392,7 @@ const CheckoutPage = () => {
                           <QrCode className="w-6 h-6 mr-3 text-primary" />
                           <div>
                             <span className="font-medium">Pix</span>
-                            <p className="text-sm text-muted-foreground">Pagamento instantâneo</p>
+                            <p className="text-sm text-muted-foreground">{STORE_MODE.ecommerceEnabled ? "Pagamento instantâneo" : "Transferência instantânea"}</p>
                           </div>
                         </Label>
                       </div>
@@ -344,7 +402,7 @@ const CheckoutPage = () => {
                           <CreditCard className="w-6 h-6 mr-3 text-primary" />
                           <div>
                             <span className="font-medium">Cartão de Crédito</span>
-                            <p className="text-sm text-muted-foreground">Em até 12x</p>
+                            <p className="text-sm text-muted-foreground">{STORE_MODE.ecommerceEnabled ? "Em até 12x" : "Parcelamento sob consulta"}</p>
                           </div>
                         </Label>
                       </div>
@@ -381,7 +439,7 @@ const CheckoutPage = () => {
               <div className="lg:col-span-1">
                 <Card className="sticky top-28 border-primary/30">
                   <CardHeader>
-                    <CardTitle>Resumo do Pedido</CardTitle>
+                    <CardTitle>{STORE_MODE.ecommerceEnabled ? "Resumo do Pedido" : "Resumo do Orçamento"}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {/* Itens */}
@@ -411,10 +469,16 @@ const CheckoutPage = () => {
 
                     <div className="border-t border-border pt-4">
                       <div className="flex justify-between text-xl font-bold">
-                        <span>Total</span>
+                        <span>{STORE_MODE.ecommerceEnabled ? "Total" : "Total Estimado"}</span>
                         <span className="text-primary">{formatPrice(getTotal())}</span>
                       </div>
                     </div>
+
+                    {!STORE_MODE.ecommerceEnabled && (
+                      <p className="text-xs text-muted-foreground text-center bg-muted/50 p-2 rounded">
+                        Valor sujeito a confirmação
+                      </p>
+                    )}
 
                     <Button 
                       type="submit" 
@@ -425,21 +489,29 @@ const CheckoutPage = () => {
                     >
                       {isSubmitting ? (
                         "Processando..."
-                      ) : (
+                      ) : STORE_MODE.ecommerceEnabled ? (
                         <>
                           <Lock className="w-4 h-4 mr-2" />
                           Confirmar Pedido
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Enviar Solicitação via WhatsApp
                         </>
                       )}
                     </Button>
 
                     <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                       <ShieldCheck className="w-4 h-4" />
-                      <span>Pagamento 100% seguro</span>
+                      <span>{STORE_MODE.ecommerceEnabled ? "Pagamento 100% seguro" : "Seus dados estão protegidos"}</span>
                     </div>
 
                     <p className="text-xs text-muted-foreground text-center">
-                      Após confirmar, você receberá as instruções de pagamento por e-mail.
+                      {STORE_MODE.ecommerceEnabled 
+                        ? "Ao clicar em \"Confirmar Pedido\", você concorda com nossos termos."
+                        : "Ao enviar, você concorda com nossos termos e receberá retorno via WhatsApp."
+                      }
                     </p>
                   </CardContent>
                 </Card>

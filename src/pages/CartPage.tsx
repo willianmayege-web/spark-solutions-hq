@@ -8,7 +8,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCart } from "@/contexts/CartContext";
-import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, ArrowRight } from "lucide-react";
+import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, ArrowRight, Send } from "lucide-react";
+import { STORE_MODE } from "@/config/store";
+import { whatsappLink } from "@/config/contact";
 
 const CartPage = () => {
   const { items, removeItem, updateQuantity, getSubtotal, getTaxas, getTotal, clearCart } = useCart();
@@ -26,12 +28,34 @@ const CartPage = () => {
     });
   };
 
+  const buildWhatsAppMessage = () => {
+    let message = "Olá! Gostaria de solicitar um orçamento para os seguintes serviços:\n\n";
+    
+    items.forEach((item) => {
+      message += `• ${item.quantity}x ${item.product.nome} - ${formatPrice(item.product.preco)} cada\n`;
+    });
+    
+    message += `\n📋 Subtotal: ${formatPrice(getSubtotal())}`;
+    if (getTaxas() > 0) {
+      message += `\n💰 Taxas: ${formatPrice(getTaxas())}`;
+    }
+    message += `\n💵 Total estimado: ${formatPrice(getTotal())}`;
+    message += "\n\nAguardo retorno com mais informações!";
+    
+    return message;
+  };
+
+  const handleWhatsAppQuote = () => {
+    const message = buildWhatsAppMessage();
+    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+  };
+
   if (items.length === 0) {
     return (
       <div className="min-h-screen bg-background">
         <SEOHead
-          title="Carrinho de Compras | Loja Eletro May's"
-          description="Seu carrinho de compras de serviços de engenharia elétrica."
+          title="Lista de Serviços | Loja Eletro May's"
+          description="Sua lista de serviços de engenharia elétrica para orçamento."
           noIndex={true}
         />
         <Header />
@@ -43,10 +67,10 @@ const CartPage = () => {
             <div className="text-center py-16">
               <ShoppingCart className="w-20 h-20 text-muted-foreground/30 mx-auto mb-6" />
               <h1 className="text-3xl font-bold text-foreground mb-4 font-montserrat">
-                Seu carrinho está vazio
+                Sua lista está vazia
               </h1>
               <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                Explore nossa loja de serviços de engenharia elétrica e adicione os serviços que você precisa.
+                Explore nossa loja de serviços de engenharia elétrica e adicione os serviços que você precisa para solicitar um orçamento.
               </p>
               <Link to="/loja">
                 <Button variant="orange" size="lg">
@@ -67,8 +91,8 @@ const CartPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Carrinho de Compras | Loja Eletro May's"
-        description="Seu carrinho de compras de serviços de engenharia elétrica."
+        title="Lista de Serviços | Loja Eletro May's"
+        description="Sua lista de serviços de engenharia elétrica para orçamento."
         noIndex={true}
       />
       <Header />
@@ -78,7 +102,7 @@ const CartPage = () => {
           <Breadcrumbs items={breadcrumbItems} />
           
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8 font-montserrat">
-            Carrinho de Compras
+            Lista de Serviços
           </h1>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -157,7 +181,7 @@ const CartPage = () => {
                 <Link to="/loja">
                   <Button variant="outline">
                     <ArrowLeft className="w-4 h-4 mr-2" />
-                    Continuar Comprando
+                    Ver Mais Serviços
                   </Button>
                 </Link>
                 <Button 
@@ -166,7 +190,7 @@ const CartPage = () => {
                   onClick={clearCart}
                 >
                   <Trash2 className="w-4 h-4 mr-2" />
-                  Limpar Carrinho
+                  Limpar Lista
                 </Button>
               </div>
             </div>
@@ -175,7 +199,7 @@ const CartPage = () => {
             <div className="lg:col-span-1">
               <Card className="sticky top-28 border-primary/30">
                 <CardHeader>
-                  <CardTitle>Resumo do Pedido</CardTitle>
+                  <CardTitle>Resumo do Orçamento</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex justify-between text-muted-foreground">
@@ -192,20 +216,49 @@ const CartPage = () => {
                   
                   <div className="border-t border-border pt-4">
                     <div className="flex justify-between text-lg font-bold">
-                      <span>Total</span>
+                      <span>Total Estimado</span>
                       <span className="text-primary">{formatPrice(getTotal())}</span>
                     </div>
                   </div>
+
+                  {!STORE_MODE.ecommerceEnabled && (
+                    <p className="text-xs text-muted-foreground text-center bg-muted/50 p-2 rounded">
+                      Preços e disponibilidade sujeitos a confirmação
+                    </p>
+                  )}
                 </CardContent>
                 <CardFooter className="flex-col gap-3">
-                  <Link to="/loja/checkout" className="w-full">
-                    <Button variant="orange" size="lg" className="w-full">
-                      Finalizar Pedido
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </Link>
+                  {!STORE_MODE.ecommerceEnabled ? (
+                    <>
+                      <Button 
+                        variant="orange" 
+                        size="lg" 
+                        className="w-full"
+                        onClick={handleWhatsAppQuote}
+                      >
+                        <Send className="w-5 h-5 mr-2" />
+                        Solicitar Orçamento no WhatsApp
+                      </Button>
+                      <Link to="/loja/checkout" className="w-full">
+                        <Button variant="outline" size="lg" className="w-full">
+                          <ArrowRight className="w-5 h-5 mr-2" />
+                          Preencher Dados para Orçamento
+                        </Button>
+                      </Link>
+                    </>
+                  ) : (
+                    <Link to="/loja/checkout" className="w-full">
+                      <Button variant="orange" size="lg" className="w-full">
+                        Finalizar Pedido
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </Button>
+                    </Link>
+                  )}
                   <p className="text-xs text-muted-foreground text-center">
-                    Você poderá revisar seu pedido antes de confirmar
+                    {STORE_MODE.ecommerceEnabled 
+                      ? "Você poderá revisar seu pedido antes de confirmar"
+                      : "Nosso time entrará em contato para finalizar o orçamento"
+                    }
                   </p>
                 </CardFooter>
               </Card>
