@@ -5,6 +5,7 @@ import ClientSummaryCards from "@/components/client-area/ClientSummaryCards";
 import ProjectsTable from "@/components/client-area/ProjectsTable";
 import BillingSection from "@/components/client-area/BillingSection";
 import ClientDataSection from "@/components/client-area/ClientDataSection";
+import ClientOrdersSection from "@/components/client-area/ClientOrdersSection";
 import SEOHead from "@/components/SEOHead";
 import { User } from "lucide-react";
 
@@ -44,6 +45,9 @@ const ClientAreaPage = () => {
 
         {/* Dashboard Summary */}
         <ClientSummaryCards />
+
+        {/* My Orders */}
+        <ClientOrdersSection />
 
         {/* Projects and Reports */}
         <ProjectsTable />
