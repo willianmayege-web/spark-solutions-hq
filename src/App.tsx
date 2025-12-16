@@ -21,6 +21,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import AdminOrdersPage from "./pages/AdminOrdersPage";
+import AdminOrderDetailPage from "./pages/AdminOrderDetailPage";
 import CookieConsent from "./components/CookieConsent";
 import SEOHead, { organizationJsonLd } from "./components/SEOHead";
 
@@ -51,6 +53,8 @@ const App = () => (
             <Route path="/loja/carrinho" element={<CartPage />} />
             <Route path="/loja/checkout" element={<CheckoutPage />} />
             <Route path="/loja/pedido/:id" element={<OrderConfirmationPage />} />
+            <Route path="/admin/pedidos" element={<AdminOrdersPage />} />
+            <Route path="/admin/pedidos/:id" element={<AdminOrderDetailPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
