@@ -2,13 +2,15 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
 import { AdminRouteGuard } from "@/components/admin/AdminRouteGuard";
+import { COMING_SOON } from "@/config/comingSoon";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import EmBrevePage from "./pages/EmBrevePage";
 import ClientAreaPage from "./pages/ClientAreaPage";
 import AboutPage from "./components/AboutPage";
 import ServicesDetailPage from "./components/ServicesDetailPage";
@@ -47,7 +49,8 @@ const App = () => (
             <BrowserRouter>
               <SEOHead jsonLd={organizationJsonLd} />
               <Routes>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={COMING_SOON ? <Navigate to="/em-breve" replace /> : <Index />} />
+                <Route path="/em-breve" element={<EmBrevePage />} />
                 <Route path="/sobre" element={<AboutPage />} />
                 <Route path="/servicos/:serviceId" element={<ServicesDetailPage />} />
                 <Route path="/blog" element={<BlogPage />} />
