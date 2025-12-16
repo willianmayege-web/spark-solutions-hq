@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,7 +51,7 @@ const Header = () => {
 
           {/* Desktop Menu */}
           <nav 
-            className="hidden lg:flex items-center space-x-8" 
+            className="hidden lg:flex items-center space-x-6" 
             role="navigation" 
             aria-label="Navegação principal"
           >
@@ -58,15 +59,16 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                className="text-foreground hover:text-primary transition-colors duration-200 font-medium text-sm"
                 aria-label={`Navegar para ${item.name}`}
               >
                 {item.name}
               </a>
             ))}
+            <ThemeToggle />
             <Button 
               variant="orange" 
-              className="ml-4" 
+              className="ml-2" 
               onClick={scrollToQuote}
               aria-label="Abrir formulário de orçamento"
             >
@@ -75,7 +77,8 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
@@ -99,7 +102,7 @@ const Header = () => {
             aria-label="Navegação mobile"
           >
             <div className="flex flex-col space-y-4">
-              {menuItems.map((item, index) => (
+              {menuItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}

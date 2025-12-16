@@ -8,7 +8,63 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Eletro May's Professional Theme - Blue & Orange */
+    /* Light Mode - Eletro May's Professional Theme */
+    --background: 210 20% 98%;
+    --foreground: 207 100% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 207 100% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 207 100% 15%;
+    --primary: 26 88% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 207 30% 92%;
+    --secondary-foreground: 207 100% 15%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 207 30% 40%;
+    --accent: 207 30% 92%;
+    --accent-foreground: 207 100% 15%;
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 207 20% 85%;
+    --input: 207 20% 90%;
+    --ring: 26 88% 55%;
+    --radius: 0.5rem;
+
+    /* Eletro May's Custom Colors */
+    --primary-blue: 207 100% 20%;
+    --primary-blue-dark: 207 100% 10%;
+    --primary-orange: 26 88% 55%;
+    --primary-orange-hover: 26 88% 48%;
+    --background-dark: 207 100% 10%;
+    --surface-dark: 207 100% 12%;
+    --text-white: 0 0% 98%;
+    --text-muted: 207 30% 40%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-orange)), hsl(26 88% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(210 20% 98%), hsl(207 30% 92%));
+    
+    /* Shadows */
+    --shadow-orange: 0 10px 30px -10px hsl(var(--primary-orange) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary-orange) / 0.15);
+    --shadow-elegant: 0 10px 50px -15px hsl(207 30% 40% / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar Light */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 207 100% 15%;
+    --sidebar-primary: 26 88% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 207 30% 92%;
+    --sidebar-accent-foreground: 207 100% 15%;
+    --sidebar-border: 207 20% 85%;
+    --sidebar-ring: 26 88% 55%;
+  }
+
+  .dark {
+    /* Dark Mode - Original Eletro May's Brand Theme */
     --background: 207 100% 10%;
     --foreground: 0 0% 98%;
     --card: 207 100% 12%;
@@ -28,16 +84,10 @@ All colors MUST be HSL.
     --border: 207 30% 20%;
     --input: 207 50% 15%;
     --ring: 26 88% 62%;
-    --radius: 0.5rem;
 
-    /* Eletro May's Custom Colors - Blue #003366 & Orange #F4A261 */
-    --primary-blue: 207 100% 20%;
-    --primary-blue-dark: 207 100% 10%;
+    /* Eletro May's Custom Colors - Dark */
     --primary-orange: 26 88% 62%;
     --primary-orange-hover: 26 88% 55%;
-    --background-dark: 207 100% 10%;
-    --surface-dark: 207 100% 12%;
-    --text-white: 0 0% 98%;
     --text-muted: 0 0% 70%;
 
     /* Gradients */
@@ -49,66 +99,15 @@ All colors MUST be HSL.
     --shadow-glow: 0 0 40px hsl(var(--primary-orange) / 0.2);
     --shadow-elegant: 0 10px 50px -15px hsl(207 100% 5% / 0.8);
 
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    /* Sidebar Dark */
+    --sidebar-background: 207 100% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 26 88% 62%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 199 89% 48%;
-    --primary-foreground: 220 14.3% 95.9%;
-    --primary-glow: 199 89% 60%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 240 10% 3.9%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 240 10% 3.9%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 199 89% 48%;
-    
-    /* Light mode adjustments */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(210 40% 96.1%) 100%);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 207 50% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 207 30% 20%;
+    --sidebar-ring: 26 88% 62%;
   }
 }
 
