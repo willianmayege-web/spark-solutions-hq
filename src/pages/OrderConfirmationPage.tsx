@@ -16,10 +16,12 @@ import {
   Copy,
   Home,
   FileText,
-  Phone
+  Phone,
+  Send
 } from "lucide-react";
 import { toast } from "sonner";
-import { CONTACT } from "@/config/contact";
+import { CONTACT, whatsappLink } from "@/config/contact";
+import { STORE_MODE } from "@/config/store";
 
 const OrderConfirmationPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +30,7 @@ const OrderConfirmationPage = () => {
   const breadcrumbItems = [
     { name: "Home", href: "/" },
     { name: "Loja", href: "/loja" },
-    { name: "Pedido", href: `/loja/pedido/${id}` },
+    { name: STORE_MODE.ecommerceEnabled ? "Pedido" : "Solicitação", href: `/loja/pedido/${id}` },
   ];
 
   const formatPrice = (price: number) => {
@@ -75,23 +77,93 @@ const OrderConfirmationPage = () => {
     toast.success("Chave Pix copiada!");
   };
 
-  if (!order) {
+  // Showcase mode: no order found or ecommerce disabled
+  if (!order || !STORE_MODE.ecommerceEnabled) {
     return (
       <div className="min-h-screen bg-background">
-        <SEOHead title="Pedido não encontrado | Eletro May's" noIndex={true} />
+        <SEOHead 
+          title={STORE_MODE.ecommerceEnabled ? "Pedido não encontrado | Eletro May's" : "Solicitação Enviada | Eletro May's"} 
+          noIndex={true} 
+        />
         <Header />
         <main className="pt-24 pb-16">
-          <div className="container mx-auto px-4 text-center py-16">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Pedido não encontrado</h1>
-            <p className="text-muted-foreground mb-6">
-              O pedido que você procura não existe ou foi removido.
-            </p>
-            <Link to="/loja">
-              <Button variant="orange">Voltar para a Loja</Button>
-            </Link>
+          <div className="container mx-auto px-4 max-w-2xl">
+            <Breadcrumbs items={breadcrumbItems} />
+            
+            {!STORE_MODE.ecommerceEnabled ? (
+              <div className="text-center py-16">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Send className="w-12 h-12 text-primary" />
+                </div>
+                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-montserrat">
+                  Solicitação Enviada!
+                </h1>
+                <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
+                  Sua solicitação de orçamento foi enviada via WhatsApp. Nossa equipe entrará em contato em breve para finalizar os detalhes.
+                </p>
+                
+                <Card className="mb-8">
+                  <CardHeader>
+                    <CardTitle>Próximos Passos</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ol className="space-y-3 text-muted-foreground text-left">
+                      <li className="flex items-start">
+                        <span className="w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <span>Aguarde nosso retorno via WhatsApp</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-6 h-6 bg-primary/50 text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <span>Receberá o orçamento detalhado com condições</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-6 h-6 bg-primary/30 text-foreground rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <span>Após aprovação, iniciaremos o serviço</span>
+                      </li>
+                    </ol>
+                  </CardContent>
+                </Card>
+
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <Link to="/">
+                    <Button variant="outline" size="lg">
+                      <Home className="w-5 h-5 mr-2" />
+                      Voltar ao Início
+                    </Button>
+                  </Link>
+                  <Link to="/loja">
+                    <Button variant="outline" size="lg">
+                      <FileText className="w-5 h-5 mr-2" />
+                      Ver Mais Serviços
+                    </Button>
+                  </Link>
+                  <a 
+                    href={whatsappLink("Olá! Enviei uma solicitação de orçamento e gostaria de mais informações.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="orange" size="lg">
+                      <Phone className="w-5 h-5 mr-2" />
+                      Falar no WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <h1 className="text-2xl font-bold text-foreground mb-4">Pedido não encontrado</h1>
+                <p className="text-muted-foreground mb-6">
+                  O pedido que você procura não existe ou foi removido.
+                </p>
+                <Link to="/loja">
+                  <Button variant="orange">Voltar para a Loja</Button>
+                </Link>
+              </div>
+            )}
           </div>
         </main>
         <FooterEletroMays />
+        <WhatsAppFloat />
       </div>
     );
   }
@@ -268,7 +340,7 @@ const OrderConfirmationPage = () => {
             <Link to="/loja">
               <Button variant="outline" size="lg">
                 <FileText className="w-5 h-5 mr-2" />
-                Continuar Comprando
+                Ver Mais Serviços
               </Button>
             </Link>
             <a 

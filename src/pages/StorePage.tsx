@@ -9,8 +9,9 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { storeProducts, getAllCategories, getProductsByCategory } from "@/data/store-products";
-import { ShoppingCart, FileCheck, Clock, Eye } from "lucide-react";
+import { ShoppingCart, FileCheck, Clock, Eye, Info } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import { STORE_MODE } from "@/config/store";
 
 const StorePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
@@ -33,9 +34,12 @@ const StorePage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead
+          <SEOHead
         title="Loja de Serviços de Engenharia Elétrica | Eletro May's"
-        description="Compre serviços de engenharia elétrica online: consultorias, laudos SPDA NBR 5419, análise de qualidade de energia, projetos elétricos. Santa Rosa-RS e região."
+        description={STORE_MODE.ecommerceEnabled 
+          ? "Compre serviços de engenharia elétrica online: consultorias, laudos SPDA NBR 5419, análise de qualidade de energia, projetos elétricos. Santa Rosa-RS e região."
+          : "Solicite orçamentos de serviços de engenharia elétrica: consultorias, laudos SPDA NBR 5419, análise de qualidade de energia, projetos elétricos. Santa Rosa-RS e região."
+        }
         keywords="serviços engenharia elétrica, consultoria elétrica online, laudo SPDA, NBR 5419, energia solar, Santa Rosa RS"
         canonical="https://eletromays.com.br/loja"
       />
@@ -48,11 +52,21 @@ const StorePage = () => {
           {/* Hero Section */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 font-montserrat">
-              Loja de Serviços de <span className="text-primary">Engenharia Elétrica</span>
+              {STORE_MODE.ecommerceEnabled ? "Loja de Serviços de" : "Catálogo de Serviços de"} <span className="text-primary">Engenharia Elétrica</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Contrate serviços técnicos especializados: consultorias, laudos, projetos e pacotes de horas técnicas com engenheiro eletricista CREA-RS.
+              {STORE_MODE.ecommerceEnabled 
+                ? "Contrate serviços técnicos especializados: consultorias, laudos, projetos e pacotes de horas técnicas com engenheiro eletricista CREA-RS."
+                : "Solicite orçamentos de serviços técnicos especializados: consultorias, laudos, projetos e pacotes de horas técnicas com engenheiro eletricista CREA-RS."
+              }
             </p>
+
+            {!STORE_MODE.ecommerceEnabled && (
+              <div className="mt-6 inline-flex items-center gap-2 bg-muted/50 text-muted-foreground px-4 py-2 rounded-lg text-sm">
+                <Info className="w-4 h-4" />
+                <span>Modo vitrine: preços e disponibilidade sujeitos a confirmação.</span>
+              </div>
+            )}
             
             {/* Cart indicator */}
             {cartCount > 0 && (
@@ -60,7 +74,10 @@ const StorePage = () => {
                 <Link to="/loja/carrinho">
                   <Button variant="orange" size="lg">
                     <ShoppingCart className="w-5 h-5 mr-2" />
-                    Ver Carrinho ({cartCount} {cartCount === 1 ? "item" : "itens"})
+                    {STORE_MODE.ecommerceEnabled 
+                      ? `Ver Carrinho (${cartCount} ${cartCount === 1 ? "item" : "itens"})`
+                      : `Ver Lista (${cartCount} ${cartCount === 1 ? "item" : "itens"})`
+                    }
                   </Button>
                 </Link>
               </div>

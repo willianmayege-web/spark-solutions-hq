@@ -18,13 +18,15 @@ import {
   CheckCircle, 
   AlertCircle,
   ArrowLeft,
-  BookOpen
+  BookOpen,
+  Send
 } from "lucide-react";
+import { STORE_MODE } from "@/config/store";
 
 const ProductDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { addItem, getItemCount } = useCart();
+  const { addItem, getItemCount, items } = useCart();
   const cartCount = getItemCount();
   
   const product = slug ? getProductBySlug(slug) : undefined;
@@ -60,15 +62,24 @@ const ProductDetailPage = () => {
     });
   };
 
+  const isInCart = items.some(item => item.product.id === product.id);
+
   const handleAddToCart = () => {
     addItem(product);
-    toast.success("Serviço adicionado ao carrinho!", {
+    toast.success("Serviço adicionado à lista!", {
       description: product.nome,
       action: {
-        label: "Ver carrinho",
+        label: "Ver lista",
         onClick: () => navigate("/loja/carrinho"),
       },
     });
+  };
+
+  const handleRequestQuote = () => {
+    if (!isInCart) {
+      addItem(product);
+    }
+    navigate("/loja/carrinho");
   };
 
   return (
@@ -202,10 +213,17 @@ const ProductDetailPage = () => {
               <Card className="sticky top-28 border-primary/30">
                 <CardContent className="pt-6 space-y-6">
                   <div>
-                    <span className="text-sm text-muted-foreground">Valor do serviço</span>
+                    <span className="text-sm text-muted-foreground">
+                      {STORE_MODE.ecommerceEnabled ? "Valor do serviço" : "Valor estimado"}
+                    </span>
                     <div className="text-4xl font-bold text-primary">
                       {formatPrice(product.preco)}
                     </div>
+                    {!STORE_MODE.ecommerceEnabled && (
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Preço sob consulta
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-3 text-sm">
@@ -227,20 +245,44 @@ const ProductDetailPage = () => {
                     )}
                   </div>
 
-                  <Button 
-                    variant="orange" 
-                    size="lg" 
-                    className="w-full"
-                    onClick={handleAddToCart}
-                  >
-                    <ShoppingCart className="w-5 h-5 mr-2" />
-                    Adicionar ao Carrinho
-                  </Button>
+                  {!STORE_MODE.ecommerceEnabled ? (
+                    <>
+                      <Button 
+                        variant="orange" 
+                        size="lg" 
+                        className="w-full"
+                        onClick={handleRequestQuote}
+                      >
+                        <Send className="w-5 h-5 mr-2" />
+                        Solicitar Orçamento
+                      </Button>
+
+                      <Button 
+                        variant="outline" 
+                        size="lg" 
+                        className="w-full"
+                        onClick={handleAddToCart}
+                      >
+                        <ShoppingCart className="w-5 h-5 mr-2" />
+                        Adicionar à Lista
+                      </Button>
+                    </>
+                  ) : (
+                    <Button 
+                      variant="orange" 
+                      size="lg" 
+                      className="w-full"
+                      onClick={handleAddToCart}
+                    >
+                      <ShoppingCart className="w-5 h-5 mr-2" />
+                      Adicionar ao Carrinho
+                    </Button>
+                  )}
 
                   {cartCount > 0 && (
                     <Link to="/loja/carrinho" className="block">
                       <Button variant="outline" size="lg" className="w-full">
-                        Ver Carrinho ({cartCount} {cartCount === 1 ? "item" : "itens"})
+                        Ver {STORE_MODE.ecommerceEnabled ? "Carrinho" : "Lista"} ({cartCount} {cartCount === 1 ? "item" : "itens"})
                       </Button>
                     </Link>
                   )}
