@@ -7,30 +7,44 @@ import { Slider } from "@/components/ui/slider";
 import { Sun, Zap, DollarSign, TrendingUp, Calculator, ArrowRight, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
+// Constantes do sistema de referência
+const GERACAO_RS = 108; // kWh/mês por kWp
+const KWP_REF = 7.2;
+const PRECO_REF = 15000;
+const PRECO_KWP = PRECO_REF / KWP_REF;
+
 const SolarSimulatorSection = () => {
   const [consumoMensal, setConsumoMensal] = useState(900);
-  const [horasSol, setHorasSol] = useState(5);
-  const [potenciaPainel, setPotenciaPainel] = useState(300);
-  const [custoKwh, setCustoKwh] = useState(0.80);
-  const [resultado, setResultado] = useState<any>(null);
+  const [potenciaPainel, setPotenciaPainel] = useState(600);
+  const [resultado, setResultado] = useState<{
+    consumo: number;
+    kwp: number;
+    qtdModulos: number;
+    potenciaModulo: number;
+    preco: number;
+  } | null>(null);
 
   const calcularSolar = () => {
-    const eficiencia = 0.75;
-    const consumoDiario = consumoMensal / 30;
-    const energiaDiariaNecessaria = consumoDiario / eficiencia;
-    const energiaPorPainel = (potenciaPainel / 1000) * horasSol;
-    const numPaineis = Math.ceil(energiaDiariaNecessaria / energiaPorPainel);
-    const geracaoAnual = numPaineis * (potenciaPainel / 1000) * horasSol * 365;
-    const economiaAnual = geracaoAnual * custoKwh;
-    const custoSistemaEstimado = numPaineis * 5000;
-    const roiAnos = custoSistemaEstimado / economiaAnual;
+    const kwp = consumoMensal / GERACAO_RS;
+    const modKwp = potenciaPainel / 1000;
+    const qtd = Math.ceil(kwp / modKwp);
+    const preco = Math.max(PRECO_REF, kwp * PRECO_KWP);
 
     setResultado({
-      numPaineis,
-      geracaoAnual: geracaoAnual.toFixed(2),
-      economiaAnual: economiaAnual.toFixed(2),
-      custoSistema: custoSistemaEstimado.toFixed(2),
-      roiAnos: roiAnos.toFixed(1)
+      consumo: consumoMensal,
+      kwp,
+      qtdModulos: qtd,
+      potenciaModulo: potenciaPainel,
+      preco: Math.round(preco),
+    });
+  };
+
+  const formatCurrency = (value: number) => {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     });
   };
 
@@ -46,7 +60,7 @@ const SolarSimulatorSection = () => {
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Calcule quantos painéis solares você precisa e descubra sua economia anual em Santa Rosa, RS. 
+            Calcule quantos painéis solares você precisa e descubra o investimento estimado em Santa Rosa, RS. 
             Simulação gratuita e sem compromisso com dados baseados na região do Rio Grande do Sul.
           </p>
         </div>
@@ -89,45 +103,19 @@ const SolarSimulatorSection = () => {
                 />
               </div>
 
-              {/* Horas de Sol */}
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <Label htmlFor="horas-sol" className="font-semibold">
-                    Horas de Sol Diárias (média RS: 5h)
-                  </Label>
-                  <span className="text-sm font-bold text-primary">{horasSol.toFixed(1)} h</span>
-                </div>
-                <Slider
-                  id="horas-sol"
-                  min={3}
-                  max={7}
-                  step={0.5}
-                  value={[horasSol]}
-                  onValueChange={(value) => setHorasSol(value[0])}
-                  className="w-full"
-                />
-                <Input
-                  type="number"
-                  step="0.5"
-                  value={horasSol}
-                  onChange={(e) => setHorasSol(Number(e.target.value))}
-                  className="w-full"
-                />
-              </div>
-
               {/* Potência do Painel */}
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <Label htmlFor="potencia" className="font-semibold">
-                    Potência do Painel (W)
+                    Potência do Painel (Wp)
                   </Label>
-                  <span className="text-sm font-bold text-primary">{potenciaPainel} W</span>
+                  <span className="text-sm font-bold text-primary">{potenciaPainel} Wp</span>
                 </div>
                 <Slider
                   id="potencia"
-                  min={250}
-                  max={550}
-                  step={50}
+                  min={550}
+                  max={700}
+                  step={25}
                   value={[potenciaPainel]}
                   onValueChange={(value) => setPotenciaPainel(value[0])}
                   className="w-full"
@@ -140,32 +128,6 @@ const SolarSimulatorSection = () => {
                 />
               </div>
 
-              {/* Custo kWh */}
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <Label htmlFor="custo" className="font-semibold">
-                    Custo da Energia (R$ por kWh)
-                  </Label>
-                  <span className="text-sm font-bold text-primary">R$ {custoKwh.toFixed(2)}</span>
-                </div>
-                <Slider
-                  id="custo"
-                  min={0.5}
-                  max={1.5}
-                  step={0.01}
-                  value={[custoKwh]}
-                  onValueChange={(value) => setCustoKwh(value[0])}
-                  className="w-full"
-                />
-                <Input
-                  type="number"
-                  step="0.01"
-                  value={custoKwh}
-                  onChange={(e) => setCustoKwh(Number(e.target.value))}
-                  className="w-full"
-                />
-              </div>
-
               <Button 
                 variant="orange" 
                 size="lg" 
@@ -173,7 +135,7 @@ const SolarSimulatorSection = () => {
                 onClick={calcularSolar}
               >
                 <Calculator className="w-5 h-5 mr-2" />
-                Calcular Economia Solar
+                Calcular Sistema Solar
               </Button>
             </CardContent>
           </Card>
@@ -194,34 +156,11 @@ const SolarSimulatorSection = () => {
                   <CardContent className="space-y-4">
                     <div className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
                       <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Sun className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Painéis Necessários</p>
-                        <p className="text-2xl font-bold text-foreground">{resultado.numPaineis} painéis</p>
-                        <p className="text-xs text-muted-foreground">de {potenciaPainel}W cada</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Zap className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Geração Anual Estimada</p>
-                        <p className="text-2xl font-bold text-foreground">{resultado.geracaoAnual} kWh</p>
-                        <p className="text-xs text-muted-foreground">por ano</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <DollarSign className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">Economia Anual</p>
-                        <p className="text-2xl font-bold text-primary">R$ {resultado.economiaAnual}</p>
-                        <p className="text-xs text-muted-foreground">por ano</p>
+                        <p className="text-sm text-muted-foreground">Consumo analisado</p>
+                        <p className="text-2xl font-bold text-foreground">{resultado.consumo} kWh/mês</p>
                       </div>
                     </div>
 
@@ -230,9 +169,29 @@ const SolarSimulatorSection = () => {
                         <TrendingUp className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Retorno do Investimento (ROI)</p>
-                        <p className="text-2xl font-bold text-foreground">{resultado.roiAnos} anos</p>
-                        <p className="text-xs text-muted-foreground">Investimento estimado: R$ {resultado.custoSistema}</p>
+                        <p className="text-sm text-muted-foreground">Potência do sistema</p>
+                        <p className="text-2xl font-bold text-foreground">{resultado.kwp.toFixed(2)} kWp</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Sun className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Módulos recomendados</p>
+                        <p className="text-2xl font-bold text-foreground">{resultado.qtdModulos} módulos</p>
+                        <p className="text-xs text-muted-foreground">de {resultado.potenciaModulo} Wp cada</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-4 bg-card rounded-lg border border-border">
+                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-muted-foreground">Preço estimado</p>
+                        <p className="text-2xl font-bold text-primary">{formatCurrency(resultado.preco)}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -241,9 +200,9 @@ const SolarSimulatorSection = () => {
                 <Alert className="border-primary/30">
                   <AlertCircle className="h-4 w-4 text-primary" />
                   <AlertDescription className="text-sm">
-                    <strong>Importante:</strong> Esta é uma estimativa aproximada baseada em valores médios. 
-                    Para um projeto real e preciso, consulte um profissional certificado CREA-RS 231706. 
-                    Fatores como orientação do telhado, sombreamento e tipo de instalação podem afetar os resultados.
+                    <strong>Base:</strong> Inversor 7,5 kW + 12 módulos 600 W (7,2 kWp) por R$ 15.000.
+                    <br />
+                    Valores estimados. O preço final pode variar conforme estrutura e logística.
                   </AlertDescription>
                 </Alert>
 
