@@ -14,13 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_clients: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      admin_login_attempts: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          ip_address: string
+          success: boolean
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_address: string
+          success?: boolean
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          ip_address?: string
+          success?: boolean
+        }
+        Relationships: []
+      }
+      admin_sessions: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          ip_address: string | null
+          token: string
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at: string
+          id?: string
+          ip_address?: string | null
+          token: string
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          ip_address?: string | null
+          token?: string
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      clean_expired_sessions: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
