@@ -1,6 +1,6 @@
 export const CONTACT = {
   name: "Eletro May's Engenharia",
-  whatsapp: { number: "5555991389623", display: "+55 (55) 99138-9623" },
+  whatsapp: { number: "5535205555", display: "(55) 3520-5555" },
   phone:    { number: "555535205555",  display: "(55) 3520-5555" },
   email:    "atendimento@eletromays.com",
   address:  "Santa Rosa - RS",
