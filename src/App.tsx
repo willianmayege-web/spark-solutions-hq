@@ -49,33 +49,42 @@ const App = () => (
             <BrowserRouter>
               <SEOHead jsonLd={organizationJsonLd} />
               <Routes>
-                <Route path="/" element={COMING_SOON ? <Navigate to="/em-breve" replace /> : <Index />} />
-                <Route path="/em-breve" element={<EmBrevePage />} />
-                <Route path="/sobre" element={<AboutPage />} />
-                <Route path="/servicos/:serviceId" element={<ServicesDetailPage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<ArticlePage />} />
-                <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
-                <Route path="/termos-uso" element={<TermosUso />} />
-                <Route path="/politica-cookies" element={<PoliticaCookies />} />
-                <Route path="/diagnostics" element={<DiagnosticsPage />} />
-                <Route path="/area-do-cliente" element={<ClientAreaPage />} />
-                <Route path="/seguro-energia-solar" element={<SeguroEnergiaSolarPage />} />
-                <Route path="/loja" element={<StorePage />} />
-                <Route path="/loja/produtos/:slug" element={<ProductDetailPage />} />
-                <Route path="/loja/carrinho" element={<CartPage />} />
-                <Route path="/loja/checkout" element={<CheckoutPage />} />
-                <Route path="/loja/pedido/:id" element={<OrderConfirmationPage />} />
-                <Route path="/admin/pedidos" element={<AdminOrdersPage />} />
-                <Route path="/admin/pedidos/:id" element={<AdminOrderDetailPage />} />
-                {/* Admin Routes */}
-                <Route path="/admin/login" element={<AdminLoginPage />} />
-                <Route path="/admin" element={<AdminRouteGuard><AdminDashboardPage /></AdminRouteGuard>} />
-                <Route path="/admin/clients" element={<AdminRouteGuard><AdminClientsPage /></AdminRouteGuard>} />
-                <Route path="/admin/clients/:id" element={<AdminRouteGuard><AdminClientDetailsPage /></AdminRouteGuard>} />
-                <Route path="/admin/settings" element={<AdminRouteGuard><AdminSettingsPage /></AdminRouteGuard>} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
+                {COMING_SOON ? (
+                  <>
+                    <Route path="/em-breve" element={<EmBrevePage />} />
+                    <Route path="*" element={<Navigate to="/em-breve" replace />} />
+                  </>
+                ) : (
+                  <>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/em-breve" element={<EmBrevePage />} />
+                    <Route path="/sobre" element={<AboutPage />} />
+                    <Route path="/servicos/:serviceId" element={<ServicesDetailPage />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:slug" element={<ArticlePage />} />
+                    <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+                    <Route path="/termos-uso" element={<TermosUso />} />
+                    <Route path="/politica-cookies" element={<PoliticaCookies />} />
+                    <Route path="/diagnostics" element={<DiagnosticsPage />} />
+                    <Route path="/area-do-cliente" element={<ClientAreaPage />} />
+                    <Route path="/seguro-energia-solar" element={<SeguroEnergiaSolarPage />} />
+                    <Route path="/loja" element={<StorePage />} />
+                    <Route path="/loja/produtos/:slug" element={<ProductDetailPage />} />
+                    <Route path="/loja/carrinho" element={<CartPage />} />
+                    <Route path="/loja/checkout" element={<CheckoutPage />} />
+                    <Route path="/loja/pedido/:id" element={<OrderConfirmationPage />} />
+                    <Route path="/admin/pedidos" element={<AdminOrdersPage />} />
+                    <Route path="/admin/pedidos/:id" element={<AdminOrderDetailPage />} />
+                    {/* Admin Routes */}
+                    <Route path="/admin/login" element={<AdminLoginPage />} />
+                    <Route path="/admin" element={<AdminRouteGuard><AdminDashboardPage /></AdminRouteGuard>} />
+                    <Route path="/admin/clients" element={<AdminRouteGuard><AdminClientsPage /></AdminRouteGuard>} />
+                    <Route path="/admin/clients/:id" element={<AdminRouteGuard><AdminClientDetailsPage /></AdminRouteGuard>} />
+                    <Route path="/admin/settings" element={<AdminRouteGuard><AdminSettingsPage /></AdminRouteGuard>} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </>
+                )}
               </Routes>
               <CookieConsent />
             </BrowserRouter>
