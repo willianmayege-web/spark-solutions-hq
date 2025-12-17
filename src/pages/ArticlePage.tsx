@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import DOMPurify from "dompurify";
 import Header from "@/components/Header";
 import SEOHead from "@/components/SEOHead";
 import FooterEletroMays from "@/components/FooterEletroMays";
@@ -28,6 +29,18 @@ const ArticlePage = () => {
       }
     }
   }, [article]);
+
+  // Sanitize HTML content for XSS protection
+  const sanitizedContent = useMemo(() => {
+    if (!content) return '';
+    return DOMPurify.sanitize(
+      content.content.replace(/\n/g, '<br />'),
+      { 
+        ALLOWED_TAGS: ['br', 'p', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'h2', 'h3', 'h4', 'span'],
+        ALLOWED_ATTR: ['href', 'target', 'rel', 'class']
+      }
+    );
+  }, [content]);
 
   if (!article || !content) {
     return (
@@ -158,10 +171,10 @@ const ArticlePage = () => {
           <div className="prose prose-lg max-w-none">
             <div 
               className="text-foreground"
-              dangerouslySetInnerHTML={{ __html: content.content.replace(/\n/g, '<br />') }}
+              dangerouslySetInnerHTML={{ __html: sanitizedContent }}
             />
           </div>
-          </div>
+        </div>
         </article>
 
         {/* CTA Section */}

@@ -84,6 +84,13 @@ function sanitizeString(str: string | null | undefined): string {
   return String(str).trim().slice(0, 1000);
 }
 
+// PII masking for secure logging
+function maskEmail(email: string): string {
+  const [user, domain] = email.split('@');
+  if (!user || !domain) return '***';
+  return `${user.slice(0, 2)}***@${domain}`;
+}
+
 // Validate UUID
 function isValidUUID(str: string): boolean {
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -121,7 +128,7 @@ Deno.serve(async (req) => {
     );
   }
 
-  console.log(`[admin-api] Authorized admin: ${authResult.email}`);
+  console.log(`[admin-api] Authorized admin: ${maskEmail(authResult.email || '')}`);
 
   try {
     // CLIENTS RESOURCE

@@ -69,9 +69,18 @@ function isValidPassword(password: string): boolean {
   return typeof password === 'string' && password.length >= 1 && password.length <= 128;
 }
 
-// Sanitize input
-function sanitizeString(str: string): string {
-  return str.trim().slice(0, 500);
+// PII masking for secure logging
+function maskEmail(email: string): string {
+  const [user, domain] = email.split('@');
+  if (!user || !domain) return '***';
+  return `${user.slice(0, 2)}***@${domain}`;
+}
+
+function maskIP(ip: string): string {
+  const parts = ip.split('.');
+  return parts.length === 4 
+    ? `${parts[0]}.${parts[1]}.***.***` 
+    : ip.slice(0, 8) + '***';
 }
 
 Deno.serve(async (req) => {
@@ -98,7 +107,7 @@ Deno.serve(async (req) => {
                    'unknown';
   const userAgent = req.headers.get('user-agent') || 'unknown';
 
-  console.log(`[admin-auth] Action: ${action}, IP: ${clientIP}`);
+  console.log(`[admin-auth] Action: ${action}, IP: ${maskIP(clientIP)}`);
 
   try {
     // LOGIN
@@ -117,7 +126,7 @@ Deno.serve(async (req) => {
       }
 
       if (attempts && attempts.length >= MAX_LOGIN_ATTEMPTS) {
-        console.log(`[admin-auth] Rate limit exceeded for IP: ${clientIP}`);
+        console.log(`[admin-auth] Rate limit exceeded for IP: ${maskIP(clientIP)}`);
         return new Response(
           JSON.stringify({ error: 'Muitas tentativas de login. Tente novamente em 15 minutos.' }),
           { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -164,15 +173,20 @@ Deno.serve(async (req) => {
       });
 
       if (!isValidCredentials) {
-        console.log(`[admin-auth] Failed login attempt for: ${email.slice(0, 50)}`);
+        console.log(`[admin-auth] Failed login attempt for: ${maskEmail(email)}`);
         return new Response(
           JSON.stringify({ error: 'Credenciais inválidas' }),
           { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
 
-      // Clean expired sessions
-      await supabase.rpc('clean_expired_sessions').catch(() => {});
+      // Clean expired sessions directly (no RPC needed)
+      await supabase
+        .from('admin_sessions')
+        .delete()
+        .lt('expires_at', new Date().toISOString())
+        .then(() => {})
+        .catch(() => {});
 
       // Create new session
       const token = generateToken();
