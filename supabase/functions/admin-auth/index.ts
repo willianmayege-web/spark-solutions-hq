@@ -83,6 +83,12 @@ function maskIP(ip: string): string {
     : ip.slice(0, 8) + '***';
 }
 
+// Sanitize input strings
+function sanitizeString(str: string | null | undefined): string {
+  if (!str) return '';
+  return String(str).trim().slice(0, 1000);
+}
+
 Deno.serve(async (req) => {
   const origin = req.headers.get('origin');
   const corsHeaders = getCorsHeaders(origin);
