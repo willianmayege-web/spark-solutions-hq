@@ -65,10 +65,11 @@ const FooterEletroMays = () => {
                     size="sm" 
                     onClick={openGoogleMaps}
                     className="text-xs"
+                    aria-label="Ver localização no Google Maps (abre em nova aba)"
                   >
-                    <MapPin className="w-3 h-3 mr-1" />
+                    <MapPin className="w-3 h-3 mr-1" aria-hidden="true" />
                     Ver no Mapa
-                    <ExternalLink className="w-3 h-3 ml-1" />
+                    <ExternalLink className="w-3 h-3 ml-1" aria-hidden="true" />
                   </Button>
                 </div>
               </div>
@@ -108,18 +109,18 @@ const FooterEletroMays = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-muted hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="Instagram"
+                aria-label="Visitar Instagram da Eletro May's (abre em nova aba)"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-5 h-5" aria-hidden="true" />
               </a>
               <a 
                 href="https://linkedin.com/company/eletromays" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-muted hover:bg-primary flex items-center justify-center transition-colors"
-                aria-label="LinkedIn"
+                aria-label="Visitar LinkedIn da Eletro May's (abre em nova aba)"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5" aria-hidden="true" />
               </a>
             </div>
 

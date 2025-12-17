@@ -33,18 +33,20 @@ const HeroHome = () => {
                 size="lg" 
                 className="group font-semibold"
                 onClick={() => window.open(whatsappLink('Olá! Gostaria de solicitar atendimento técnico.'), '_blank')}
+                aria-label="Solicitar atendimento técnico via WhatsApp (abre em nova aba)"
               >
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                 Solicitar Atendimento Técnico
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </Button>
               <Button 
                 variant="hero" 
                 size="lg" 
                 className="font-semibold"
                 onClick={() => document.getElementById('calendly')?.scrollIntoView({ behavior: 'smooth' })}
+                aria-label="Ir para seção de agendamento de consultoria online"
               >
-                <Calendar className="w-5 h-5 mr-2" />
+                <Calendar className="w-5 h-5 mr-2" aria-hidden="true" />
                 Agendar Consultoria Online
               </Button>
             </div>
