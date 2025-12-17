@@ -120,20 +120,49 @@ All colors MUST be HSL.
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Custom Keyboard Focus Styles for Accessibility */
+  /* ============================================
+   * WCAG AA - Focus Visible Styles
+   * Contraste mínimo 3:1 para foco
+   * ============================================ */
+  
+  /* Reset de outline padrão */
+  *:focus {
+    outline: none;
+  }
+
+  /* Foco visível para elementos interativos */
   a:focus-visible,
   button:focus-visible,
+  [role="button"]:focus-visible,
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible,
-  [tabindex]:focus-visible {
+  [tabindex]:focus-visible:not([tabindex="-1"]) {
     outline: 3px solid hsl(var(--primary-orange));
-    outline-offset: 3px;
+    outline-offset: 2px;
     border-radius: 4px;
-    transition: outline 0.2s ease-in-out;
+    transition: outline-offset 0.15s ease-in-out;
   }
 
-  /* Enhanced focus for interactive elements */
+  /* Foco em modo escuro com contraste adequado */
+  .dark a:focus-visible,
+  .dark button:focus-visible,
+  .dark [role="button"]:focus-visible,
+  .dark input:focus-visible,
+  .dark textarea:focus-visible,
+  .dark select:focus-visible,
+  .dark [tabindex]:focus-visible:not([tabindex="-1"]) {
+    outline-color: hsl(26 88% 70%);
+  }
+
+  /* Foco interno para inputs (além do outline) */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    box-shadow: 0 0 0 1px hsl(var(--primary-orange) / 0.5);
+  }
+
+  /* Enhanced focus for links */
   a:focus-visible {
     text-decoration: underline;
     text-decoration-thickness: 2px;
@@ -144,12 +173,13 @@ All colors MUST be HSL.
   .skip-to-main {
     position: absolute;
     left: -9999px;
-    z-index: 999;
+    z-index: 9999;
     padding: 1rem 1.5rem;
     background-color: hsl(var(--primary-orange));
     color: white;
     text-decoration: none;
     border-radius: 0 0 4px 0;
+    font-weight: 600;
   }
 
   .skip-to-main:focus {
@@ -168,6 +198,13 @@ All colors MUST be HSL.
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+  }
+
+  /* Focus visible não se aplica a elementos desabilitados */
+  [disabled]:focus-visible,
+  [aria-disabled="true"]:focus-visible {
+    outline: none;
+    box-shadow: none;
   }
 }
 

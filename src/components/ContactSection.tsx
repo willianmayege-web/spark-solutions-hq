@@ -117,8 +117,9 @@ const ContactSection = () => {
                 className="w-full" 
                 size="lg"
                 onClick={() => window.location.href = `tel:+${CONTACT.phone.number}`}
+                aria-label={`Ligar para ${CONTACT.phone.display}`}
               >
-                <Phone className="w-5 h-5 mr-2" />
+                <Phone className="w-5 h-5 mr-2" aria-hidden="true" />
                 Ligar Agora
               </Button>
               <Button 
@@ -126,8 +127,9 @@ const ContactSection = () => {
                 className="w-full" 
                 size="lg"
                 onClick={() => window.open(whatsappLink('Olá, gostaria de solicitar um orçamento de engenharia elétrica / laudo técnico.'), '_blank')}
+                aria-label="Abrir conversa no WhatsApp (abre em nova aba)"
               >
-                <MessageSquare className="w-5 h-5 mr-2" />
+                <MessageSquare className="w-5 h-5 mr-2" aria-hidden="true" />
                 WhatsApp
               </Button>
             </div>
@@ -148,39 +150,69 @@ const ContactSection = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-2">
                         Nome Completo *
                       </label>
-                      <Input placeholder="Seu nome" required />
+                      <Input 
+                        id="contact-name"
+                        name="name"
+                        placeholder="Seu nome" 
+                        required 
+                        aria-required="true"
+                      />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-2">
                         E-mail *
                       </label>
-                      <Input type="email" placeholder="seu@email.com" required />
+                      <Input 
+                        id="contact-email"
+                        name="email"
+                        type="email" 
+                        placeholder="seu@email.com" 
+                        required 
+                        aria-required="true"
+                      />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label htmlFor="contact-phone" className="block text-sm font-medium text-foreground mb-2">
                         Telefone / WhatsApp *
                       </label>
-                      <Input placeholder="(55) 99999-9999" required />
+                      <Input 
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="(55) 99999-9999" 
+                        required 
+                        aria-required="true"
+                      />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">
+                      <label htmlFor="contact-company" className="block text-sm font-medium text-foreground mb-2">
                         Empresa / Condomínio (opcional)
                       </label>
-                      <Input placeholder="Razão social ou nome do condomínio" />
+                      <Input 
+                        id="contact-company"
+                        name="company"
+                        placeholder="Razão social ou nome do condomínio" 
+                      />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="contact-service" className="block text-sm font-medium text-foreground mb-2">
                       Tipo de Serviço *
                     </label>
-                    <select className="w-full p-3 border border-input rounded-md bg-background text-foreground" required>
+                    <select 
+                      id="contact-service"
+                      name="service"
+                      className="w-full p-3 border border-input rounded-md bg-background text-foreground" 
+                      required
+                      aria-required="true"
+                    >
                       <option value="">Selecione o serviço desejado</option>
                       {services.map((service) => (
                         <option key={service} value={service}>{service}</option>
@@ -189,21 +221,28 @@ const ContactSection = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-2">
                       Descreva o Problema ou Projeto *
                     </label>
                     <Textarea
+                      id="contact-message"
+                      name="message"
                       placeholder="Ex: Preciso de laudo SPDA para prédio comercial de 4 andares para renovação do AVCB. Ou: Instalação apresenta quedas frequentes e precisamos de diagnóstico técnico. Informe prazo desejado se houver."
                       rows={5}
                       required
+                      aria-required="true"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="contact-location" className="block text-sm font-medium text-foreground mb-2">
                       Cidade / Localização da Instalação
                     </label>
-                    <Input placeholder="Ex: Santa Rosa - RS, zona industrial" />
+                    <Input 
+                      id="contact-location"
+                      name="location"
+                      placeholder="Ex: Santa Rosa - RS, zona industrial" 
+                    />
                   </div>
 
                   <Button 
