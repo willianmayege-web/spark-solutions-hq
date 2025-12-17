@@ -1,29 +1,85 @@
+import { useState } from "react";
 import { Button } from "./ui/button";
 
-const EnergySimulator = () => {
-  const runPVCalc = () => {
-    const get = (id: string) => parseFloat((document.getElementById(id) as HTMLInputElement)?.value || '0');
+interface SimulationResults {
+  dims: { kWp: number; coverPct: number };
+  gen: { month: number; year: number };
+  savings: { month: number; year: number };
+  capex: { total: number; omYear: number };
+  payback: { simple: number };
+  dpb: { years: number | null; discRate: number };
+  npv: number;
+  lcoe: number;
+  co2: { year1: number; factor: number };
+}
 
-    const billBRL = get('billBRL');
-    const kWhIn   = get('consumptionKWh');
-    const tariff  = Math.max(get('tariff'), 0.01);
-    const hsp     = get('hsp');          // h/dia
-    const pr      = get('pr');           // 0.72–0.85
-    const capexPk = get('capexPerKwp');  // R$/kWp
-    const omPct   = get('omPercent')/100;
-    const escal   = get('tariffEsc')/100;
-    const disc    = get('discount')/100;
-    const degr    = get('degr')/100;
-    const cover   = get('coverPct')/100;
-    const co2EF   = get('co2EF');        // tCO2/MWh
+interface FormData {
+  billBRL: string;
+  consumptionKWh: string;
+  tariff: string;
+  hsp: string;
+  pr: string;
+  capexPerKwp: string;
+  omPercent: string;
+  tariffEsc: string;
+  discount: string;
+  degr: string;
+  coverPct: string;
+  co2EF: string;
+}
+
+const EnergySimulator = () => {
+  const [formData, setFormData] = useState<FormData>({
+    billBRL: "",
+    consumptionKWh: "",
+    tariff: "1.00",
+    hsp: "5.0",
+    pr: "0.80",
+    capexPerKwp: "4800",
+    omPercent: "1.0",
+    tariffEsc: "6.0",
+    discount: "10.0",
+    degr: "0.7",
+    coverPct: "95",
+    co2EF: "0.06",
+  });
+
+  const [results, setResults] = useState<SimulationResults | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const runPVCalc = () => {
+    setError(null);
+    
+    const get = (field: keyof FormData) => parseFloat(formData[field] || "0");
+
+    const billBRL = get("billBRL");
+    const kWhIn = get("consumptionKWh");
+    const tariff = Math.max(get("tariff"), 0.01);
+    const hsp = get("hsp");
+    const pr = get("pr");
+    const capexPk = get("capexPerKwp");
+    const omPct = get("omPercent") / 100;
+    const escal = get("tariffEsc") / 100;
+    const disc = get("discount") / 100;
+    const degr = get("degr") / 100;
+    const cover = get("coverPct") / 100;
+    const co2EF = get("co2EF");
 
     // Consumo mensal (kWh)
-    let consKWh = kWhIn > 0 ? kWhIn : (billBRL > 0 ? billBRL/tariff : 0);
-    if (consKWh <= 0){ alert('Informe consumo (kWh) ou fatura (R$).'); return; }
+    let consKWh = kWhIn > 0 ? kWhIn : billBRL > 0 ? billBRL / tariff : 0;
+    if (consKWh <= 0) {
+      setError("Informe consumo (kWh) ou fatura (R$).");
+      setResults(null);
+      return;
+    }
 
     // Dimensionamento: gera ~cover% do consumo
-    const genTarget = consKWh * cover;            // kWh/mês
-    const kWp = genTarget / (hsp * pr * 30);      // kWp
+    const genTarget = consKWh * cover;
+    const kWp = genTarget / (hsp * pr * 30);
     const capexTotal = kWp * capexPk;
 
     // Geração mês/ano (ano 1)
@@ -32,7 +88,7 @@ const EnergySimulator = () => {
 
     // Economia mês/ano (ano 1)
     const savedMonth1 = Math.min(genMonth, consKWh) * tariff;
-    const savedYear1  = savedMonth1 * 12;
+    const savedYear1 = savedMonth1 * 12;
 
     // O&M
     const omYear = capexTotal * omPct;
@@ -48,54 +104,50 @@ const EnergySimulator = () => {
     let genY = genYear1;
     let t = tariff;
 
-    for(let y=1; y<=years; y++){
-      if (y>1){
-        genY *= (1 - degr); // degradação
-        t    *= (1 + escal); // tarifa sobe
+    for (let y = 1; y <= years; y++) {
+      if (y > 1) {
+        genY *= 1 - degr;
+        t *= 1 + escal;
       }
-      const savedY = Math.min(consKWh*12, genY) * t;
-      const cashY  = savedY - omYear;
-      const pvY    = cashY / Math.pow(1+disc, y);
+      const savedY = Math.min(consKWh * 12, genY) * t;
+      const cashY = savedY - omYear;
+      const pvY = cashY / Math.pow(1 + disc, y);
       npv += pvY;
       cumDisc += pvY;
-      if (discountedPayback === null && cumDisc >= 0){
-        // aproximação linear do ano em que cruza zero
+      if (discountedPayback === null && cumDisc >= 0) {
         const prevCum = cumDisc - pvY;
         const frac = prevCum !== 0 ? (prevCum * -1) / pvY : 0;
-        discountedPayback = (y-1) + Math.max(0, Math.min(1, frac));
+        discountedPayback = y - 1 + Math.max(0, Math.min(1, frac));
       }
     }
 
     // LCOE (custo nivelado)
-    let denom = 0, numer = capexTotal; // OPEX descontado somado no numerador
+    let denom = 0,
+      numer = capexTotal;
     genY = genYear1;
-    for(let y=1; y<=years; y++){
-      if (y>1) genY *= (1 - degr);
-      const pvGen = genY / Math.pow(1+disc, y);
+    for (let y = 1; y <= years; y++) {
+      if (y > 1) genY *= 1 - degr;
+      const pvGen = genY / Math.pow(1 + disc, y);
       denom += pvGen;
-      const pvOpex = omYear / Math.pow(1+disc, y);
+      const pvOpex = omYear / Math.pow(1 + disc, y);
       numer += pvOpex;
     }
-    const lcoe = numer / (denom || 1); // R$/kWh
+    const lcoe = numer / (denom || 1);
 
     // CO2 evitado ano 1
-    const co2Y1 = (genYear1/1000) * co2EF; // tCO2
+    const co2Y1 = (genYear1 / 1000) * co2EF;
 
-    // Render
-    const resultDiv = document.getElementById('pvResult');
-    if (resultDiv) {
-      document.getElementById('rDims')!.innerHTML    = `Potência do sistema: <strong>${kWp.toFixed(2)} kWp</strong> (cobrindo ${Math.round(cover*100)}% do seu consumo estimado).`;
-      document.getElementById('rGen')!.innerHTML     = `Geração estimada: <strong>${genMonth.toFixed(0)} kWh/mês</strong> | <strong>${genYear1.toFixed(0)} kWh/ano</strong>.`;
-      document.getElementById('rSavings')!.innerHTML = `Economia (Ano 1): <strong>R$ ${savedMonth1.toFixed(2)}/mês</strong> | <strong>R$ ${savedYear1.toFixed(2)}/ano</strong>.`;
-      document.getElementById('rCapex')!.innerHTML   = `Investimento estimado (CAPEX): <strong>R$ ${capexTotal.toFixed(2)}</strong> | O&M anual: <strong>R$ ${omYear.toFixed(2)}</strong>.`;
-      document.getElementById('rPayback')!.innerHTML = `Payback simples (aprox.): <strong>${(simplePayback).toFixed(1)} anos</strong>.`;
-      document.getElementById('rDPB')!.innerHTML     = `Payback descontado: <strong>${discountedPayback ? discountedPayback.toFixed(1) : '—'} anos</strong> (taxa ${ (disc*100).toFixed(1)}% a.a.).`;
-      document.getElementById('rNPV')!.innerHTML     = `NPV (25 anos): <strong>R$ ${npv.toFixed(2)}</strong>.`;
-      document.getElementById('rLCOE')!.innerHTML    = `LCOE (25 anos): <strong>R$ ${lcoe.toFixed(2)}/kWh</strong>.`;
-      document.getElementById('rCO2')!.innerHTML     = `CO₂ evitado no Ano 1: <strong>${co2Y1.toFixed(2)} tCO₂</strong> (fator ${co2EF} tCO₂/MWh).`;
-
-      resultDiv.style.display = 'block';
-    }
+    setResults({
+      dims: { kWp, coverPct: cover * 100 },
+      gen: { month: genMonth, year: genYear1 },
+      savings: { month: savedMonth1, year: savedYear1 },
+      capex: { total: capexTotal, omYear },
+      payback: { simple: simplePayback },
+      dpb: { years: discountedPayback, discRate: disc * 100 },
+      npv,
+      lcoe,
+      co2: { year1: co2Y1, factor: co2EF },
+    });
   };
 
   return (
@@ -111,167 +163,195 @@ const EnergySimulator = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-w-5xl mx-auto mb-4 text-left">
         <div>
           <label className="block text-sm mb-1">Fatura média (R$) — opcional</label>
-          <input 
-            id="billBRL" 
-            type="number" 
-            min="0" 
-            step="0.01" 
-            placeholder="Ex.: 650" 
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Ex.: 650"
+            value={formData.billBRL}
+            onChange={(e) => handleInputChange("billBRL", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Consumo mensal (kWh) — se souber</label>
-          <input 
-            id="consumptionKWh" 
-            type="number" 
-            min="0" 
-            step="1" 
-            placeholder="Ex.: 450" 
+          <input
+            type="number"
+            min="0"
+            step="1"
+            placeholder="Ex.: 450"
+            value={formData.consumptionKWh}
+            onChange={(e) => handleInputChange("consumptionKWh", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Tarifa (R$/kWh)</label>
-          <input 
-            id="tariff" 
-            type="number" 
-            min="0" 
-            step="0.01" 
-            defaultValue="1.00" 
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            value={formData.tariff}
+            onChange={(e) => handleInputChange("tariff", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">HSP (h/dia)</label>
-          <input 
-            id="hsp" 
-            type="number" 
-            min="3" 
-            max="6.5" 
-            step="0.1" 
-            defaultValue="5.0" 
+          <input
+            type="number"
+            min="3"
+            max="6.5"
+            step="0.1"
+            value={formData.hsp}
+            onChange={(e) => handleInputChange("hsp", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">PR (0.72–0.85)</label>
-          <input 
-            id="pr" 
-            type="number" 
-            min="0.7" 
-            max="0.9" 
-            step="0.01" 
-            defaultValue="0.80" 
+          <input
+            type="number"
+            min="0.7"
+            max="0.9"
+            step="0.01"
+            value={formData.pr}
+            onChange={(e) => handleInputChange("pr", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">CAPEX (R$/kWp)</label>
-          <input 
-            id="capexPerKwp" 
-            type="number" 
-            min="3000" 
-            step="50" 
-            defaultValue="4800" 
+          <input
+            type="number"
+            min="3000"
+            step="50"
+            value={formData.capexPerKwp}
+            onChange={(e) => handleInputChange("capexPerKwp", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">O&M (% CAPEX/ano)</label>
-          <input 
-            id="omPercent" 
-            type="number" 
-            min="0" 
-            step="0.1" 
-            defaultValue="1.0" 
+          <input
+            type="number"
+            min="0"
+            step="0.1"
+            value={formData.omPercent}
+            onChange={(e) => handleInputChange("omPercent", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Escalada tarifária (% a.a.)</label>
-          <input 
-            id="tariffEsc" 
-            type="number" 
-            min="0" 
-            step="0.1" 
-            defaultValue="6.0" 
+          <input
+            type="number"
+            min="0"
+            step="0.1"
+            value={formData.tariffEsc}
+            onChange={(e) => handleInputChange("tariffEsc", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Taxa de desconto (% a.a.)</label>
-          <input 
-            id="discount" 
-            type="number" 
-            min="0" 
-            step="0.1" 
-            defaultValue="10.0" 
+          <input
+            type="number"
+            min="0"
+            step="0.1"
+            value={formData.discount}
+            onChange={(e) => handleInputChange("discount", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Degradação FV (% a.a.)</label>
-          <input 
-            id="degr" 
-            type="number" 
-            min="0" 
-            step="0.05" 
-            defaultValue="0.7" 
+          <input
+            type="number"
+            min="0"
+            step="0.05"
+            value={formData.degr}
+            onChange={(e) => handleInputChange("degr", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Meta de cobertura do consumo (%)</label>
-          <input 
-            id="coverPct" 
-            type="number" 
-            min="10" 
-            max="100" 
-            step="1" 
-            defaultValue="95" 
+          <input
+            type="number"
+            min="10"
+            max="100"
+            step="1"
+            value={formData.coverPct}
+            onChange={(e) => handleInputChange("coverPct", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
         <div>
           <label className="block text-sm mb-1">Fator CO₂ (tCO₂/MWh)</label>
-          <input 
-            id="co2EF" 
-            type="number" 
-            min="0" 
-            step="0.01" 
-            defaultValue="0.06" 
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            value={formData.co2EF}
+            onChange={(e) => handleInputChange("co2EF", e.target.value)}
             className="w-full p-2.5 rounded-md border-none bg-input text-foreground"
           />
         </div>
       </div>
 
-      <Button 
-        onClick={runPVCalc}
-        variant="orange"
-        size="lg"
-        className="mt-2"
-      >
+      <Button onClick={runPVCalc} variant="orange" size="lg" className="mt-2">
         Calcular
       </Button>
 
+      {/* Error message */}
+      {error && (
+        <div className="max-w-5xl mx-auto mt-4 text-left bg-destructive/10 border border-destructive rounded-lg p-4">
+          <p className="text-destructive">{error}</p>
+        </div>
+      )}
+
       {/* Resultados */}
-      <div id="pvResult" className="hidden max-w-5xl mx-auto mt-6 text-left bg-surface-dark border border-border rounded-lg p-4">
-        <h3 className="mt-0 mb-4 text-green-400 text-xl font-semibold">Resultados — Ano 1</h3>
-        <p id="rDims" className="mb-2"></p>
-        <p id="rGen" className="mb-2"></p>
-        <p id="rSavings" className="mb-4"></p>
+      {results && (
+        <div className="max-w-5xl mx-auto mt-6 text-left bg-surface-dark border border-border rounded-lg p-4">
+          <h3 className="mt-0 mb-4 text-green-400 text-xl font-semibold">
+            Resultados — Ano 1
+          </h3>
+          <p className="mb-2">
+            Potência do sistema: <strong>{results.dims.kWp.toFixed(2)} kWp</strong> (cobrindo {Math.round(results.dims.coverPct)}% do seu consumo estimado).
+          </p>
+          <p className="mb-2">
+            Geração estimada: <strong>{results.gen.month.toFixed(0)} kWh/mês</strong> | <strong>{results.gen.year.toFixed(0)} kWh/ano</strong>.
+          </p>
+          <p className="mb-4">
+            Economia (Ano 1): <strong>R$ {results.savings.month.toFixed(2)}/mês</strong> | <strong>R$ {results.savings.year.toFixed(2)}/ano</strong>.
+          </p>
 
-        <h3 className="text-primary-orange text-lg font-semibold mb-2">Investimento & Retorno</h3>
-        <p id="rCapex" className="mb-2"></p>
-        <p id="rPayback" className="mb-2"></p>
-        <p id="rDPB" className="mb-2"></p>
-        <p id="rNPV" className="mb-2"></p>
-        <p id="rLCOE" className="mb-4"></p>
+          <h3 className="text-primary-orange text-lg font-semibold mb-2">
+            Investimento & Retorno
+          </h3>
+          <p className="mb-2">
+            Investimento estimado (CAPEX): <strong>R$ {results.capex.total.toFixed(2)}</strong> | O&M anual: <strong>R$ {results.capex.omYear.toFixed(2)}</strong>.
+          </p>
+          <p className="mb-2">
+            Payback simples (aprox.): <strong>{results.payback.simple.toFixed(1)} anos</strong>.
+          </p>
+          <p className="mb-2">
+            Payback descontado: <strong>{results.dpb.years ? results.dpb.years.toFixed(1) : "—"} anos</strong> (taxa {results.dpb.discRate.toFixed(1)}% a.a.).
+          </p>
+          <p className="mb-2">
+            NPV (25 anos): <strong>R$ {results.npv.toFixed(2)}</strong>.
+          </p>
+          <p className="mb-4">
+            LCOE (25 anos): <strong>R$ {results.lcoe.toFixed(2)}/kWh</strong>.
+          </p>
 
-        <h3 className="text-lg font-semibold mb-2">Impacto Ambiental</h3>
-        <p id="rCO2" className="mb-2"></p>
-      </div>
+          <h3 className="text-lg font-semibold mb-2">Impacto Ambiental</h3>
+          <p className="mb-2">
+            CO₂ evitado no Ano 1: <strong>{results.co2.year1.toFixed(2)} tCO₂</strong> (fator {results.co2.factor} tCO₂/MWh).
+          </p>
+        </div>
+      )}
     </section>
   );
 };
