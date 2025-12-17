@@ -46,7 +46,7 @@ const AboutSection = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 A Eletro May's Engenharia Elétrica atua em Santa Rosa e região, 
                 oferecendo projetos elétricos, energia solar fotovoltaica, SPDA, laudos técnicos e 
-                perícias com registro CREA-RS {CONTACT.crea}. Qualidade técnica e conformidade normativa.
+                perícias. Qualidade técnica e conformidade normativa.
               </p>
             </div>
 

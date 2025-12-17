@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const FooterEletroMays = () => {
   const openGoogleMaps = () => {
-    window.open('https://maps.google.com/?q=Rua+Vinte+de+Setembro,+751,+Santa+Rosa,+RS', '_blank');
+    window.open('https://maps.google.com/?q=Santa+Rosa,+RS,+Brasil', '_blank');
   };
 
   return (
@@ -15,7 +15,7 @@ const FooterEletroMays = () => {
             <div className="flex items-center space-x-3 mb-6">
               <img 
                 src="/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png" 
-                alt="Eletro May's Engenharia Elétrica - Logotipo oficial CREA-RS 231706" 
+                alt="Eletro May's Engenharia Elétrica - Logotipo oficial"
                 className="w-12 h-12"
               />
               <div>
@@ -28,13 +28,6 @@ const FooterEletroMays = () => {
               especializada em projetos, laudos, energia solar e SPDA em Santa Rosa e região noroeste do RS. 
               Fundada em dezembro de 2021.
             </p>
-            <div className="flex items-center space-x-2 mb-2">
-              <Award className="w-5 h-5 text-primary" />
-              <span className="text-foreground font-semibold text-sm">CREA-RS: 231706</span>
-            </div>
-            <div className="text-xs text-muted-foreground">
-              CNPJ: 44.443.829/0001-34
-            </div>
           </div>
 
           {/* Coluna 2 - Contato Completo */}
@@ -50,17 +43,15 @@ const FooterEletroMays = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-4 h-4 text-primary flex-shrink-0" />
-                <a href="mailto:atendimento@eletromays.com.br" className="text-muted-foreground text-sm hover:text-primary transition-colors">
-                  atendimento@eletromays.com.br
-                </a>
+              <a href="mailto:atendimento@eletromays.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                atendimento@eletromays.com
+              </a>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <div className="text-muted-foreground text-sm">Rua Vinte de Setembro, 751</div>
+              <div>
                   <div className="text-muted-foreground text-sm">Santa Rosa - RS</div>
-                  <div className="text-muted-foreground text-sm mb-2">CEP: 98900-000</div>
-                  <Button 
+                  <Button
                     variant="outline" 
                     size="sm" 
                     onClick={openGoogleMaps}
@@ -140,7 +131,7 @@ const FooterEletroMays = () => {
         <div className="border-t border-border pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-muted-foreground text-sm text-center md:text-left">
-              © 2021–{new Date().getFullYear()} Eletro May's Engenharia Ltda - CNPJ 44.443.829/0001-34 - CREA-RS 231706. Todos os direitos reservados.
+              © 2021–{new Date().getFullYear()} Eletro May's Engenharia Ltda. Todos os direitos reservados.
             </p>
             <div className="flex gap-4 text-sm">
               <a href="/politica-privacidade" className="text-muted-foreground hover:text-primary transition-colors">

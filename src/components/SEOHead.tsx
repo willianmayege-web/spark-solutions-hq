@@ -15,7 +15,7 @@ interface SEOHeadProps {
 
 const SEOHead = ({
   title = "Eletro May's Engenharia Elétrica | Energia Solar, SPDA e Projetos em Santa Rosa-RS",
-  description = "Engenharia elétrica em Santa Rosa-RS e região: energia solar fotovoltaica, SPDA (NBR 5419), projetos elétricos (NBR 5410), qualidade de energia e termografia. CREA-RS 231706.",
+  description = "Engenharia elétrica em Santa Rosa-RS e região: energia solar fotovoltaica, SPDA (NBR 5419), projetos elétricos (NBR 5410), qualidade de energia e termografia.",
   keywords = "energia solar santa rosa, spda santa rosa, engenharia elétrica santa rosa, projetos elétricos RS, termografia elétrica, qualidade de energia, laudos técnicos, automação industrial",
   ogTitle,
   ogDescription,
@@ -101,22 +101,20 @@ export const organizationJsonLd = {
   "@type": ["LocalBusiness", "ProfessionalService", "ElectricalContractor"],
   "name": "Eletro May's Engenharia Elétrica",
   "alternateName": "Eletro Mays",
-  "description": "Empresa especializada em engenharia elétrica com registro CREA-RS 231706. Atua em projetos de energia solar fotovoltaica, SPDA, instalações elétricas NBR 5410, termografia, qualidade de energia e automação industrial em Santa Rosa-RS e região.",
+  "description": "Empresa especializada em engenharia elétrica. Atua em projetos de energia solar fotovoltaica, SPDA, instalações elétricas NBR 5410, termografia, qualidade de energia e automação industrial em Santa Rosa-RS e região.",
   "image": "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
   "logo": "https://eletromays.com.br/lovable-uploads/046bf34f-70b4-405a-99e3-c9a832e0c659.png",
   "@id": "https://eletromays.com.br",
   "url": "https://eletromays.com.br",
   "telephone": "+555535205555",
-  "email": "atendimento@eletromays.com.br",
+  "email": "atendimento@eletromays.com",
   "priceRange": "$$",
   "currenciesAccepted": "BRL",
   "paymentAccepted": "Dinheiro, Cartão de Crédito, Cartão de Débito, PIX, Transferência Bancária",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Rua Vinte de Setembro, 751",
     "addressLocality": "Santa Rosa",
     "addressRegion": "RS",
-    "postalCode": "98900-000",
     "addressCountry": "BR"
   },
   "geo": {
@@ -139,16 +137,7 @@ export const organizationJsonLd = {
   "founder": {
     "@type": "Person",
     "name": "Eng. Willian Paulo May",
-    "jobTitle": "Engenheiro Eletricista",
-    "hasCredential": {
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "Registro Profissional",
-      "recognizedBy": {
-        "@type": "Organization",
-        "name": "CREA-RS - Conselho Regional de Engenharia e Agronomia do Rio Grande do Sul"
-      },
-      "identifier": "CREA-RS 231706"
-    }
+    "jobTitle": "Engenheiro Eletricista"
   },
   "areaServed": [
     {
