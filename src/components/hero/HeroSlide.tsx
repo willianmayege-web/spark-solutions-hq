@@ -35,7 +35,7 @@ const HeroSlide = ({ slide, isActive, onAction }: HeroSlideProps) => {
         <div className="max-w-3xl">
           <div className="mb-4 flex items-center gap-2">
             <Zap className="w-6 h-6 text-primary" />
-            <span className="text-primary font-semibold">CREA-RS {CONTACT.crea}</span>
+            <span className="text-primary font-semibold">Engenharia Elétrica</span>
           </div>
 
           <h2 className="text-4xl md:text-5xl xl:text-6xl font-bold text-foreground mb-4 font-montserrat leading-tight">

@@ -32,15 +32,9 @@ const ContactSection = () => {
     },
     {
       icon: MapPin,
-      title: "Endereço",
-      content: CONTACT.address.split(", ").slice(0, 2).join(", "),
-      description: "Santa Rosa, RS"
-    },
-    {
-      icon: Shield,
-      title: "CREA-RS",
-      content: CONTACT.crea,
-      description: "Certificação Profissional"
+      title: "Localização",
+      content: "Santa Rosa - RS",
+      description: "Região Noroeste"
     }
   ];
 
