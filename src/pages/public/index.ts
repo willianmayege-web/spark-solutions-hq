@@ -26,6 +26,7 @@ export { default as OrderConfirmationPage } from '../OrderConfirmationPage';
 
 // Produtos específicos
 export { default as SeguroEnergiaSolarPage } from '../SeguroEnergiaSolarPage';
+export { default as PlanosMonitoramentoPage } from '../PlanosMonitoramentoPage';
 
 // Diagnóstico
 export { default as DiagnosticsPage } from '../DiagnosticsPage';
