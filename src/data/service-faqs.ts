@@ -1,6 +1,18 @@
 export const serviceFAQs = {
   "energia-solar": [
     {
+      question: "O que é a Lei 14.300 e como ela afeta meu sistema solar?",
+      answer: "A Lei 14.300/2022 estabelece o Marco Legal da Geração Distribuída. Para sistemas novos (após janeiro 2023), há aplicação gradual de taxas sobre a energia injetada na rede (TUSD Fio B), variando de 15% em 2024 até 90% em 2029. Sistemas instalados antes de 07/01/2023 mantêm as regras antigas (isenção total) até 2045. A economia típica varia de 30% a 90%, dependendo do perfil de autoconsumo."
+    },
+    {
+      question: "Ainda vale a pena instalar energia solar após a Lei 14.300?",
+      answer: "Sim, continua sendo um excelente investimento. Mesmo com as novas regras, a economia permanece entre 30% e 90%, com payback de 4-6 anos. Perfis comerciais com alta carga diurna têm economia ainda maior por autoconsumo. A valorização do imóvel (3-6%) e proteção contra aumentos tarifários são benefícios adicionais."
+    },
+    {
+      question: "Qual a diferença entre autoconsumo e compensação de créditos?",
+      answer: "Autoconsumo é usar a energia no momento da geração (economia de 100%, sem taxas). Compensação é injetar o excedente na rede e usar os créditos depois (economia reduzida pelas taxas da Lei 14.300). Perfis comerciais e industriais com alta carga diurna têm maior economia por autoconsumo direto."
+    },
+    {
       question: "Como é calculado o payback da energia solar?",
       answer: "O payback é calculado dividindo o investimento total pela economia mensal na conta de luz. Em média, sistemas solares em Santa Rosa-RS têm payback de 4 a 6 anos, considerando a tarifa atual da RGE e a irradiação solar da região."
     },

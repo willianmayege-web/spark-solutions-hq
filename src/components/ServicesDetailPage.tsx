@@ -11,6 +11,7 @@ import SEOHead, { serviceJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/component
 import { CheckCircle, ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import { whatsappLink } from "@/config/contact";
+import Lei14300Section from "@/components/Lei14300Section";
 import energiaSolarImg from "@/assets/energia-solar.jpg";
 import spdaImg from "@/assets/spda-aterramento.jpg";
 import laudosImg from "@/assets/laudos-pericias.jpg";
@@ -181,6 +182,9 @@ const ServicesDetailPage = () => {
             </Card>
           </div>
         </section>
+
+        {/* Lei 14.300 Section - apenas para energia solar */}
+        {service.id === "energia-solar" && <Lei14300Section />}
 
         {/* FAQs */}
         {faqs.length > 0 && <ServiceFAQ faqs={faqs} />}
