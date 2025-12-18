@@ -15,9 +15,9 @@ export const servicesDetail: ServiceDetail[] = [
     title: "Energia Solar Fotovoltaica em Santa Rosa RS",
     metaTitle: "Energia Solar Santa Rosa RS | Sistemas Fotovoltaicos",
     metaDescription: "Instalação de energia solar fotovoltaica em Santa Rosa RS. Sistemas on-grid, off-grid e híbridos conforme NBR 16690 e normas ANEEL. Economia real e payback garantido.",
-    description: "A Eletro May's é especialista em projetos e instalações de sistemas de energia solar fotovoltaica em Santa Rosa e região noroeste do Rio Grande do Sul. Desenvolvemos soluções personalizadas para residências, empresas e indústrias, com sistemas on-grid (conectados à rede), off-grid (isolados) e híbridos. Todos os projetos seguem rigorosamente a NBR 16690 e as normas da ANEEL, com emissão de ART. Nossa equipe realiza estudos de viabilidade técnica e financeira, dimensionamento preciso com análise de sombreamento, instalação completa, homologação junto à concessionária e monitoramento de geração. Garantimos economia real de até 95% na conta de energia, com payback médio entre 4 e 6 anos e vida útil superior a 25 anos.",
+    description: "A Eletro May's é especialista em projetos e instalações de sistemas de energia solar fotovoltaica em Santa Rosa e região noroeste do Rio Grande do Sul. Desenvolvemos soluções personalizadas para residências, empresas e indústrias, com sistemas on-grid (conectados à rede), off-grid (isolados) e híbridos. Todos os projetos seguem rigorosamente a NBR 16690 e as normas da ANEEL, com emissão de ART. Nossa equipe realiza estudos de viabilidade técnica e financeira, dimensionamento preciso com análise de sombreamento, instalação completa, homologação junto à concessionária e monitoramento de geração. A economia varia entre 30% e 90% na conta de energia, dependendo do perfil de autoconsumo, dimensionamento e regras da Lei 14.300. Payback médio entre 4 e 6 anos e vida útil superior a 25 anos.",
     benefits: [
-      "Economia de até 95% na conta de energia elétrica",
+      "Economia entre 30% e 90% na conta de energia (conforme autoconsumo e Lei 14.300)",
       "Payback entre 4 e 6 anos com ROI garantido",
       "Valorização imediata do imóvel em até 30%",
       "Projetos certificados com ART e homologação ANEEL",

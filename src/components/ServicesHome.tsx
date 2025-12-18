@@ -7,7 +7,7 @@ const ServicesHome = () => {
     {
       icon: Sun,
       title: "Energia Solar",
-      description: "Projeto, instalação e acompanhamento completo de sistemas fotovoltaicos para redução de até 95% na conta de energia.",
+      description: "Projeto, instalação e acompanhamento completo de sistemas fotovoltaicos para redução entre 30% e 90% na conta de energia.*",
       features: [
         "Dimensionamento técnico conforme NBR 16690",
         "Homologação com concessionária local",

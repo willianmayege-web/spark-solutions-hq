@@ -203,6 +203,8 @@ const SolarSimulatorSection = () => {
                     <strong>Base:</strong> Inversor 7,5 kW + 12 módulos 600 W (7,2 kWp) por R$ 15.000.
                     <br />
                     Valores estimados. O preço final pode variar conforme estrutura e logística.
+                    <br />
+                    <span className="text-xs mt-1 block">*A economia varia entre 30% e 90% conforme autoconsumo, dimensionamento e regras da Lei 14.300. Existe valor mínimo faturável pela concessionária.</span>
                   </AlertDescription>
                 </Alert>
 
@@ -247,9 +249,9 @@ const SolarSimulatorSection = () => {
             <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <DollarSign className="w-6 h-6 text-primary" />
             </div>
-            <h3 className="font-bold text-foreground mb-2 text-base">Economia Garantida</h3>
+            <h3 className="font-bold text-foreground mb-2 text-base">Economia Real</h3>
             <p className="text-sm text-muted-foreground">
-              Economize até 95% na conta de energia com energia solar
+              Economize entre 30% e 90%* na conta de energia com energia solar
             </p>
           </div>
 

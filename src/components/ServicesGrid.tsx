@@ -28,7 +28,7 @@ const ServicesGrid = () => {
       description: "Projeto completo conforme NBR 16690 e Resolução ANEEL 482/687. Dimensionamento técnico, homologação junto à concessionária e monitoramento de geração em tempo real.",
       image: energiaSolarImg,
       features: ["Homologação ágil com concessionária", "Payback médio de 4 anos", "Monitoramento remoto 24/7"],
-      highlight: "Até 95% de economia"
+      highlight: "30% a 90% de economia*"
     },
     {
       id: "spda",
