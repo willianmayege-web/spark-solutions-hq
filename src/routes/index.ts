@@ -33,6 +33,7 @@ export const ROUTES = {
     
     // Produtos específicos
     SOLAR_INSURANCE: '/seguro-energia-solar',
+    MONITORING_PLANS: '/planos-monitoramento',
     
     // Diagnóstico (noindex)
     DIAGNOSTICS: '/diagnostics',
