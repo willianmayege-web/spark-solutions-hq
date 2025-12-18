@@ -14,7 +14,7 @@ export const heroSlides: HeroSlideData[] = [
   {
     id: 1,
     title: "Energia Solar Fotovoltaica",
-    subtitle: "Conta de luz alta? Reduza até 95% com geração própria",
+    subtitle: "Conta de luz alta? Reduza entre 30% e 90% com geração própria*",
     description: "Projetos completos com homologação junto à concessionária, monitoramento remoto e payback médio de 4 anos. Engenharia de qualidade em Santa Rosa e região.",
     ctaPrimary: { text: "Simular Economia", action: "simulator", icon: Calculator },
     ctaSecondary: { text: "Conversar com Engenheiro", action: "whatsapp", icon: Phone },

@@ -19,7 +19,7 @@ const FAQ = () => {
             Qual a economia média com energia solar?
           </summary>
           <p className="mt-3 text-text-muted">
-            A economia pode chegar a 95% na conta de energia, dependendo do consumo e do dimensionamento correto do sistema.
+            Na prática, a redução típica fica entre 30% e 90%, dependendo do perfil de consumo no horário de sol (autoconsumo), do dimensionamento do sistema e das regras de compensação da Lei 14.300. Para consumos comerciais com alta carga durante o dia, é comum ver economias mais altas. Promessas de zerar a conta de luz devem ser avaliadas com cautela, pois existe um valor mínimo faturável pela concessionária.
           </p>
         </details>
         

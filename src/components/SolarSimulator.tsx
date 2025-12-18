@@ -183,7 +183,7 @@ const SolarSimulator = () => {
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <TrendingUp className="w-6 h-6 text-primary mx-auto mb-2" />
-                    <div className="text-sm font-semibold text-foreground">95% Economia</div>
+                    <div className="text-sm font-semibold text-foreground">30-90% Economia*</div>
                   </div>
                   <div>
                     <Zap className="w-6 h-6 text-primary mx-auto mb-2" />
